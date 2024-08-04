@@ -52,11 +52,5 @@ func _on_gold_chains_pressed():
 		goldChains = 1 + goldChains
 		addedRizz = addedRizz + 1
 		rizz = rizz - goldChainsCost
-<<<<<<< Updated upstream
-		goldChainsCost = round(pow(goldChainsCost, 1.05))
-		goldChainsLabel.text = "Gold Chains : % \nCost : %".format([goldChains, goldChainsCost], "%")
-		addedRizz = addedRizz + 1
-=======
 		goldChainsCost = round(pow(goldChainsCost, 1.1))
->>>>>>> Stashed changes
 		update_rizz()
