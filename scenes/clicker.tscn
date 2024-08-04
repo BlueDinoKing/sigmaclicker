@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://0ugh23teop1k"]
+[gd_scene load_steps=3 format=3 uid="uid://0ugh23teop1k"]
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
+
+[sub_resource type="Theme" id="Theme_4dnqd"]
+Button/colors/icon_normal_color = Color(0, 1, 0, 1)
 
 [node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel")]
 layout_mode = 3
@@ -53,6 +56,7 @@ offset_left = 877.0
 offset_top = 23.0
 offset_right = 1127.0
 offset_bottom = 106.0
+theme = SubResource("Theme_4dnqd")
 
 [node name="Label" type="Label" parent="gold chains"]
 layout_mode = 0

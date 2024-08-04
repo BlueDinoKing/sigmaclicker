@@ -34,16 +34,29 @@ func rizzupbaddies() -> void:
 ## updates the rizz label
 func update_rizz() -> void:
 	label.text = "Rizz : %s" %rizz
-	if rizz >= goldChainsCost:
-		goldChainsButton
+	update_available_gold_chains()
 
+func update_available_gold_chains():
+	var temp_rizz = rizz
+	var temp_cost = goldChainsCost
+	var count = 0
 
+	while temp_rizz >= temp_cost:
+		temp_rizz -= temp_cost
+		temp_cost = round(pow(temp_cost, 1.1))
+		count += 1
+	goldChainsLabel.text = "Gold Chains : % (%)\n Cost : %".format([goldChains, count, goldChainsCost], "%")
 
 func _on_gold_chains_pressed():
 	if rizz >= goldChainsCost:
 		goldChains = 1 + goldChains
+		addedRizz = addedRizz + 1
 		rizz = rizz - goldChainsCost
+<<<<<<< Updated upstream
 		goldChainsCost = round(pow(goldChainsCost, 1.05))
 		goldChainsLabel.text = "Gold Chains : % \nCost : %".format([goldChains, goldChainsCost], "%")
 		addedRizz = addedRizz + 1
+=======
+		goldChainsCost = round(pow(goldChainsCost, 1.1))
+>>>>>>> Stashed changes
 		update_rizz()
