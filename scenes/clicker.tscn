@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,9 +10,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gdsq0")
-label = NodePath("Label")
+label = NodePath("total rizz")
+button = NodePath("rizz up baddies")
 
-[node name="Button" type="Button" parent="."]
+[node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
 layout_mode = 1
 anchors_preset = 8
@@ -28,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "rizz up baddies"
 
-[node name="Label" type="Label" parent="."]
+[node name="total rizz" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -45,5 +46,5 @@ text = "Rizz : 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
