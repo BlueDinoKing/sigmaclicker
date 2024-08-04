@@ -1,35 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://0ugh23teop1k"]
+[gd_scene load_steps=3 format=3 uid="uid://0ugh23teop1k"]
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
-[ext_resource type="Texture2D" uid="uid://bjb5xvhypir23" path="res://images/wrizzparticle.png" id="2_6c0al"]
 
 [sub_resource type="Theme" id="Theme_4dnqd"]
 Button/colors/icon_normal_color = Color(0, 1, 0, 1)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uihb2"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 980, 0)
-
-[sub_resource type="GDScript" id="GDScript_acxah"]
-script/source = "extends GPUParticles2D
-
-@export var button : Button
-
-func _ready():
-	one_shot = true
-	
-
-
-func _on_rizz_up_baddies_pressed():
-	emitting = true
-
-
-
-func _on_rizz_up_baddies_button_up():
-	emitting = false
-"
-
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel", "goldChainsButton")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel", "goldChainsButton", "darkLabel", "darkButton", "auraTimer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +17,9 @@ label = NodePath("total rizz")
 button = NodePath("rizz up baddies")
 goldChainsLabel = NodePath("gold chains/Label")
 goldChainsButton = NodePath("gold chains")
+darkLabel = NodePath("dark and mysterious/Label")
+darkButton = NodePath("dark and mysterious")
+auraTimer = NodePath("aura")
 
 [node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -94,17 +73,29 @@ text = "Gold Chains : 0 (0)
 Cost : 16"
 vertical_alignment = 1
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." node_paths=PackedStringArray("button")]
-position = Vector2(592, 405)
-emitting = false
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_uihb2")
-texture = ExtResource("2_6c0al")
-script = SubResource("GDScript_acxah")
-button = NodePath("../rizz up baddies")
+[node name="dark and mysterious" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 882.0
+offset_top = 157.0
+offset_right = 1132.0
+offset_bottom = 240.0
+theme = SubResource("Theme_4dnqd")
+
+[node name="Label" type="Label" parent="dark and mysterious"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 229.0
+offset_bottom = 67.0
+text = "Dark and Mysterious: 0 (0)
+Cost : 32"
+vertical_alignment = 1
+
+[node name="aura" type="Timer" parent="."]
 
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
-[connection signal="button_up" from="rizz up baddies" to="GPUParticles2D" method="_on_rizz_up_baddies_button_up"]
 [connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="rizz up baddies" to="GPUParticles2D" method="_on_rizz_up_baddies_pressed"]
 [connection signal="pressed" from="gold chains" to="." method="_on_gold_chains_pressed"]
+[connection signal="pressed" from="dark and mysterious" to="." method="_on_dark_and_mysterious_pressed"]
+[connection signal="timeout" from="aura" to="." method="_on_aura_timeout"]
