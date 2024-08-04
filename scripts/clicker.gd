@@ -4,7 +4,12 @@ extends Control
 ## exports label so you can use it for stuff
 @export var label : Label 
 @export var button : Button
+@export var goldChainsLabel : Label
+@export var goldChainsButton : Button
 var rizz : int = 0
+var goldChainsCost = 16
+var goldChains = 0
+var addedRizz = 1
 ##test commits
 
 
@@ -23,21 +28,22 @@ func _on_button_pressed() -> void:
 
 ## rizz up bro
 func rizzupbaddies() -> void:
-	var addedRizz = 1
 	rizz += addedRizz
 	update_rizz()
 
 ## updates the rizz label
 func update_rizz() -> void:
 	label.text = "Rizz : %s" %rizz
+	if rizz >= goldChainsCost:
+		goldChainsButton
 
-@export var goldChainsLabel : Label
-var goldChainsCost = 16
-var goldChains = 0
+
+
 func _on_gold_chains_pressed():
 	if rizz >= goldChainsCost:
 		goldChains = 1 + goldChains
 		rizz = rizz - goldChainsCost
-		goldChainsCost = round(pow(goldChainsCost, 1.1))
-		goldChainsLabel.text = "Gold Chains : % \n Cost : %".format([goldChains, goldChainsCost], "%")
+		goldChainsCost = round(pow(goldChainsCost, 1.05))
+		goldChainsLabel.text = "Gold Chains : % \nCost : %".format([goldChains, goldChainsCost], "%")
+		addedRizz = addedRizz + 1
 		update_rizz()
