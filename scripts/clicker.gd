@@ -5,7 +5,7 @@ extends Control
 @export var label : Label 
 @export var button : Button
 var rizz : int = 0
-
+##test commits
 
 
 # Called when the node enters the scene tree for the first time.
