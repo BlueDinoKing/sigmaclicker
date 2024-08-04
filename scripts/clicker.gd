@@ -3,7 +3,7 @@ extends Control
 
 ## exports label so you can use it for stuff
 @export var label : Label 
-
+@export var button : Button
 var rizz : int = 0
 
 
@@ -20,6 +20,8 @@ func _process(delta):
 ## when rizz up baddies is pressed  rizz up baddies
 func _on_button_pressed() -> void:
 	rizzupbaddies()
+	
+
 
 ## rizz up bro
 func rizzupbaddies() -> void:
@@ -30,3 +32,7 @@ func rizzupbaddies() -> void:
 ## updates the rizz label
 func update_rizz() -> void:
 	label.text = "Rizz : %s" %rizz
+
+
+##func _on_button_button_down():
+##	button.size = 
