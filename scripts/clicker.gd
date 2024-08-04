@@ -12,30 +12,33 @@ var goldChains = 0
 var addedRizz = 1
 ##test commits
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	update_rizz()
 
-## when rizz up baddies is pressed  rizz up baddies
-func _on_button_pressed() -> void:
-	rizzupbaddies()
 
 ## rizz up bro
 func rizzupbaddies() -> void:
 	rizz += addedRizz
 	update_rizz()
 
+func _on_button_pressed() -> void:
+	rizzupbaddies()
+
+	
 ## updates the rizz label
 func update_rizz() -> void:
 	label.text = "Rizz : %s" %rizz
-	update_available_gold_chains()
+	update_available_purchases()
 
+func update_available_purchases():
+	update_available_gold_chains()
+	
 func update_available_gold_chains():
 	var temp_rizz = rizz
 	var temp_cost = goldChainsCost
@@ -45,7 +48,7 @@ func update_available_gold_chains():
 		temp_rizz -= temp_cost
 		temp_cost = round(pow(temp_cost, 1.1))
 		count += 1
-	goldChainsLabel.text = "Gold Chains : % (%)\n Cost : %".format([goldChains, count, goldChainsCost], "%")
+	goldChainsLabel.text = "Gold Chains : % (%)\nCost : %".format([goldChains, count, goldChainsCost], "%")
 
 func _on_gold_chains_pressed():
 	if rizz >= goldChainsCost:
@@ -54,3 +57,4 @@ func _on_gold_chains_pressed():
 		rizz = rizz - goldChainsCost
 		goldChainsCost = round(pow(goldChainsCost, 1.1))
 		update_rizz()
+
