@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel", "goldChainsButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ script = ExtResource("1_gdsq0")
 label = NodePath("total rizz")
 button = NodePath("rizz up baddies")
 goldChainsLabel = NodePath("gold chains/Label")
+goldChainsButton = NodePath("gold chains")
 
 [node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
