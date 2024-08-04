@@ -20,8 +20,6 @@ func _process(delta):
 ## when rizz up baddies is pressed  rizz up baddies
 func _on_button_pressed() -> void:
 	rizzupbaddies()
-	
-
 
 ## rizz up bro
 func rizzupbaddies() -> void:
@@ -33,6 +31,13 @@ func rizzupbaddies() -> void:
 func update_rizz() -> void:
 	label.text = "Rizz : %s" %rizz
 
-
-##func _on_button_button_down():
-##	button.size = 
+@export var goldChainsLabel : Label
+var goldChainsCost = 16
+var goldChains = 0
+func _on_gold_chains_pressed():
+	if rizz >= goldChainsCost:
+		goldChains = 1 + goldChains
+		rizz = rizz - goldChainsCost
+		goldChainsCost = round(pow(goldChainsCost, 1.1))
+		goldChainsLabel.text = "Gold Chains : % \n Cost : %".format([goldChains, goldChainsCost], "%")
+		update_rizz()

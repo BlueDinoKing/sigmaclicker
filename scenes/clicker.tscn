@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_gdsq0")
 label = NodePath("total rizz")
 button = NodePath("rizz up baddies")
+goldChainsLabel = NodePath("gold chains/Label")
 
 [node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -46,5 +47,22 @@ text = "Rizz : 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="gold chains" type="Button" parent="."]
+layout_mode = 0
+offset_left = 877.0
+offset_top = 23.0
+offset_right = 1127.0
+offset_bottom = 106.0
+
+[node name="Label" type="Label" parent="gold chains"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 229.0
+offset_bottom = 67.0
+text = "Gold Chains : "
+vertical_alignment = 1
+
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="gold chains" to="." method="_on_gold_chains_pressed"]
