@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://0ugh23teop1k"]
+
+[node name="clicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 233.0
+offset_right = 772.0
+offset_bottom = 397.0
