@@ -9,6 +9,7 @@ extends Control
 @export var darkLabel : Label
 @export var darkButton : Button
 @export var auraTimer : Timer
+@export var upgradesMenu : OptionButton
 var rizz : int = 0
 var goldChainsCost = 16
 var goldChains = 0
@@ -17,6 +18,8 @@ var dark = 0
 var addedRizz = 1
 var aura = 0
 var maxDigits : int = 3
+var clicks = 0
+var upgrade1 = false
 ##test commits
 
 # Called when the node enters the scene tree for the first time.
@@ -32,7 +35,10 @@ func _process(delta):
 ## rizz up bro
 func rizzupbaddies() -> void:
 	rizz += addedRizz
+	clicks += 1
 	update_rizz()
+	if clicks == 100:
+		unlockUpgrade(1)
 
 func _on_button_pressed() -> void:
 	rizzupbaddies()
@@ -92,9 +98,26 @@ func _on_dark_and_mysterious_pressed():
 		rizz = rizz - darkCost
 		darkCost = round(pow(darkCost, 1.1))
 		update_rizz()
+		if upgrade1 == true:
+			auraTimer.wait_time = auraTimer.wait_time * 0.95
+			print(auraTimer.wait_time)
 	if dark == 1:
 		auraTimer.start()
 
 
 func _on_aura_timeout():
 	rizz = rizz + aura
+
+##func unlockUpgrade(input) -> void:
+##	upgradesMenu.add_item(upgrades[input][0], 1)
+		
+var requestedUpgrade = []
+#func upgrade(index) -> void:
+#	requestedUpgrade = upgrades[index]
+#	if rizz >= requestedUpgrade[1]:
+#		rizz = rizz - requestedUpgrade[1]
+#		if index == 1:
+#			var upgrade1 = true
+	
+##func _on_option_button_item_selected(index):
+##	upgrade(index)

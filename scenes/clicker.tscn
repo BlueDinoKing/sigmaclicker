@@ -5,7 +5,7 @@
 [sub_resource type="Theme" id="Theme_4dnqd"]
 Button/colors/icon_normal_color = Color(0, 1, 0, 1)
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel", "goldChainsButton", "darkLabel", "darkButton", "auraTimer")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel", "goldChainsButton", "darkLabel", "darkButton", "auraTimer", "upgradesMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,7 @@ goldChainsButton = NodePath("gold chains")
 darkLabel = NodePath("dark and mysterious/Label")
 darkButton = NodePath("dark and mysterious")
 auraTimer = NodePath("aura")
+upgradesMenu = NodePath("OptionButton")
 
 [node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -94,8 +95,15 @@ vertical_alignment = 1
 
 [node name="aura" type="Timer" parent="."]
 
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 20.0
+allow_reselect = true
+
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="gold chains" to="." method="_on_gold_chains_pressed"]
 [connection signal="pressed" from="dark and mysterious" to="." method="_on_dark_and_mysterious_pressed"]
 [connection signal="timeout" from="aura" to="." method="_on_aura_timeout"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
