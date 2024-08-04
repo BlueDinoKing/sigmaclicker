@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bn7wuqkjvi23j"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 222.0
+offset_top = 92.0
+offset_right = 730.0
+offset_bottom = 228.0
+text = "test"
