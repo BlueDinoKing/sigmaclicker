@@ -15,6 +15,8 @@ extends Control
 @export var moggersTimer : Timer
 @export var exponents : HSlider
 @export var exponentsLabel : Label
+@export var view : userInterface.Views
+@export var user_interface : userInterface
 var rizz : int = 0
 var goldChainsCost = 16
 var goldChains = 0
@@ -28,10 +30,14 @@ var moggers = 0
 var moggersCost = 256
 var upgrade1 = false
 ##test commits
-
+func _on_navigation_request(requestedView : userInterface.Views) -> void:
+	if requestedView == view:
+		visible = true
+		return
+	visible = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	user_interface.navigation_requested.connect(_on_navigation_request)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
