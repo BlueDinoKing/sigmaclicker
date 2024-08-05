@@ -15,10 +15,21 @@ run/main_scene="res://scenes/ui.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameInstance="*res://scripts/game.gd"
+
 [display]
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://scenes/": "purple",
+"res://scripts/": "teal"
+}
 
 [rendering]
 

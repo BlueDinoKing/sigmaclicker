@@ -1,15 +1,14 @@
 class_name userInterface
 extends Control
 
-
 enum Views {
 	MAIN,
 	SETTINGS,
 }
+
 signal navigation_requested(view: Views)
 
-func _on_main_pressed() -> void:
-	navigation_requested.emit(Views.MAIN)
 
-func _on_settings_pressed() -> void:
-	navigation_requested.emit(Views.SETTINGS)
+var menus = [Views.MAIN, Views.SETTINGS]
+func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	navigation_requested.emit(menus[index])

@@ -38,31 +38,16 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="settings" type="LinkButton" parent="HBoxContainer/leftPanel/VBoxContainer/nav"]
+[node name="ItemList" type="ItemList" parent="HBoxContainer/leftPanel/VBoxContainer/nav"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.047
-anchor_right = 0.5
-anchor_bottom = 0.047
-offset_left = -33.0
-offset_top = -13.946
-offset_right = 34.0
-offset_bottom = 14.054
-text = "Settings"
-
-[node name="main" type="LinkButton" parent="HBoxContainer/leftPanel/VBoxContainer/nav"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.047
-anchor_right = 0.5
-anchor_bottom = 0.047
-offset_left = -24.0
-offset_top = 14.054
-offset_right = 15.0
-offset_bottom = 42.054
-text = "Main"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 2
+item_0/text = "Main"
+item_1/text = "Settings"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/leftPanel/VBoxContainer"]
 layout_mode = 2
@@ -84,11 +69,11 @@ size_flags_horizontal = 3
 [node name="clicker" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("1_0qt3f")]
 layout_mode = 1
 user_interface = NodePath("../../..")
+user_interface_path = NodePath("../../..")
 
-[node name="settings" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_Interface") instance=ExtResource("3_jqmk5")]
+[node name="settings" parent="HBoxContainer/mainView" instance=ExtResource("3_jqmk5")]
 visible = false
 layout_mode = 1
-user_Interface = NodePath("../../..")
+user_interface_path = NodePath("../../..")
 
-[connection signal="pressed" from="HBoxContainer/leftPanel/VBoxContainer/nav/settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="HBoxContainer/leftPanel/VBoxContainer/nav/main" to="." method="_on_main_pressed"]
+[connection signal="item_clicked" from="HBoxContainer/leftPanel/VBoxContainer/nav/ItemList" to="." method="_on_item_list_item_clicked"]
