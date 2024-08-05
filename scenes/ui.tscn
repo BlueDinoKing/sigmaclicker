@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c77v1uh4rdr30"]
+[gd_scene load_steps=5 format=3 uid="uid://c77v1uh4rdr30"]
 
 [ext_resource type="PackedScene" uid="uid://0ugh23teop1k" path="res://scenes/clicker.tscn" id="1_0qt3f"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_rl8b6"]
+[ext_resource type="Script" path="res://scenes/resourceList.gd" id="2_gr0qn"]
 [ext_resource type="PackedScene" uid="uid://cmdspqtegj13" path="res://scenes/settings.tscn" id="3_jqmk5"]
 
 [node name="ui" type="Control"]
@@ -56,6 +57,17 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ItemList" type="ItemList" parent="HBoxContainer/leftPanel/VBoxContainer/resources"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 1
+item_0/selectable = false
+script = ExtResource("2_gr0qn")
+
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 
@@ -68,6 +80,7 @@ size_flags_horizontal = 3
 
 [node name="clicker" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("1_0qt3f")]
 layout_mode = 1
+view = 0
 user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
 
