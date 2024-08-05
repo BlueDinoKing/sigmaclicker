@@ -37,8 +37,8 @@ func rizzupbaddies() -> void:
 	rizz += addedRizz
 	clicks += 1
 	update_rizz()
-	##if clicks == 100:
-	##	unlockUpgrade(1)
+	if clicks == 10:
+		unlockUpgrade(1)
 
 func _on_button_pressed() -> void:
 	rizzupbaddies()
@@ -89,7 +89,7 @@ func update_available_dark():
 		temp_rizz -= temp_cost
 		temp_cost = round(pow(temp_cost, 1.1))
 		count += 1
-	darkLabel.text = "Dark and Mysterious Potion : % (%)\nCost : %".format([format_number(dark), format_number(count), format_number(darkCost)], "%")
+	darkLabel.text = "Aura Brewery : % (%)\nCost : %".format([format_number(dark), format_number(count), format_number(darkCost)], "%")
 
 func _on_dark_and_mysterious_pressed():
 	if rizz >= darkCost:
@@ -108,16 +108,16 @@ func _on_dark_and_mysterious_pressed():
 func _on_aura_timeout():
 	rizz = rizz + aura
 
-##func unlockUpgrade(input) -> void:
-##	upgradesMenu.add_item(upgrades[input][0], 1)
+func unlockUpgrade(input) -> void:
+	if input == 1:
+		var message = str("Aura Breweries 5% faster per Gold Chain : % Rizz".format(format_number(5000), "%"))
+		upgradesMenu.add_item(message, 1)
+		print('test')
 		
-var requestedUpgrade = []
-#func upgrade(index) -> void:
-#	requestedUpgrade = upgrades[index]
-#	if rizz >= requestedUpgrade[1]:
-#		rizz = rizz - requestedUpgrade[1]
-#		if index == 1:
-#			var upgrade1 = true
+func upgrade(index) -> void:
+	if index == 1 and rizz >= 5000:
+		rizz = rizz - 5000
+		var upgrade1 = true
 	
-##func _on_option_button_item_selected(index):
-##	upgrade(index)
+func _on_option_button_item_selected(index):
+	upgrade(index)
