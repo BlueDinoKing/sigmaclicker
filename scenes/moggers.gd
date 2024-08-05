@@ -14,9 +14,12 @@ func format_number(input) -> String:
 @export var moggersLabel : Label
 var moggersCost = 256
 
+func _process(delta: float) -> void:
+	update_available_mogger()
+
 func _on_pressed() -> void:
 	if GameInstance.data.rizz >= moggersCost:
-		GameInstance.data.moggers += GameInstance.data.moggers
+		GameInstance.data.moggers += 1
 		GameInstance.data.rizz -= moggersCost
 		moggersCost = round(pow(moggersCost, 1.2))
 	if GameInstance.data.moggers == 1:
