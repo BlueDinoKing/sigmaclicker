@@ -37,8 +37,8 @@ func rizzupbaddies() -> void:
 	rizz += addedRizz
 	clicks += 1
 	update_rizz()
-	if clicks == 100:
-		unlockUpgrade(1)
+	##if clicks == 100:
+	##	unlockUpgrade(1)
 
 func _on_button_pressed() -> void:
 	rizzupbaddies()

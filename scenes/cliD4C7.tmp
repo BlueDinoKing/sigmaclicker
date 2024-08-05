@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ugh23teop1k"]
+
+[ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
+
+[sub_resource type="Theme" id="Theme_4dnqd"]
+Button/colors/icon_normal_color = Color(0, 1, 0, 1)
+
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "goldChainsLabel", "goldChainsButton", "darkLabel", "darkButton", "auraTimer", "upgradesMenu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gdsq0")
+label = NodePath("total rizz")
+button = NodePath("rizz up baddies")
+goldChainsLabel = NodePath("gold chains/Label")
+goldChainsButton = NodePath("gold chains")
+darkLabel = NodePath("dark and mysterious/Label")
+darkButton = NodePath("dark and mysterious")
+auraTimer = NodePath("aura")
+upgradesMenu = NodePath("OptionButton")
+
+[node name="rizz up baddies" type="Button" parent="."]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -82.0
+offset_right = 129.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "rizz up baddies"
+
+[node name="total rizz" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -124.0
+offset_right = 38.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rizz : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gold chains" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 881.0
+offset_top = 65.0
+offset_right = 1131.0
+offset_bottom = 148.0
+theme = SubResource("Theme_4dnqd")
+
+[node name="Label" type="Label" parent="gold chains"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 229.0
+offset_bottom = 67.0
+text = "Gold Chains : 0 (0)
+Cost : 16"
+vertical_alignment = 1
+
+[node name="dark and mysterious" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 882.0
+offset_top = 157.0
+offset_right = 1132.0
+offset_bottom = 240.0
+theme = SubResource("Theme_4dnqd")
+
+[node name="Label" type="Label" parent="dark and mysterious"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 229.0
+offset_bottom = 67.0
+text = "Dark and Mysterious: 0 (0)
+Cost : 32"
+vertical_alignment = 1
+
+[node name="aura" type="Timer" parent="."]
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 20.0
+allow_reselect = true
+
+[connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="gold chains" to="." method="_on_gold_chains_pressed"]
+[connection signal="pressed" from="dark and mysterious" to="." method="_on_dark_and_mysterious_pressed"]
+[connection signal="timeout" from="aura" to="." method="_on_aura_timeout"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
