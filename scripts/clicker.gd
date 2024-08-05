@@ -10,6 +10,11 @@ extends Control
 @export var darkButton : Button
 @export var auraTimer : Timer
 @export var upgradesMenu : OptionButton
+@export var moggersButton : Button
+@export var moggersLabel : Label
+@export var moggersTimer : Timer
+@export var exponents : HSlider
+@export var exponentsLabel : Label
 var rizz : int = 0
 var goldChainsCost = 16
 var goldChains = 0
@@ -19,6 +24,8 @@ var addedRizz = 1
 var aura = 0
 var maxDigits : int = 3
 var clicks = 0
+var moggers = 0
+var moggersCost = 256
 var upgrade1 = false
 ##test commits
 
@@ -33,16 +40,16 @@ func _process(delta):
 
 
 ## rizz up bro
-func rizzupbaddies() -> void:
-	rizz += addedRizz
-	clicks += 1
+func rizzupbaddies(input) -> void:
+	rizz += addedRizz*input
 	update_rizz()
-	if clicks == 10:
-		unlockUpgrade(1)
+
 
 func _on_button_pressed() -> void:
-	rizzupbaddies()
-
+	rizzupbaddies(1)
+	clicks += 1
+	if clicks == 10:
+		unlockUpgrade(1)
 	
 ## updates the rizz label
 func update_rizz() -> void:
@@ -60,6 +67,7 @@ func format_number(input) -> String:
 func update_available_purchases():
 	update_available_gold_chains()
 	update_available_dark()
+	update_available_mogger()
 	
 func update_available_gold_chains():
 	var temp_rizz = rizz
@@ -91,10 +99,20 @@ func update_available_dark():
 		count += 1
 	darkLabel.text = "Aura Brewery : % (%)\nCost : %".format([format_number(dark), format_number(count), format_number(darkCost)], "%")
 
+func update_available_mogger():
+	var temp_rizz = rizz
+	var temp_cost = moggersCost
+	var count = 0
+	while temp_rizz >= temp_cost:
+		temp_rizz -= temp_cost
+		temp_cost = round(pow(temp_cost, 1.1))
+		count += 1
+	moggersLabel.text = "Moggers : % (%)\nCost : %".format([format_number(moggers), format_number(count), format_number(moggersCost)], "%")
+
 func _on_dark_and_mysterious_pressed():
 	if rizz >= darkCost:
 		dark = 1 + dark
-		aura = aura + 1
+		aura = aura + dark
 		rizz = rizz - darkCost
 		darkCost = round(pow(darkCost, 1.1))
 		update_rizz()
@@ -121,3 +139,27 @@ func upgrade(index) -> void:
 	
 func _on_option_button_item_selected(index):
 	upgrade(index)
+
+func _on_moggers_pressed() -> void:
+	if rizz >= moggersCost:
+		moggers = 1 + moggers
+		rizz = rizz - moggersCost
+		moggersCost = round(pow(moggersCost, 1.2))
+		update_rizz()
+	if moggers == 1:
+		moggersTimer.start()
+		
+func mog():
+	rizzupbaddies(moggers)
+	
+
+
+func _on_timer_timeout() -> void:
+	mog()
+
+
+
+func _on_h_slider_drag_ended(value_changed: bool) -> void:
+	print('test')
+	maxDigits = exponents.value
+	exponentsLabel.text = "% digits".format([exponents.value+1], "%")
