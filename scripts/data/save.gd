@@ -18,3 +18,8 @@ static func load_data() -> void:
 		if loaded_data and loaded_data is Data:
 			GameInstance.data = loaded_data
 			print("Data loaded")
+
+static func reset_data():
+	if GameInstance.data:
+		GameInstance.data.reset()
+		save_data()
