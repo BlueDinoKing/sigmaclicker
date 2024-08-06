@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c77v1uh4rdr30"]
+[gd_scene load_steps=6 format=3 uid="uid://c77v1uh4rdr30"]
 
 [ext_resource type="PackedScene" uid="uid://0ugh23teop1k" path="res://scenes/clicker.tscn" id="1_0qt3f"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_rl8b6"]
 [ext_resource type="Script" path="res://scenes/resourceList.gd" id="2_gr0qn"]
 [ext_resource type="PackedScene" uid="uid://cmdspqtegj13" path="res://scenes/settings.tscn" id="3_jqmk5"]
+[ext_resource type="Script" path="res://scenes/save_timer.gd" id="5_yq10k"]
 
 [node name="ui" type="Control"]
 layout_mode = 3
@@ -46,10 +47,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-item_count = 3
+item_count = 2
 item_0/text = "Main"
 item_1/text = "Settings"
-item_2/text = "Save"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/leftPanel/VBoxContainer"]
 layout_mode = 2
@@ -89,4 +89,10 @@ visible = false
 layout_mode = 1
 user_interface_path = NodePath("../../..")
 
+[node name="save_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+script = ExtResource("5_yq10k")
+
 [connection signal="item_clicked" from="HBoxContainer/leftPanel/VBoxContainer/nav/ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="timeout" from="save_timer" to="save_timer" method="_on_timeout"]

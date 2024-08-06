@@ -91,6 +91,7 @@ Cost : 32"
 vertical_alignment = 1
 
 [node name="aura" type="Timer" parent="Label/aura breweries"]
+autostart = true
 
 [node name="gold chains" type="Button" parent="Label" node_paths=PackedStringArray("goldChainsLabel")]
 custom_minimum_size = Vector2(150, 50)

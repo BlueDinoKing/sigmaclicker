@@ -6,7 +6,7 @@ static var ref: Game
 
 # data property
 var data: Data
-@export var save_timer: Timer
+@export var save_timer : Timer
 
 static func format_number(input) -> String:
 	var _exp = str(input).split(".")[0].length() - 1
@@ -41,16 +41,3 @@ func _ready() -> void:
 		if not data:
 			data = Data.new()
 		# Check and connect the save timer
-		print("Save timer is: %s" % str(save_timer))
-		if save_timer:
-			print("Save timer found")
-			save_timer.connect("timeout", Callable(self, "_on_savetimer_timeout"))
-			save_timer.start()
-			print("Save timer started")
-		else:
-			print("Save timer is null")
-
-# save game every 5 seconds
-func _on_savetimer_timeout() -> void:
-	print('Save timer timeout - saving data')
-	SaveSystem.save_data()

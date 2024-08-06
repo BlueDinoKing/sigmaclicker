@@ -3,13 +3,7 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ckq4e"]
 [ext_resource type="PackedScene" uid="uid://c77v1uh4rdr30" path="res://scenes/ui.tscn" id="2_qmabn"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("save_timer")]
+[node name="Game" type="Node"]
 script = ExtResource("1_ckq4e")
-save_timer = NodePath("save_timer")
 
 [node name="ui" parent="." instance=ExtResource("2_qmabn")]
-
-[node name="save_timer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="save_timer" to="." method="_on_savetimer_timeout"]

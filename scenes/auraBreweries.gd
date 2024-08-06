@@ -26,8 +26,6 @@ func _on_pressed():
 		#if upgrade1 == true:
 		#	auraTimer.wait_time = auraTimer.wait_time * 0.95
 		#	print(auraTimer.wait_time)
-	if GameInstance.data.auraBreweries == 1:
-		auraTimer.start()
 
 func _on_aura_timeout():
 	GameInstance.data.rizz += GameInstance.data.aura
