@@ -1,21 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://0ugh23teop1k"]
+[gd_scene load_steps=7 format=3 uid="uid://0ugh23teop1k"]
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 [ext_resource type="Script" path="res://scenes/auraBreweries.gd" id="2_vevm5"]
-[ext_resource type="Texture2D" uid="uid://bjb5xvhypir23" path="res://images/wrizzparticle.png" id="2_vr2d5"]
 [ext_resource type="Script" path="res://scenes/goldChains.gd" id="3_a0tl6"]
 [ext_resource type="AudioStream" uid="uid://dsvj1h68514oq" path="res://audios/rizz-sounds.mp3" id="3_i1gol"]
 [ext_resource type="Script" path="res://scenes/moggers.gd" id="4_7tdh8"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ybsrx"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-turbulence_enabled = true
-
 [sub_resource type="Theme" id="Theme_4dnqd"]
 Button/colors/icon_normal_color = Color(0, 1, 0, 1)
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "particles")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +19,6 @@ grow_vertical = 2
 script = ExtResource("1_gdsq0")
 label = NodePath("")
 button = NodePath("rizz up baddies")
-particles = NodePath("rizz up baddies/w rizz chat")
 
 [node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -42,15 +35,6 @@ offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "rizz up baddies"
-
-[node name="w rizz chat" type="GPUParticles2D" parent="rizz up baddies"]
-position = Vector2(164, 88)
-emitting = false
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_ybsrx")
-texture = ExtResource("2_vr2d5")
-lifetime = 4.0
-speed_scale = 3.59
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="rizz up baddies"]
 stream = ExtResource("3_i1gol")

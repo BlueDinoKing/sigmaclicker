@@ -7,16 +7,6 @@ extends Control
 @export var view: userInterface.Views
 @export var user_interface: userInterface
 @export var user_interface_path : NodePath
-@export var particles : GPUParticles2D
-
-func emit_one_particle():
-	# Ensure the particles are initially not emitting
-	particles.emitting = false
-	# Briefly start emitting
-	particles.emitting = true
-	# Set a timer to stop emitting after a short delay
-	await get_tree().create_timer(0.1).timeout
-	particles.emitting = false
 
 func _on_navigation_request(requestedView: userInterface.Views) -> void:
 	if requestedView == view:
@@ -30,7 +20,6 @@ func _ready():
 		user_interface.navigation_requested.connect(_on_navigation_request)
 
 func rizzupbaddies(input) -> void:
-	emit_one_particle()
 	GameInstance.data.rizz += floor(GameInstance.data.addedRizz * input)
 
 
