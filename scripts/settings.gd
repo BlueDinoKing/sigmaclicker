@@ -13,7 +13,7 @@ func _on_navigation_request(requestedView: userInterface.Views) -> void:
 
 func _enter_tree() -> void:
 	exponents.value = GameInstance.data.maxDigitsUntilScientific
-	exponentsLabel.text = "% digits until scientific notation (%)".format([exponents.value + 1, Game.format_number(100000)], "%")
+	exponentsLabel.text = "% digits until scientific notation (%)".format([exponents.value + 1, Game.format_number(100000)], "%")	
 
 func _ready():
 	var user_interface = get_node(user_interface_path)
