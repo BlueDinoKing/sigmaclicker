@@ -80,7 +80,6 @@ size_flags_horizontal = 3
 
 [node name="clicker" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("1_0qt3f")]
 layout_mode = 1
-view = 0
 user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
 

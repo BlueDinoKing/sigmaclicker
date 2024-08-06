@@ -1,15 +1,6 @@
 extends Button
 var goldChainsCost = 16
 @export var goldChainsLabel : Label
-func format_number(input) -> String:
-	var _exp = str(input).split(".")[0].length() - 1
-	if input == 0:
-		return "0"
-	if str(input).length() <= GameInstance.data.maxDigitsUntilScientific:
-		return str(input)
-	else:
-		var _dec = input / pow(10, _exp)
-		return "{dec}e{exp}".format({"dec": ("%1.2f" % _dec), "exp": str(_exp)})
 
 func update_available_gold_chains():
 	var temp_rizz = GameInstance.data.rizz
@@ -20,7 +11,7 @@ func update_available_gold_chains():
 		temp_rizz -= temp_cost
 		temp_cost = round(pow(temp_cost, 1.05))
 		count += 1
-	goldChainsLabel.text = "Gold Chains : % (%)\nCost : %".format([format_number(GameInstance.data.goldChains), format_number(count), format_number(goldChainsCost)], "%")
+	goldChainsLabel.text = "Gold Chains : % (%)\nCost : %".format([Game.format_number(GameInstance.data.goldChains), Game.format_number(count), Game.format_number(goldChainsCost)], "%")
 
 
 

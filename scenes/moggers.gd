@@ -1,15 +1,5 @@
 extends Button
 
-func format_number(input) -> String:
-	var _exp = str(input).split(".")[0].length() - 1
-	if input == 0:
-		return "0"
-	if str(input).length() <= GameInstance.data.maxDigitsUntilScientific:
-		return str(input)
-	else:
-		var _dec = input / pow(10, _exp)
-		return "{dec}e{exp}".format({"dec": ("%1.2f" % _dec), "exp": str(_exp)})
-
 @export var moggersTimer : Timer
 @export var moggersLabel : Label
 var moggersCost = 256
@@ -39,4 +29,4 @@ func update_available_mogger():
 		temp_rizz -= temp_cost
 		temp_cost = round(pow(temp_cost, 1.1))
 		count += 1
-	moggersLabel.text = "Moggers : % (%)\nCost : %".format([format_number(GameInstance.data.moggers), format_number(count), format_number(moggersCost)], "%")
+	moggersLabel.text = "Moggers : % (%)\nCost : %".format([Game.format_number(GameInstance.data.moggers), Game.format_number(count), Game.format_number(moggersCost)], "%")
