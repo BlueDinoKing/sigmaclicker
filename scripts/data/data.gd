@@ -13,8 +13,8 @@ extends Resource
 
 # stats
 @export var clicks : int = 0 # rizzes
-@export var addedRizz : float = 1 # increased by gold chains
+@export var addedRizz : int = 1 # increased by gold chains
 
 # resources
-@export var aura : float = 0 # rizz/s
-@export var rizz : float = 0 # W RIZZ
+@export var aura : int = 0 # rizz/s
+@export var rizz : int = 0 # W RIZZ

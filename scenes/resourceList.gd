@@ -2,9 +2,9 @@ class_name ResourceLabel
 extends ItemList
 
 func update_text() -> void:
-	itemResourceLabel(0, "Clicks : %s", Game.format_number(GameInstance.data.clicks))
-	itemResourceLabel(1, "Rizz : %s", Game.format_number(GameInstance.data.rizz))
-	itemResourceLabel(2, "Aura : %s", Game.format_number(GameInstance.data.aura))
+	itemResourceLabel(0, "Clicks : %s", GameInstance.data.clicks)
+	itemResourceLabel(1, "Rizz : %s", GameInstance.data.rizz)
+	itemResourceLabel(2, "Aura : %s", GameInstance.data.aura)
 #temp func
 func _process(_delta: float) -> void:
 	update_text()
