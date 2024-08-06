@@ -31,13 +31,15 @@ func _singleton_check() -> void:
 func _enter_tree() -> void:
 	_singleton_check()
 	if ref == self:
-		data = Data.new()
+		if not data:
+			data = Data.new()
 		SaveSystem.load_data()
 		print("Data initialized")
 
 func _ready() -> void:
 	if ref == self:
-		data = Data.new()
+		if not data:
+			data = Data.new()
 		# Check and connect the save timer
 		print("Save timer is: %s" % str(save_timer))
 		if save_timer:

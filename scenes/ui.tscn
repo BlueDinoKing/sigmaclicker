@@ -46,9 +46,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-item_count = 2
+item_count = 3
 item_0/text = "Main"
 item_1/text = "Settings"
+item_2/text = "Save"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/leftPanel/VBoxContainer"]
 layout_mode = 2
