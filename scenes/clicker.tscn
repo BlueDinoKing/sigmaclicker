@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://0ugh23teop1k"]
+[gd_scene load_steps=8 format=3 uid="uid://0ugh23teop1k"]
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 [ext_resource type="Script" path="res://scenes/auraBreweries.gd" id="2_vevm5"]
+[ext_resource type="Texture2D" uid="uid://bjb5xvhypir23" path="res://images/wrizzparticle.png" id="2_vr2d5"]
 [ext_resource type="Script" path="res://scenes/goldChains.gd" id="3_a0tl6"]
 [ext_resource type="Script" path="res://scenes/moggers.gd" id="4_7tdh8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ybsrx"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+turbulence_enabled = true
 
 [sub_resource type="Theme" id="Theme_4dnqd"]
 Button/colors/icon_normal_color = Color(0, 1, 0, 1)
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "upgradesMenu")]
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button", "particles")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +24,7 @@ grow_vertical = 2
 script = ExtResource("1_gdsq0")
 label = NodePath("")
 button = NodePath("rizz up baddies")
-upgradesMenu = NodePath("OptionButton")
+particles = NodePath("rizz up baddies/w rizz chat")
 
 [node name="rizz up baddies" type="Button" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -28,29 +34,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -129.0
+offset_left = -160.0
 offset_top = -82.0
-offset_right = 129.0
+offset_right = 160.0
 offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "rizz up baddies"
 
-[node name="OptionButton" type="OptionButton" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -266.0
-offset_top = 162.0
-offset_right = 265.0
-offset_bottom = 191.0
-grow_horizontal = 2
-grow_vertical = 2
-allow_reselect = true
+[node name="w rizz chat" type="GPUParticles2D" parent="rizz up baddies"]
+position = Vector2(164, 88)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ybsrx")
+texture = ExtResource("2_vr2d5")
+lifetime = 4.0
+speed_scale = 3.59
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -61,7 +60,7 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 
-[node name="aura breweries" type="Button" parent="Label" node_paths=PackedStringArray("auraLabel", "auraTimer")]
+[node name="aura breweries" type="Button" parent="Label" node_paths=PackedStringArray("auraLabel", "auraTimer", "breweries")]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 1
 anchors_preset = 6
@@ -79,6 +78,7 @@ theme = SubResource("Theme_4dnqd")
 script = ExtResource("2_vevm5")
 auraLabel = NodePath("Label")
 auraTimer = NodePath("aura")
+breweries = NodePath("breweries")
 
 [node name="Label" type="Label" parent="Label/aura breweries"]
 layout_mode = 0
@@ -91,6 +91,10 @@ Cost : 32"
 vertical_alignment = 1
 
 [node name="aura" type="Timer" parent="Label/aura breweries"]
+autostart = true
+
+[node name="breweries" type="Timer" parent="Label/aura breweries"]
+wait_time = 5.0
 autostart = true
 
 [node name="gold chains" type="Button" parent="Label" node_paths=PackedStringArray("goldChainsLabel")]
@@ -140,9 +144,9 @@ vertical_alignment = 1
 
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
-[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Label/aura breweries" to="Label/aura breweries" method="_on_pressed"]
 [connection signal="timeout" from="Label/aura breweries/aura" to="Label/aura breweries" method="_on_aura_timeout"]
+[connection signal="timeout" from="Label/aura breweries/breweries" to="Label/aura breweries" method="_on_breweries_timeout"]
 [connection signal="pressed" from="Label/gold chains" to="." method="_on_gold_chains_pressed"]
 [connection signal="pressed" from="Label/gold chains" to="Label/gold chains" method="_on_pressed"]
 [connection signal="pressed" from="Label/moggers" to="Label/moggers" method="_on_pressed"]

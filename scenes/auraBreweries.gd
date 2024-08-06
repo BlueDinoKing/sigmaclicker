@@ -1,8 +1,8 @@
 extends Button
 @export var auraLabel : Label
 @export var auraTimer : Timer
-
-var darkCost = 32
+@export var breweries : Timer
+var darkCost = 64
 
 
 
@@ -28,7 +28,11 @@ func _on_pressed():
 		#	print(auraTimer.wait_time)
 
 func _on_aura_timeout():
-	GameInstance.data.rizz += GameInstance.data.aura
+	GameInstance.data.rizz += floor(GameInstance.data.aura)
 
 func _process(delta: float) -> void:
 	update_available_aura_breweries()
+
+
+func _on_breweries_timeout() -> void:
+	GameInstance.data.aura += GameInstance.data.auraBreweries
