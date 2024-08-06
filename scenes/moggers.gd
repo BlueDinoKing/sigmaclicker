@@ -27,6 +27,6 @@ func update_available_mogger():
 	var count = 0
 	while temp_rizz >= temp_cost:
 		temp_rizz -= temp_cost
-		temp_cost = round(pow(temp_cost, 1.1))
+		temp_cost = round(pow(temp_cost, 1.2))
 		count += 1
 	moggersLabel.text = "Moggers : % (%)\nCost : %".format([Game.format_number(GameInstance.data.moggers), Game.format_number(count), Game.format_number(moggersCost)], "%")
