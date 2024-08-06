@@ -26,8 +26,6 @@ extends Resource
 @export var moggersCost : int = 256
 
 func reset():
-	maxDigitsUntilScientific = 3
-	audio = true
 	goldChains = 0
 	auraBreweries = 0
 	moggers = 0
