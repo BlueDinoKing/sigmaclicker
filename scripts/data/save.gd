@@ -3,11 +3,6 @@ class_name SaveSystem
 const PATH : String = "user://save.tres"
 const SHOULD_LOAD : bool = true
 
-static var ref : SaveSystem
-func _ready() -> void:
-	SaveSystem.ref = self
-signal resetSave()
-
 # Save gameinstance.data in user://save.tres
 static func save_data() -> void:
 	if GameInstance.data:

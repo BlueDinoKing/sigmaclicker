@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx6wvhoyrsd0b"]
+
+[ext_resource type="Script" path="res://scenes/goldChains.gd" id="1_q3buj"]
+
+[sub_resource type="Theme" id="Theme_qoqd1"]
+Button/colors/icon_normal_color = Color(0, 1, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="gold chains" type="Button" parent="ScrollContainer" node_paths=PackedStringArray("goldChainsLabel")]
+custom_minimum_size = Vector2(110, 90)
+layout_mode = 2
+theme = SubResource("Theme_qoqd1")
+theme_override_font_sizes/font_size = 24
+text = "12"
+script = ExtResource("1_q3buj")
+goldChainsLabel = NodePath("../Panel/Label")
+
+[node name="Panel" type="Panel" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Panel"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "Tier 2: upgrade x by 10%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ScrollContainer/gold chains" to="ScrollContainer/gold chains" method="_on_pressed"]

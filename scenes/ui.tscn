@@ -80,12 +80,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="clicker" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("1_0qt3f")]
+visible = false
 layout_mode = 1
 user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
 
 [node name="settings" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_jqmk5")]
-visible = false
 layout_mode = 1
 user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
