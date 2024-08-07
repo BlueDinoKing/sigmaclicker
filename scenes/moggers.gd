@@ -7,12 +7,13 @@ func _process(_delta : float) -> void:
 	update_available_mogger()
 signal moggers(amount: int)
 func _on_pressed() -> void:
-	moggers.emit(1)
 	if GameInstance.data.rizz >= GameInstance.data.moggersCost:
 		GameInstance.data.moggers += 1
+		moggers.emit(1)
 		Handler.ref.use_rizz(GameInstance.data.moggersCost)
 		GameInstance.data.moggersCost = round(pow(GameInstance.data.moggersCost, 1.05))
 	if GameInstance.data.moggers == 1:
+		moggers.emit(1)
 		moggersTimer.start()
 
 func _ready() -> void:
