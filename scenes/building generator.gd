@@ -21,6 +21,7 @@ func _ready() -> void:
 		create_mogger()
 
 func create_goldChain(_input: int = 1):
+	screenSize = get_viewport().get_visible_rect().size
 	image = Sprite2D.new()
 	image.texture = goldChainsSprite
 	image.scale = Vector2(.25, .25)
@@ -29,6 +30,7 @@ func create_goldChain(_input: int = 1):
 	add_child(image)
 
 func create_auraBrewery(_input: int = 1):
+	screenSize = get_viewport().get_visible_rect().size
 	image = Sprite2D.new()
 	image.texture = auraBrewerySprite
 	image.scale = Vector2(.05, .05)
@@ -36,6 +38,7 @@ func create_auraBrewery(_input: int = 1):
 	add_child(image)
 
 func create_mogger(_input: int = 1):
+	screenSize = get_viewport().get_visible_rect().size
 	image = Sprite2D.new()
 	image.texture = moggerSprite
 	image.scale = Vector2(.25, .25)
