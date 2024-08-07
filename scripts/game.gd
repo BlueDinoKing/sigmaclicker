@@ -40,7 +40,7 @@ static func format_number(input) -> String:
 static func add_commas(number: String) -> String:
 	var parts = number.split(".")
 	parts[0] = _add_commas_to_integer(parts[0])
-	return _join(parts, ".")
+	return _join(parts, ".")	
 
 static func _add_commas_to_integer(number: String) -> String:
 	var result = []
