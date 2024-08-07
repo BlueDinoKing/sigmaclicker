@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0ugh23teop1k"]
+[gd_scene load_steps=13 format=3 uid="uid://0ugh23teop1k"]
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 [ext_resource type="Texture2D" uid="uid://cn7tgfran4276" path="res://images/rizz up bro.png" id="2_oc87f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/moggers.gd" id="4_7tdh8"]
 [ext_resource type="Texture2D" uid="uid://cgw7gbymdgwcm" path="res://images/rizz up bro pressed.png" id="4_cknop"]
 [ext_resource type="Script" path="res://scenes/rizz_up_baddies.gd" id="5_qlrdv"]
+[ext_resource type="Script" path="res://scenes/ticker.gd" id="10_3y8og"]
 
 [sub_resource type="BitMap" id="BitMap_wokhq"]
 
@@ -138,6 +139,10 @@ vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="Label/moggers"]
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("10_3y8og")
+
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="rizz up baddies" to="rizz up baddies" method="_on_button_down"]
 [connection signal="button_up" from="rizz up baddies" to="rizz up baddies" method="_on_button_up"]
@@ -149,3 +154,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="Label/gold chains" to="Label/gold chains" method="_on_pressed"]
 [connection signal="pressed" from="Label/moggers" to="Label/moggers" method="_on_pressed"]
 [connection signal="timeout" from="Label/moggers/Timer" to="Label/moggers" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

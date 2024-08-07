@@ -16,7 +16,7 @@ extends Resource
 # stats
 @export var clicks : int = 0 # rizzes
 @export var addedRizz : float = 1 # increased by gold chains
-
+@export var tick : int = 0 #ingame ticks
 # resources
 @export var aura : float = 0 # rizz/s
 @export var rizz : float = 0 # W RIZZ
@@ -37,3 +37,4 @@ func reset():
 	goldChainsCost = 16
 	auraBreweryCost = 64
 	moggersCost = 256
+	tick = 0

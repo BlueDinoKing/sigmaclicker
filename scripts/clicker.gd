@@ -27,7 +27,6 @@ func _on_button_pressed() -> void:
 	rizzupbaddies(1)
 	
 	GameInstance.data.clicks += 1
-	print(GameInstance.data.clicks)
 	if GameInstance.data.clicks%10 == 1:
 		if GameInstance.data.audio == true:
 			$"rizz up baddies/AudioStreamPlayer2D".pitch_scale = randf_range(.5, 2)
