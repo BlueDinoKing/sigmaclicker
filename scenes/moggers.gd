@@ -1,12 +1,13 @@
 extends Button
-
+class_name Moggers
 @export var moggersTimer : Timer
 @export var moggersLabel : Label
-
+static var ref : Moggers
 func _process(_delta : float) -> void:
 	update_available_mogger()
-
+signal moggers(amount: int)
 func _on_pressed() -> void:
+	moggers.emit(1)
 	if GameInstance.data.rizz >= GameInstance.data.moggersCost:
 		GameInstance.data.moggers += 1
 		Handler.ref.use_rizz(GameInstance.data.moggersCost)
@@ -14,11 +15,14 @@ func _on_pressed() -> void:
 	if GameInstance.data.moggers == 1:
 		moggersTimer.start()
 
+func _ready() -> void:
+	Moggers.ref = self
+
 func mog():
 	if not floor(GameInstance.data.moggers * GameInstance.data.aura) == 0:
-		GameInstance.data.rizz += floor(GameInstance.data.moggers * GameInstance.data.aura)
+		Handler.ref.create_rizz(floor(GameInstance.data.moggers + GameInstance.data.aura))
 		return
-	GameInstance.data.rizz += 1
+	Handler.ref.create_rizz(1)
 	
 func _on_timer_timeout() -> void:
 	mog()
@@ -31,4 +35,5 @@ func update_available_mogger():
 		temp_rizz -= temp_cost
 		temp_cost = round(pow(temp_cost, 1.05))
 		count += 1
-	moggersLabel.text = "Moggers : % (%)\nCost : %".format([Game.format_number(GameInstance.data.moggers), Game.format_number(count), Game.format_number(GameInstance.data.moggersCost)], "%")
+	set_text(Game.format_number(GameInstance.data.moggersCost))
+	moggersLabel.text = "Moggers : % (%)\nCreates % * % rizz/s\n% rizz/s".format([Game.format_number(GameInstance.data.moggers), Game.format_number(count), Game.format_number(GameInstance.data.moggers), Game.format_number(GameInstance.data.aura), Game.format_number(GameInstance.data.moggers * GameInstance.data.aura)], "%")

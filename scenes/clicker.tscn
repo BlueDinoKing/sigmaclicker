@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0ugh23teop1k"]
+[gd_scene load_steps=14 format=3 uid="uid://0ugh23teop1k"]
 
 [ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
 [ext_resource type="Texture2D" uid="uid://cn7tgfran4276" path="res://images/rizz up bro.png" id="2_oc87f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cgw7gbymdgwcm" path="res://images/rizz up bro pressed.png" id="4_cknop"]
 [ext_resource type="Script" path="res://scenes/rizz_up_baddies.gd" id="5_qlrdv"]
 [ext_resource type="Script" path="res://scenes/ticker.gd" id="10_3y8og"]
+[ext_resource type="Script" path="res://scenes/building generator.gd" id="11_kbomh"]
 
 [sub_resource type="BitMap" id="BitMap_wokhq"]
 
@@ -58,34 +59,25 @@ offset_bottom = 23.0
 grow_horizontal = 0
 
 [node name="aura breweries" type="Button" parent="Label" node_paths=PackedStringArray("auraLabel", "auraTimer", "breweries")]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(110, 90)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -265.0
-offset_top = 104.5
-offset_right = -15.0
-offset_bottom = 187.5
+offset_left = -107.0
+offset_top = 113.5
+offset_right = -7.0
+offset_bottom = 203.5
 grow_horizontal = 0
 grow_vertical = 2
 theme = SubResource("Theme_4dnqd")
+theme_override_font_sizes/font_size = 24
 script = ExtResource("2_vevm5")
-auraLabel = NodePath("Label")
+auraLabel = NodePath("Panel2/Label")
 auraTimer = NodePath("aura")
 breweries = NodePath("breweries")
-
-[node name="Label" type="Label" parent="Label/aura breweries"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 20.0
-offset_right = 229.0
-offset_bottom = 67.0
-text = "Aura Breweries: 0 (0)
-Cost : 32"
-vertical_alignment = 1
 
 [node name="aura" type="Timer" parent="Label/aura breweries"]
 autostart = true
@@ -94,54 +86,104 @@ autostart = true
 wait_time = 5.0
 autostart = true
 
-[node name="gold chains" type="Button" parent="Label" node_paths=PackedStringArray("goldChainsLabel")]
-custom_minimum_size = Vector2(150, 50)
+[node name="Panel2" type="Panel" parent="Label/aura breweries"]
 layout_mode = 0
-offset_left = -226.0
-offset_top = 24.0
-offset_right = 24.0
+offset_left = -283.0
+offset_top = -3.0
+offset_right = -6.0
+offset_bottom = 93.0
+
+[node name="Label" type="Label" parent="Label/aura breweries/Panel2"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "aura brewieres"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gold chains" type="Button" parent="Label" node_paths=PackedStringArray("goldChainsLabel")]
+custom_minimum_size = Vector2(110, 90)
+layout_mode = 0
+offset_left = -76.0
+offset_top = 17.0
+offset_right = 34.0
 offset_bottom = 107.0
 theme = SubResource("Theme_4dnqd")
+theme_override_font_sizes/font_size = 24
+text = "16"
 script = ExtResource("3_a0tl6")
-goldChainsLabel = NodePath("Label")
+goldChainsLabel = NodePath("Panel/Label")
 
-[node name="Label" type="Label" parent="Label/gold chains"]
+[node name="Panel" type="Panel" parent="Label/gold chains"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 16.0
-offset_right = 230.0
-offset_bottom = 65.0
-text = "Gold Chains : 0 (0)
-Cost : 16"
+offset_left = -283.0
+offset_top = -2.0
+offset_right = -6.0
+offset_bottom = 94.0
+
+[node name="Label" type="Label" parent="Label/gold chains/Panel"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "gold chains money face"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="moggers" type="Button" parent="Label" node_paths=PackedStringArray("moggersTimer", "moggersLabel")]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(110, 90)
 layout_mode = 0
-offset_left = -226.0
-offset_top = 207.0
-offset_right = 24.0
-offset_bottom = 290.0
+offset_left = -77.0
+offset_top = 231.0
+offset_right = 33.0
+offset_bottom = 321.0
 theme = SubResource("Theme_4dnqd")
+theme_override_font_sizes/font_size = 24
+text = "256"
 script = ExtResource("4_7tdh8")
 moggersTimer = NodePath("Timer")
-moggersLabel = NodePath("Label")
-
-[node name="Label" type="Label" parent="Label/moggers"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 16.0
-offset_right = 230.0
-offset_bottom = 65.0
-text = "Moggers : 0 (0)
-Cost : 256"
-vertical_alignment = 1
+moggersLabel = NodePath("Panel3/Label")
 
 [node name="Timer" type="Timer" parent="Label/moggers"]
+
+[node name="Panel3" type="Panel" parent="Label/moggers"]
+layout_mode = 0
+offset_left = -284.0
+offset_top = -2.0
+offset_right = -7.0
+offset_bottom = 94.0
+
+[node name="Label" type="Label" parent="Label/moggers/Panel3"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "mogg"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 script = ExtResource("10_3y8og")
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -3
+y_sort_enabled = true
+position = Vector2(0, 2)
+script = ExtResource("11_kbomh")
 
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="rizz up baddies" to="rizz up baddies" method="_on_button_down"]

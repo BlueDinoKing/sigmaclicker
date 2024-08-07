@@ -1,6 +1,7 @@
 class_name Data
 extends Resource
 
+
 # settings
 @export var maxDigitsUntilScientific : int = 3
 @export var audio : bool = true
@@ -18,6 +19,7 @@ extends Resource
 @export var addedRizz : float = 1 # increased by gold chains
 @export var tick : int = 0 #ingame ticks
 @export var multiplier : float = 1
+@export var tempMulti : float = 1
 
 # resources
 @export var aura : float = 0 # rizz/s
@@ -35,6 +37,7 @@ func reset():
 	clicks = 0
 	addedRizz = 1
 	multiplier = 1
+	tempMulti = 1
 	aura = 0
 	rizz = 0
 	goldChainsCost = 16

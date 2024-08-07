@@ -1,4 +1,7 @@
 extends Button
+class_name Reset
+
+
 
 
 func _on_pressed(): 

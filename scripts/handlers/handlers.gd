@@ -27,8 +27,8 @@ func rizz() -> float:
 
 
 func create_rizz(quantity : float) -> void:
-	GameInstance.data.rizz += quantity*GameInstance.data.multiplier
-	rizz_created.emit(quantity*GameInstance.data.multiplier)
+	GameInstance.data.rizz += quantity*GameInstance.data.multiplier*GameInstance.data.tempMulti
+	rizz_created.emit(quantity*GameInstance.data.multiplier*GameInstance.data.tempMulti)
 
 func use_rizz(quantity: float) -> Error:
 	if quantity <= GameInstance.data.rizz:
@@ -42,8 +42,8 @@ func aura() -> float:
 	return GameInstance.data.rizz 
 
 func create_aura(quantity : float) -> void:
-	GameInstance.data.aura += quantity*GameInstance.data.multiplier
-	aura_created.emit(quantity*GameInstance.data.multiplier)
+	GameInstance.data.aura += quantity*GameInstance.data.multiplier*GameInstance.data.tempMulti
+	aura_created.emit(quantity*GameInstance.data.multiplier*GameInstance.data.tempMulti)
 
 
 func use_aura(quantity: float) -> Error:

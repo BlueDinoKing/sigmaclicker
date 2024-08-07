@@ -6,6 +6,7 @@ func update_text(_quantity : int = -1) -> void:
 	itemResourceLabel(0, "Clicks : %s", Game.format_number(GameInstance.data.clicks))
 	itemResourceLabel(1, "Rizz : %s", Game.format_number(GameInstance.data.rizz))
 	itemResourceLabel(2, "Aura : %s", Game.format_number(GameInstance.data.aura))
+	itemResourceLabel(3, "Multiplier : x%s", Game.format_number(GameInstance.data.multiplier*GameInstance.data.tempMulti))
 
 
 	

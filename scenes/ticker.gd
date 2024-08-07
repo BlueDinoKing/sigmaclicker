@@ -7,10 +7,13 @@ var buttonPressed : bool = false
 var button
 var buttonCreated : bool = false
 var originalMultiplier = 1
+var screenSize
+func _ready():
+	screenSize = get_viewport().get_visible_rect().size
 
 func _button_pressed():
 	remove_child(button)
-	GameInstance.data.multiplier = originalMultiplier*5
+	GameInstance.data.tempMulti = originalMultiplier*5
 
 func _on_timeout() -> void:
 	GameInstance.data.tick += 1
@@ -27,10 +30,10 @@ func _on_timeout() -> void:
 			button.texture_normal = texture
 			button.custom_minimum_size = Vector2(16,16)
 			button.pressed.connect(self._button_pressed)
-			button.global_position = Vector2(randf_range(350, 560), randf_range(350, 560))
+			button.global_position = Vector2(randi_range(0, screenSize.x), randi_range(0, screenSize.y))
 			add_child(button)
 			print("RIZZ PARTY BUTTON APPEARED")
-			originalMultiplier = GameInstance.data.multiplier
+			originalMultiplier = GameInstance.data.tempMulti
 			buttonCreated = true
 		if rizzCountDown == 0:
 				lastRizzParty = 1
@@ -41,4 +44,4 @@ func _on_timeout() -> void:
 				remove_child(button)
 				buttonCreated = false
 				print("rizz party button dleeted")
-				GameInstance.data.multiplier = originalMultiplier
+				GameInstance.data.tempMulti = originalMultiplier

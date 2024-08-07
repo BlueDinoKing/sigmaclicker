@@ -3,6 +3,11 @@ class_name SaveSystem
 const PATH : String = "user://save.tres"
 const SHOULD_LOAD : bool = true
 
+static var ref : SaveSystem
+func _ready() -> void:
+	SaveSystem.ref = self
+signal resetSave()
+
 # Save gameinstance.data in user://save.tres
 static func save_data() -> void:
 	if GameInstance.data:
@@ -17,6 +22,7 @@ static func load_data() -> void:
 		var loaded_data = ResourceLoader.load(PATH)
 		if loaded_data and loaded_data is Data:
 			GameInstance.data = loaded_data
+			GameInstance.data.tempMulti = 1
 			print("Data loaded")
 
 static func reset_data():
