@@ -33,15 +33,6 @@ func _on_button_pressed() -> void:
 	#	unlockUpgrade(1)
 
 
-func format_number(input) -> String:
-	var _exp = str(input).split(".")[0].length() - 1
-	if input == 0:
-		return "0"
-	if str(input).length() <= GameInstance.data.maxDigitsUntilScientific:
-		return str(input)
-	else:
-		var _dec = input / pow(10, _exp)
-		return "{dec}e{exp}".format({"dec": ("%1.2f" % _dec), "exp": str(_exp)})
 
 #func unlockUpgrade(input) -> void:
 #	if input == 1:

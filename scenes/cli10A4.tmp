@@ -1,0 +1,153 @@
+[gd_scene load_steps=12 format=3 uid="uid://0ugh23teop1k"]
+
+[ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
+[ext_resource type="Texture2D" uid="uid://cn7tgfran4276" path="res://images/rizz up bro.png" id="2_oc87f"]
+[ext_resource type="Script" path="res://scenes/auraBreweries.gd" id="2_vevm5"]
+[ext_resource type="Texture2D" uid="uid://cbxhsoeipvsh5" path="res://images/rizz up bro selected.png" id="3_5upx7"]
+[ext_resource type="Script" path="res://scenes/goldChains.gd" id="3_a0tl6"]
+[ext_resource type="AudioStream" uid="uid://dsvj1h68514oq" path="res://audios/rizz-sounds.mp3" id="3_i1gol"]
+[ext_resource type="Script" path="res://scenes/moggers.gd" id="4_7tdh8"]
+[ext_resource type="Texture2D" uid="uid://cgw7gbymdgwcm" path="res://images/rizz up bro pressed.png" id="4_cknop"]
+[ext_resource type="Script" path="res://scenes/rizz_up_baddies.gd" id="5_qlrdv"]
+
+[sub_resource type="BitMap" id="BitMap_wokhq"]
+
+[sub_resource type="Theme" id="Theme_4dnqd"]
+Button/colors/icon_normal_color = Color(0, 1, 0, 1)
+
+[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gdsq0")
+label = NodePath("")
+button = NodePath("")
+
+[node name="rizz up baddies" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -198.0
+offset_right = 464.0
+offset_bottom = 202.0
+grow_vertical = 2
+texture_normal = ExtResource("2_oc87f")
+texture_pressed = ExtResource("3_5upx7")
+texture_hover = ExtResource("4_cknop")
+texture_click_mask = SubResource("BitMap_wokhq")
+script = ExtResource("5_qlrdv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="rizz up baddies"]
+stream = ExtResource("3_i1gol")
+volume_db = -10.0
+pitch_scale = 1.95
+max_polyphony = 6
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="aura breweries" type="Button" parent="Label" node_paths=PackedStringArray("auraLabel", "auraTimer", "breweries")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = 104.5
+offset_right = -15.0
+offset_bottom = 187.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_4dnqd")
+script = ExtResource("2_vevm5")
+auraLabel = NodePath("Label")
+auraTimer = NodePath("aura")
+breweries = NodePath("breweries")
+
+[node name="Label" type="Label" parent="Label/aura breweries"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 229.0
+offset_bottom = 67.0
+text = "Aura Breweries: 0 (0)
+Cost : 32"
+vertical_alignment = 1
+
+[node name="aura" type="Timer" parent="Label/aura breweries"]
+autostart = true
+
+[node name="breweries" type="Timer" parent="Label/aura breweries"]
+wait_time = 5.0
+autostart = true
+
+[node name="gold chains" type="Button" parent="Label" node_paths=PackedStringArray("goldChainsLabel")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = -226.0
+offset_top = 24.0
+offset_right = 24.0
+offset_bottom = 107.0
+theme = SubResource("Theme_4dnqd")
+script = ExtResource("3_a0tl6")
+goldChainsLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="Label/gold chains"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 16.0
+offset_right = 230.0
+offset_bottom = 65.0
+text = "Gold Chains : 0 (0)
+Cost : 16"
+vertical_alignment = 1
+
+[node name="moggers" type="Button" parent="Label" node_paths=PackedStringArray("moggersTimer", "moggersLabel")]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = -226.0
+offset_top = 207.0
+offset_right = 24.0
+offset_bottom = 290.0
+theme = SubResource("Theme_4dnqd")
+script = ExtResource("4_7tdh8")
+moggersTimer = NodePath("Timer")
+moggersLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="Label/moggers"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 16.0
+offset_right = 230.0
+offset_bottom = 65.0
+text = "Moggers : 0 (0)
+Cost : 256"
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Label/moggers"]
+
+[connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="rizz up baddies" to="rizz up baddies" method="_on_button_down"]
+[connection signal="button_up" from="rizz up baddies" to="rizz up baddies" method="_on_button_up"]
+[connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Label/aura breweries" to="Label/aura breweries" method="_on_pressed"]
+[connection signal="timeout" from="Label/aura breweries/aura" to="Label/aura breweries" method="_on_aura_timeout"]
+[connection signal="timeout" from="Label/aura breweries/breweries" to="Label/aura breweries" method="_on_breweries_timeout"]
+[connection signal="pressed" from="Label/gold chains" to="." method="_on_gold_chains_pressed"]
+[connection signal="pressed" from="Label/gold chains" to="Label/gold chains" method="_on_pressed"]
+[connection signal="pressed" from="Label/moggers" to="Label/moggers" method="_on_pressed"]
+[connection signal="timeout" from="Label/moggers/Timer" to="Label/moggers" method="_on_timer_timeout"]

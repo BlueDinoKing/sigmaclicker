@@ -4,6 +4,7 @@ extends Resource
 # settings
 @export var maxDigitsUntilScientific : int = 3
 @export var audio : bool = true
+@export var scientific : bool = false
 
 # buildings/purchases
 @export var goldChains : int = 0
