@@ -15,7 +15,7 @@
 [sub_resource type="Theme" id="Theme_4dnqd"]
 Button/colors/icon_normal_color = Color(0, 1, 0, 1)
 
-[node name="clicker" type="Control" node_paths=PackedStringArray("label", "button")]
+[node name="clicker" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,8 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gdsq0")
-label = NodePath("")
-button = NodePath("")
 
 [node name="rizz up baddies" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -45,7 +43,7 @@ script = ExtResource("5_qlrdv")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="rizz up baddies"]
 stream = ExtResource("3_i1gol")
-volume_db = -10.0
+volume_db = 5.0
 pitch_scale = 1.95
 max_polyphony = 6
 
