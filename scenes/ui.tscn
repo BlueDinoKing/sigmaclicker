@@ -84,9 +84,10 @@ layout_mode = 1
 user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
 
-[node name="settings" parent="HBoxContainer/mainView" instance=ExtResource("3_jqmk5")]
+[node name="settings" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_jqmk5")]
 visible = false
 layout_mode = 1
+user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
 
 [node name="save_timer" type="Timer" parent="."]

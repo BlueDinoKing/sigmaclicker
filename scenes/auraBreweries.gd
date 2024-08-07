@@ -3,7 +3,8 @@ extends Button
 @export var auraTimer : Timer
 @export var breweries : Timer
 
-
+func _process(_delta: float) -> void:
+	update_available_aura_breweries()
 
 func update_available_aura_breweries():
 	var temp_rizz = GameInstance.data.rizz
@@ -12,26 +13,21 @@ func update_available_aura_breweries():
 
 	while temp_rizz >= temp_cost:
 		temp_rizz -= temp_cost
-		temp_cost = round(pow(temp_cost, 1.1))
+		temp_cost = round(pow(temp_cost, 1.05))
 		count += 1
 	auraLabel.text = "Aura Brewery : % (%)\nCost : %".format([Game.format_number(GameInstance.data.auraBreweries), Game.format_number(count), Game.format_number(GameInstance.data.auraBreweryCost)], "%")
 
 func _on_pressed():
 	if GameInstance.data.rizz >= GameInstance.data.auraBreweryCost:
 		GameInstance.data.auraBreweries += 1
-		GameInstance.data.aura += 1
-		GameInstance.data.rizz -= GameInstance.data.auraBreweryCost
-		GameInstance.data.auraBreweryCost = round(pow(GameInstance.data.auraBreweryCost, 1.1))
-		#if upgrade1 == true:
-		#	auraTimer.wait_time = auraTimer.wait_time * 0.95
-		#	print(auraTimer.wait_time)
+		Handler.ref.create_aura(1)
+		Handler.ref.use_rizz(GameInstance.data.auraBreweryCost)
+		GameInstance.data.auraBreweryCost = round(pow(GameInstance.data.auraBreweryCost, 1.05))
+
 
 func _on_aura_timeout():
-	GameInstance.data.rizz += floor(GameInstance.data.aura)
-
-func _process(delta: float) -> void:
-	update_available_aura_breweries()
+	Handler.ref.create_rizz(floor(GameInstance.data.aura))
 
 
 func _on_breweries_timeout() -> void:
-	GameInstance.data.aura += GameInstance.data.auraBreweries
+	Handler.ref.create_aura(floor(GameInstance.data.auraBreweries))

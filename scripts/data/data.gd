@@ -17,14 +17,16 @@ extends Resource
 @export var clicks : int = 0 # rizzes
 @export var addedRizz : float = 1 # increased by gold chains
 @export var tick : int = 0 #ingame ticks
+@export var multiplier : float = 1
+
 # resources
 @export var aura : float = 0 # rizz/s
 @export var rizz : float = 0 # W RIZZ
 
 # costs
-@export var goldChainsCost : int = 16
-@export var auraBreweryCost : int = 64
-@export var moggersCost : int = 256
+@export var goldChainsCost : float = 16
+@export var auraBreweryCost : float = 64
+@export var moggersCost : float = 256
 
 func reset():
 	goldChains = 0
@@ -32,6 +34,7 @@ func reset():
 	moggers = 0
 	clicks = 0
 	addedRizz = 1
+	multiplier = 1
 	aura = 0
 	rizz = 0
 	goldChainsCost = 16

@@ -1,6 +1,9 @@
 extends Button
 @export var goldChainsLabel : Label
 
+func _process(_delta: float) -> void:
+	update_available_gold_chains()
+
 func update_available_gold_chains():
 	var temp_rizz = GameInstance.data.rizz
 	var temp_cost = GameInstance.data.goldChainsCost
@@ -18,14 +21,5 @@ func _on_pressed():
 	if GameInstance.data.rizz >= GameInstance.data.goldChainsCost:
 		GameInstance.data.goldChains += 1
 		GameInstance.data.addedRizz += 1
-		GameInstance.data.rizz -= GameInstance.data.goldChainsCost
+		Handler.ref.use_rizz(GameInstance.data.goldChainsCost)
 		GameInstance.data.goldChainsCost = round(pow(GameInstance.data.goldChainsCost, 1.05))
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	update_available_gold_chains()
