@@ -11,6 +11,7 @@ func _on_pressed() -> void:
 		text = "RESET SAVE"
 		finishedCountdown = false
 		revertTimer.stop()  # Stop revert timer since save is reset
+		get_tree().reload_current_scene()
 		return
 	
 	disabled = true

@@ -1,34 +1,38 @@
 extends Node
 class_name UpgradeButton
+
+# Define exported variables for each upgrade
 @export var upgrade1Name: Label 
 @export var upgrade1Price: Label 
 @export var upgrade1Button: TextureButton
-@export var upgrade1Panel: Panel
 @export var upgrade1Line: Line2D
 @export var upgrade2Name: Label 
 @export var upgrade2Price: Label 
 @export var upgrade2Button: TextureButton
-@export var upgrade2Panel: Panel
 @export var upgrade2Line: Line2D
-var upgradeCost: Array 
+@export var upgrade3Name: Label 
+@export var upgrade3Price: Label 
+@export var upgrade3Button: TextureButton
 
-func _process(delta: float) -> void:
-	update_labels()
+# Store upgrade costs and multipliers
+var upgradeCost: Array = []
+var upgradeMultiplier: Array = []
 
 func _enter_tree() -> void:
-	# Initialize upgradeCost with the same length as GameInstance.data.upgrades
+	# Initialize upgradeCost and upgradeMultiplier with the same length as GameInstance.data.upgrades
 	upgradeCost = GameInstance.data.upgradeCost
+	upgradeMultiplier = [1000, 10, 0.05]  # Example multipliers for each upgrade
 	upgradeCost.resize(GameInstance.data.upgrades.size())
 
 	# Set initial costs if the array was empty or partially filled
 	for i in range(upgradeCost.size()):
-		if not upgradeCost[i]: 
+		if not upgradeCost[i]:
 			upgradeCost[i] = 0  # Set default cost for any uninitialized upgrade
 
 	# Update upgrade costs based on current levels
 	for i in range(GameInstance.data.upgrades.size()):
 		for k in range(GameInstance.data.upgrades[i]):
-			upgradeCost[i] = upgradeCost[i] * 1
+			upgradeCost[i] = upgradeCost[i] * upgradeMultiplier[i]
 
 	update_labels()
 
@@ -38,39 +42,48 @@ func _enter_tree() -> void:
 	Handler.ref.aura_created.connect(update_labels)
 	Handler.ref.aura_consumed.connect(update_labels)
 
-func update_labels():
-	# Update labels for the first upgrade as an example
-	upgrade1Name.set_text('%s/3 upgrade 1' % Game.format_number(GameInstance.data.upgrades[0]))
-	upgrade1Price.set_text('%s rizz' % Game.format_number(GameInstance.data.upgradeCost[0]))
-	if GameInstance.data.upgrades[0] == 3:
-		upgrade1Button.disabled = true
-	else:
-		upgrade1Button.disabled = false
-	if GameInstance.data.upgrades[0] >= 1:
-		upgrade1Line.visible = true
-		upgrade2Button.visible = true
-		upgrade2Name.set_text('%s/3 upgrade 2' % Game.format_number(GameInstance.data.upgrades[1]))
-		upgrade2Price.set_text('%s rizz' % Game.format_number(GameInstance.data.upgradeCost[1]))
-	else:
-		upgrade2Button.visible = false
-		upgrade2Line.visible = false
-	if GameInstance.data.upgrades[1] == 3:
-		upgrade2Button.disabled = true
-	else:
-		upgrade2Button.disabled = false
+func update_labels() -> void:
+	update_upgrade_label(0, upgrade1Name, upgrade1Price, upgrade1Button, upgrade1Line, "rizz", 3)
+	update_upgrade_label(1, upgrade2Name, upgrade2Price, upgrade2Button, upgrade2Line, "aura", 3)
+	update_upgrade_label(2, upgrade3Name, upgrade3Price, upgrade3Button, null, "rizz", 3)
 
+func update_upgrade_label(index: int, name_label: Label, price_label: Label, button: TextureButton, line: Line2D, currency: String, max_level: int) -> void:
+	var level = GameInstance.data.upgrades[index]
+	name_label.set_text('%s/%s' % [Game.format_number(level), max_level])
+	price_label.set_text('%s %s' % [Game.format_number(upgradeCost[index]), currency])
+
+	if level >= max_level:
+		button.disabled = true
+	else:
+		button.disabled = false
+		if line:
+			line.visible = false
+	if level > 0:
+		if line:
+			line.visible = true
+	if index > 0 and GameInstance.data.upgrades[index - 1] == 0:
+		button.visible = false
+	else:
+		button.visible = true
 
 func _on_upgrade_1_pressed() -> void:
-	if GameInstance.data.rizz >= GameInstance.data.upgradeCost[0]:
-		GameInstance.data.upgrades[0] += 1
-		Handler.ref.use_rizz(GameInstance.data.upgradeCost[0])
-		GameInstance.data.upgradeCost[0] *= 1  # Increase the cost for the next upgrade
-		update_labels()
-
+	handle_upgrade(0, "rizz")
 
 func _on_upgrade_2_pressed() -> void:
-	if GameInstance.data.rizz >= GameInstance.data.upgradeCost[1]:
-		GameInstance.data.upgrades[1] += 1
-		Handler.ref.use_rizz(GameInstance.data.upgradeCost[1])
-		GameInstance.data.upgradeCost[1] *= 1  # Increase the cost for the next upgrade
-		update_labels()
+	handle_upgrade(1, "aura")
+
+func _on_upgrade_3_pressed() -> void:
+	handle_upgrade(2, "rizz")
+
+func handle_upgrade(index: int, currency: String) -> void:
+	if currency == "rizz" and GameInstance.data.rizz >= upgradeCost[index]:
+		GameInstance.data.upgrades[index] += 1
+		Handler.ref.use_rizz(upgradeCost[index])
+	elif currency == "aura" and GameInstance.data.aura >= upgradeCost[index]:
+		GameInstance.data.upgrades[index] += 1
+		Handler.ref.use_aura(upgradeCost[index])
+	else:
+		return
+
+	upgradeCost[index] *= upgradeMultiplier[index]  # Increase the cost for the next upgrade
+	update_labels()

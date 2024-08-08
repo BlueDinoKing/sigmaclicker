@@ -24,7 +24,7 @@ func update_available_gold_chains():
 		temp_cost = round(pow(temp_cost, 1.05))
 		count += 1
 	set_text(Game.format_number(GameInstance.data.goldChainsCost))
-	goldChainsLabel.text = "Gold Chains : % (%)\nEach click grants % extra rizz".format([Game.format_number(GameInstance.data.goldChains), Game.format_number(count), Game.format_number(GameInstance.data.goldChains)], "%")
+	goldChainsLabel.text = "Gold Chains : % (%)\nEach click grants % extra rizz".format([Game.format_number(GameInstance.data.goldChains), Game.format_number(count), Game.format_number(GameInstance.data.goldChains* GameInstance.data.multiplier * GameInstance.data.tempMulti)], "%")
 
 
 

@@ -85,7 +85,6 @@ autostart = true
 
 [node name="breweries" type="Timer" parent="Label/aura breweries"]
 wait_time = 5.0
-autostart = true
 
 [node name="Panel2" type="Panel" parent="Label/aura breweries"]
 layout_mode = 0
@@ -155,6 +154,7 @@ moggersTimer = NodePath("Timer")
 moggersLabel = NodePath("Panel3/Label")
 
 [node name="Timer" type="Timer" parent="Label/moggers"]
+autostart = true
 
 [node name="Panel3" type="Panel" parent="Label/moggers"]
 layout_mode = 0

@@ -1,20 +1,24 @@
 class_name ResourceLabel
 extends ItemList
 
-
-func update_text(_quantity : int = -1) -> void:
+func update_text(_quantity: int = -1) -> void:
 	itemResourceLabel(0, "Clicks : %s", Game.format_number(GameInstance.data.clicks))
 	itemResourceLabel(1, "Rizz : %s", Game.format_number(GameInstance.data.rizz))
 	itemResourceLabel(2, "Aura : %s", Game.format_number(GameInstance.data.aura))
-	itemResourceLabel(3, "Multiplier : x%s", Game.format_number(GameInstance.data.multiplier*GameInstance.data.tempMulti))
+	itemResourceLabel(3, "Multiplier : x%s", Game.format_number(GameInstance.data.multiplier * GameInstance.data.tempMulti))
 
+func itemResourceLabel(index: int, format: String, value) -> void:
+	var text = format % value
 
-	
-func itemResourceLabel(input1: int, input2: String, input3) -> void:
-	set_item_text(input1, input2 %input3)
-	set_item_selectable(input1, false)
-	if not get_item_text(input1) == input2 %input3:
-		add_item(input2 %input3, null, false)
+	# Check if the index is within bounds of the existing items
+	if index < get_item_count():
+		if get_item_text(index) != text:
+			set_item_text(index, text)
+	else:
+		add_item(text, null, false)
+
+	# Ensure the item is not selectable
+	set_item_selectable(index, false)
 
 func _ready() -> void:
 	update_text()
