@@ -3,6 +3,8 @@ extends Resource
 
 
 # settings
+@export var username : String = "Sigma"
+
 @export var maxDigitsUntilScientific : int = 3
 @export var audio : bool = true
 @export var scientific : bool = false
@@ -13,7 +15,8 @@ extends Resource
 @export var moggers : int = 0
 
 # upgrades
-
+@export var upgrades : Array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+@export var upgradeCost : Array = [100]
 # stats
 @export var clicks : int = 0 # rizzes
 @export var addedRizz : float = 1 # increased by gold chains
@@ -31,6 +34,8 @@ extends Resource
 @export var moggersCost : float = 256
 
 func reset():
+	upgrades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	upgradeCost = [100, 10000]
 	goldChains = 0
 	auraBreweries = 0
 	moggers = 0

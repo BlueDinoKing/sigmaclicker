@@ -1,49 +1,151 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx6wvhoyrsd0b"]
+[gd_scene load_steps=14 format=3 uid="uid://bx6wvhoyrsd0b"]
 
-[ext_resource type="Script" path="res://scenes/goldChains.gd" id="1_q3buj"]
+[ext_resource type="Texture2D" uid="uid://dr55i8dth0dqq" path="res://images/upgradesatlas.png" id="1_4oesa"]
+[ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="2_4cabu"]
+[ext_resource type="Texture2D" uid="uid://c1iueclgu12cs" path="res://images/upgradesdarkeratlas.png" id="2_gc2id"]
+[ext_resource type="Texture2D" uid="uid://cg6po62bnjyoe" path="res://images/upgradeslockedatlas.png" id="3_4hvc7"]
 
-[sub_resource type="Theme" id="Theme_qoqd1"]
-Button/colors/icon_normal_color = Color(0, 1, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_53f2w"]
+atlas = ExtResource("1_4oesa")
+region = Rect2(0, 0, 64, 64)
 
-[node name="Control" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_apr5m"]
+atlas = ExtResource("2_gc2id")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oymnj"]
+atlas = ExtResource("2_gc2id")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aekyh"]
+atlas = ExtResource("3_4hvc7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beyef"]
+atlas = SubResource("AtlasTexture_aekyh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="Theme" id="Theme_jdk10"]
+Panel/colors/color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk6m6"]
+atlas = ExtResource("1_4oesa")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfcpj"]
+atlas = ExtResource("2_gc2id")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpcj0"]
+atlas = ExtResource("2_gc2id")
+region = Rect2(64, 0, 64, 64)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("upgrade1Name", "upgrade1Price", "upgrade1Button", "upgrade1Panel", "upgrade1Line", "upgrade2Name", "upgrade2Price", "upgrade2Button", "upgrade2Panel", "upgrade2Line")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_4cabu")
+upgrade1Name = NodePath("upgrade1/Label")
+upgrade1Price = NodePath("upgrade1/Label2")
+upgrade1Button = NodePath("upgrade1")
+upgrade1Panel = NodePath("upgrade1/Panel")
+upgrade1Line = NodePath("upgrade1/Line2D")
+upgrade2Name = NodePath("upgrade2/Label")
+upgrade2Price = NodePath("upgrade2/Label2")
+upgrade2Button = NodePath("upgrade2")
+upgrade2Panel = NodePath("upgrade2/Panel")
+upgrade2Line = NodePath("upgrade2/Line2D")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="upgrade1" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 576.0
+offset_bottom = 320.0
+texture_normal = SubResource("AtlasTexture_53f2w")
+texture_pressed = SubResource("AtlasTexture_apr5m")
+texture_hover = SubResource("AtlasTexture_oymnj")
+texture_disabled = SubResource("AtlasTexture_beyef")
 
-[node name="gold chains" type="Button" parent="ScrollContainer" node_paths=PackedStringArray("goldChainsLabel")]
-custom_minimum_size = Vector2(110, 90)
-layout_mode = 2
-theme = SubResource("Theme_qoqd1")
-theme_override_font_sizes/font_size = 24
-text = "12"
-script = ExtResource("1_q3buj")
-goldChainsLabel = NodePath("../Panel/Label")
-
-[node name="Panel" type="Panel" parent="ScrollContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/Panel"]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 17
-text = "Tier 2: upgrade x by 10%"
+[node name="Label" type="Label" parent="upgrade1"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 88.0
+offset_bottom = -1.0
+text = "upgrade"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[connection signal="pressed" from="ScrollContainer/gold chains" to="ScrollContainer/gold chains" method="_on_pressed"]
+[node name="Label2" type="Label" parent="upgrade1"]
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 80.0
+offset_bottom = 87.0
+text = "cost
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="upgrade1"]
+show_behind_parent = true
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme = SubResource("Theme_jdk10")
+
+[node name="Line2D" type="Line2D" parent="upgrade1"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(-16, 32)
+points = PackedVector2Array(-64, 64, 32, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="upgrade2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 320.0
+offset_right = 448.0
+offset_bottom = 384.0
+texture_normal = SubResource("AtlasTexture_dk6m6")
+texture_pressed = SubResource("AtlasTexture_hfcpj")
+texture_hover = SubResource("AtlasTexture_hpcj0")
+texture_disabled = SubResource("AtlasTexture_beyef")
+
+[node name="Label" type="Label" parent="upgrade2"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 88.0
+offset_bottom = -1.0
+text = "upgrade"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="upgrade2"]
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 80.0
+offset_bottom = 87.0
+text = "cost
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="upgrade2"]
+show_behind_parent = true
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme = SubResource("Theme_jdk10")
+
+[node name="Line2D" type="Line2D" parent="upgrade2"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(-8, 24)
+points = PackedVector2Array(-120, 8, 40, 8)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[connection signal="pressed" from="upgrade1" to="." method="_on_upgrade_1_pressed"]
+[connection signal="pressed" from="upgrade2" to="." method="_on_upgrade_2_pressed"]

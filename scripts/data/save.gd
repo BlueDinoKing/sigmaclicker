@@ -7,7 +7,6 @@ const SHOULD_LOAD : bool = true
 static func save_data() -> void:
 	if GameInstance.data:
 		ResourceSaver.save(GameInstance.data, PATH)
-		print('Data saved')
 
 # Loads data and overrides gameinstance.data
 static func load_data() -> void:

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca8y3nvhw5cxk"]
+
+[ext_resource type="PackedScene" uid="uid://bx6wvhoyrsd0b" path="res://scenes/upgrades.tscn" id="1_c072g"]
+
+[node name="upgrade tree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" parent="ScrollContainer" instance=ExtResource("1_c072g")]
+layout_mode = 2

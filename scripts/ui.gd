@@ -4,11 +4,12 @@ extends Control
 enum Views {
 	MAIN,
 	SETTINGS,
+	UPGRADES,
 }
 
 signal navigation_requested(view: Views)
 
 
-var menus = [Views.MAIN, Views.SETTINGS]
+var menus = [Views.MAIN, Views.SETTINGS, Views.UPGRADES]
 func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	navigation_requested.emit(menus[index])

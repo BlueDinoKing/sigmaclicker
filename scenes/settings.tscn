@@ -65,7 +65,7 @@ grow_vertical = 2
 text = "Scientific
 "
 
-[node name="reset save" type="Button" parent="." node_paths=PackedStringArray("delayTimer")]
+[node name="reset save" type="Button" parent="." node_paths=PackedStringArray("delayTimer", "revertTimer")]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 535.0
@@ -74,8 +74,11 @@ offset_bottom = 625.0
 text = "RESET SAVE"
 script = ExtResource("2_26fuw")
 delayTimer = NodePath("Timer")
+revertTimer = NodePath("Timer2")
 
 [node name="Timer" type="Timer" parent="reset save"]
+
+[node name="Timer2" type="Timer" parent="reset save"]
 
 [node name="audio" type="Button" parent="."]
 layout_mode = 0
@@ -90,4 +93,5 @@ script = ExtResource("2_b5dci")
 [connection signal="toggled" from="HSlider/CheckButton" to="HSlider/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="reset save" to="reset save" method="_on_pressed"]
 [connection signal="timeout" from="reset save/Timer" to="reset save" method="_on_timer_timeout"]
+[connection signal="timeout" from="reset save/Timer2" to="reset save" method="_on_revert_timer_timeout"]
 [connection signal="pressed" from="audio" to="audio" method="_on_pressed"]
