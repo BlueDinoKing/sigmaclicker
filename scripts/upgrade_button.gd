@@ -15,24 +15,17 @@ class_name UpgradeButton
 @export var upgrade3Button: TextureButton
 
 # Store upgrade costs and multipliers
-var upgradeCost: Array = []
+var baseUpgradeCost: Array = []
 var upgradeMultiplier: Array = []
 
 func _enter_tree() -> void:
 	# Initialize upgradeCost and upgradeMultiplier with the same length as GameInstance.data.upgrades
-	upgradeCost = GameInstance.data.upgradeCost
+	baseUpgradeCost = GameInstance.data.upgradeCost  # Set base costs for each upgrade
 	upgradeMultiplier = [1000, 10, 0.05]  # Example multipliers for each upgrade
-	upgradeCost.resize(GameInstance.data.upgrades.size())
-
-	# Set initial costs if the array was empty or partially filled
-	for i in range(upgradeCost.size()):
-		if not upgradeCost[i]:
-			upgradeCost[i] = 0  # Set default cost for any uninitialized upgrade
-
-	# Update upgrade costs based on current levels
-	for i in range(GameInstance.data.upgrades.size()):
-		for k in range(GameInstance.data.upgrades[i]):
-			upgradeCost[i] = upgradeCost[i] * upgradeMultiplier[i]
+	
+	# Ensure the size of upgradeCost matches the number of upgrades
+	if GameInstance.data.upgradeCost.size() != baseUpgradeCost.size():
+		GameInstance.data.upgradeCost = baseUpgradeCost.duplicate()
 
 	update_labels()
 
@@ -50,7 +43,7 @@ func update_labels() -> void:
 func update_upgrade_label(index: int, name_label: Label, price_label: Label, button: TextureButton, line: Line2D, currency: String, max_level: int) -> void:
 	var level = GameInstance.data.upgrades[index]
 	name_label.set_text('%s/%s' % [Game.format_number(level), max_level])
-	price_label.set_text('%s %s' % [Game.format_number(upgradeCost[index]), currency])
+	price_label.set_text('%s %s' % [Game.format_number(GameInstance.data.upgradeCost[index]), currency])
 
 	if level >= max_level:
 		button.disabled = true
@@ -76,14 +69,15 @@ func _on_upgrade_3_pressed() -> void:
 	handle_upgrade(2, "rizz")
 
 func handle_upgrade(index: int, currency: String) -> void:
-	if currency == "rizz" and GameInstance.data.rizz >= upgradeCost[index]:
+	if currency == "rizz" and GameInstance.data.rizz >= GameInstance.data.upgradeCost[index]:
 		GameInstance.data.upgrades[index] += 1
-		Handler.ref.use_rizz(upgradeCost[index])
-	elif currency == "aura" and GameInstance.data.aura >= upgradeCost[index]:
+		Handler.ref.use_rizz(GameInstance.data.upgradeCost[index])
+	elif currency == "aura" and GameInstance.data.aura >= GameInstance.data.upgradeCost[index]:
 		GameInstance.data.upgrades[index] += 1
-		Handler.ref.use_aura(upgradeCost[index])
+		Handler.ref.use_aura(GameInstance.data.upgradeCost[index])
 	else:
 		return
 
-	upgradeCost[index] *= upgradeMultiplier[index]  # Increase the cost for the next upgrade
+	# Apply the multiplier only after an upgrade is purchased
+	GameInstance.data.upgradeCost[index] *= upgradeMultiplier[index]
 	update_labels()
