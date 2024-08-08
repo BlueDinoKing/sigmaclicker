@@ -98,4 +98,5 @@ func _on_timer_timeout() -> void:
 				button.visible = false
 				host_sprite.visible = false
 				buttonCreated = false
+				GameInstance.data.tempMulti = originalMultiplier
 				print("rizz party button dleeted")
