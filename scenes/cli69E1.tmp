@@ -185,27 +185,18 @@ y_sort_enabled = true
 position = Vector2(0, 2)
 script = ExtResource("11_kbomh")
 
-[node name="TextureButton" type="Node" parent="."]
-
-[node name="Sprite" type="Sprite2D" parent="TextureButton"]
-position = Vector2(554, 170)
-texture = ExtResource("11_7kj43")
-
-[node name="TextureButton" type="TextureButton" parent="TextureButton/Sprite"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = -32.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("11_7kj43")
 
 [node name="shake tween" type="Node" parent="TextureButton" node_paths=PackedStringArray("button", "animationImage")]
 script = ExtResource("10_3y8og")
-button = NodePath("../Sprite/TextureButton")
+button = NodePath("..")
 animationImage = NodePath("../Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="TextureButton"]
+texture = ExtResource("11_7kj43")
 
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="rizz up baddies" to="rizz up baddies" method="_on_button_down"]

@@ -9,6 +9,12 @@ static var ref: AuraBrewery
 signal auraBrewery(quantity: int)
 
 func _ready() -> void:
+	var initial_cost = 64
+	var num_breweries = GameInstance.data.auraBreweries
+	var cost = initial_cost
+	for i in range(num_breweries):
+		cost = round(pow(cost, 1.05))
+	GameInstance.data.auraBreweryCost = cost
 	AuraBrewery.ref = self
 
 func _process(_delta: float) -> void:

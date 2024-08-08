@@ -17,6 +17,12 @@ func _on_pressed() -> void:
 		moggersTimer.start()
 
 func _ready() -> void:
+	var initial_cost = 256
+	var num = GameInstance.data.moggers
+	var cost = initial_cost
+	for i in range(num):
+		cost = round(pow(cost, 1.05))
+		GameInstance.data.moggersCost = cost
 	Moggers.ref = self
 
 func mog():
@@ -37,4 +43,4 @@ func update_available_mogger():
 		temp_cost = round(pow(temp_cost, 1.05))
 		count += 1
 	set_text(Game.format_number(GameInstance.data.moggersCost))
-	moggersLabel.text = "Moggers : % (%)\nCreates % * % rizz/s\n% rizz/s".format([Game.format_number(GameInstance.data.moggers), Game.format_number(count), Game.format_number(GameInstance.data.moggers), Game.format_number(GameInstance.data.aura), Game.format_number(GameInstance.data.moggers * GameInstance.data.aura)], "%")
+	moggersLabel.text = "Moggers : % (%)\nCreates % * % rizz/s\n% rizz/s".format([Game.format_number(GameInstance.data.moggers), Game.format_number(count), Game.format_number(GameInstance.data.moggers), Game.format_number(GameInstance.data.aura), Game.format_number(GameInstance.data.moggers + GameInstance.data.aura)], "%")

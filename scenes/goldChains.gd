@@ -7,6 +7,12 @@ func _process(_delta: float) -> void:
 	update_available_gold_chains()
 
 func _ready() -> void:
+	var initial_cost = 16
+	var num = GameInstance.data.goldChains
+	var cost = initial_cost
+	for i in range(num):
+		cost = round(pow(cost, 1.05))
+		GameInstance.data.goldChainsCost = cost
 	GoldChains.ref = self
 
 func update_available_gold_chains():

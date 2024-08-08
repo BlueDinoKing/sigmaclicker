@@ -26,7 +26,6 @@ func create_goldChain(_input: int = 1):
 	image.texture = goldChainsSprite
 	image.scale = Vector2(.25, .25)
 	image.position = Vector2(randi_range(20, screenSize.x-20), randi_range(20, screenSize.y-20))
-	print(goldChainsSprite)
 	add_child(image)
 
 func create_auraBrewery(_input: int = 1):
@@ -43,7 +42,6 @@ func create_mogger(_input: int = 1):
 	image.texture = moggerSprite
 	image.scale = Vector2(.25, .25)
 	image.position = Vector2(randi_range(20, screenSize.x-20), randi_range(20, screenSize.y-20))
-	print('test')
 	add_child(image)
 
 func kill_all_children():
