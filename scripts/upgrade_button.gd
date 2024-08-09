@@ -87,7 +87,7 @@ func update_upgrade_label(index: int, name_label: Label, price_label: Label, but
 
 	# Debug print statement
 
-	if level >= max_level or not unlocked:
+	if not unlocked:
 		button.disabled = true
 		button.visible = false
 		name_label.set_text('Locked')
