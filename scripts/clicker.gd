@@ -20,7 +20,10 @@ func _ready():
 		user_interface.navigation_requested.connect(_on_navigation_request)
 
 func rizzupbaddies(input) -> void:
-	Handler.ref.create_rizz(floor(GameInstance.data.addedRizz * input))
+	if GameInstance.data.upgrades[0] == 0:
+		Handler.ref.create_rizz((floor(input + input*GameInstance.data.goldChains)))
+		return
+	Handler.ref.create_rizz(floor(input + input*GameInstance.data.goldChains+(GameInstance.data.aura*(GameInstance.data.goldChains*.025*GameInstance.data.upgrades[0]))))
 
 
 func _on_button_pressed() -> void:

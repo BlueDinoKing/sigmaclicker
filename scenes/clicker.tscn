@@ -185,6 +185,9 @@ y_sort_enabled = true
 position = Vector2(0, 2)
 script = ExtResource("11_kbomh")
 
+[node name="Timer" type="Timer" parent="Node2D"]
+autostart = true
+
 [node name="TextureButton" type="Node" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="TextureButton"]
@@ -219,3 +222,4 @@ animationImage = NodePath("../Sprite")
 [connection signal="pressed" from="Label/moggers" to="Label/moggers" method="_on_pressed"]
 [connection signal="timeout" from="Label/moggers/Timer" to="Label/moggers" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="TextureButton/shake tween" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/Timer" to="Node2D" method="_on_timer_timeout"]

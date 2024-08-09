@@ -16,7 +16,7 @@ extends Resource
 
 # upgrades
 @export var upgrades : Array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-@export var upgradeCost : Array = [10000, 10000, 0]
+@export var upgradeCost : Array = [10000, 10000, 0, 10000]
 # stats
 @export var clicks : int = 0 # rizzes
 @export var addedRizz : float = 1 # increased by gold chains
@@ -35,7 +35,7 @@ extends Resource
 
 func reset():
 	upgrades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	upgradeCost = [10000, 10000, 0]
+	upgradeCost = [10000, 10000, 0, 10000]
 	goldChains = 0
 	auraBreweries = 0
 	moggers = 0

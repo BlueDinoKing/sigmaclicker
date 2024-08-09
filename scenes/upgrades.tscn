@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bx6wvhoyrsd0b"]
+[gd_scene load_steps=24 format=3 uid="uid://bx6wvhoyrsd0b"]
 
 [ext_resource type="Texture2D" uid="uid://dr55i8dth0dqq" path="res://images/upgradesatlas.png" id="1_4oesa"]
 [ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="2_4cabu"]
@@ -52,15 +52,33 @@ region = Rect2(192, 0, 64, 64)
 atlas = ExtResource("2_gc2id")
 region = Rect2(192, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nf4w"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u02bm"]
-atlas = ExtResource("2_gc2id")
+atlas = SubResource("AtlasTexture_3nf4w")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jrya"]
 atlas = ExtResource("3_4hvc7")
 region = Rect2(192, 0, 64, 64)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("upgrade1Name", "upgrade1Price", "upgrade1Button", "upgrade1Line", "upgrade2Name", "upgrade2Price", "upgrade2Button", "upgrade2Line", "upgrade3Name", "upgrade3Price", "upgrade3Button")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ymy"]
+atlas = ExtResource("1_4oesa")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpgny"]
+atlas = ExtResource("2_gc2id")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gi8m"]
+atlas = ExtResource("2_gc2id")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bffdx"]
+atlas = ExtResource("3_4hvc7")
+region = Rect2(128, 0, 64, 64)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("upgrade1Name", "upgrade1Price", "upgrade1Button", "upgrade1Line1", "upgrade1Line2", "upgrade2Name", "upgrade2Price", "upgrade2Button", "upgrade2Line", "upgrade3Name", "upgrade3Price", "upgrade3Button", "upgrade4Name", "upgrade4Price", "upgrade4Button", "upgrade4Line")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +91,8 @@ script = ExtResource("2_4cabu")
 upgrade1Name = NodePath("upgrade1/Label")
 upgrade1Price = NodePath("upgrade1/Label2")
 upgrade1Button = NodePath("upgrade1")
-upgrade1Line = NodePath("upgrade1/Line2D")
+upgrade1Line1 = NodePath("upgrade1/Line2D")
+upgrade1Line2 = NodePath("upgrade1/Line2D2")
 upgrade2Name = NodePath("upgrade2/Label")
 upgrade2Price = NodePath("upgrade2/Label2")
 upgrade2Button = NodePath("upgrade2")
@@ -81,6 +100,10 @@ upgrade2Line = NodePath("upgrade2/Line2D")
 upgrade3Name = NodePath("upgrade3/Label")
 upgrade3Price = NodePath("upgrade3/Label2")
 upgrade3Button = NodePath("upgrade3")
+upgrade4Name = NodePath("upgrade4/Label")
+upgrade4Price = NodePath("upgrade4/Label2")
+upgrade4Button = NodePath("upgrade4")
+upgrade4Line = NodePath("upgrade4/Line2D")
 
 [node name="upgrade1" type="TextureButton" parent="."]
 layout_mode = 0
@@ -128,13 +151,19 @@ end_cap_mode = 2
 [node name="Label3" type="Label" parent="upgrade1"]
 layout_mode = 0
 offset_left = -64.0
-offset_top = 72.0
+offset_top = 88.0
 offset_right = 128.0
-offset_bottom = 147.0
-text = "Aura Breweries brew 2% faster per Gold Chain"
+offset_bottom = 163.0
+text = "Gold Chains also 2.5% of your aura per click per gold chain"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Line2D2" type="Line2D" parent="upgrade1"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(32, 32)
+points = PackedVector2Array(0, -8, 128, 64)
 
 [node name="upgrade2" type="TextureButton" parent="."]
 layout_mode = 0
@@ -225,14 +254,61 @@ theme = SubResource("Theme_jdk10")
 
 [node name="Label3" type="Label" parent="upgrade3"]
 offset_left = -48.0
-offset_top = 72.0
+offset_top = 88.0
 offset_right = 112.0
-offset_bottom = 147.0
-text = "Does absolutely nothing"
+offset_bottom = 163.0
+text = "1.05x global multiplier on aura and rizz "
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="upgrade4" type="TextureButton" parent="."]
+offset_left = 640.0
+offset_top = 320.0
+offset_right = 704.0
+offset_bottom = 384.0
+texture_normal = SubResource("AtlasTexture_v8ymy")
+texture_pressed = SubResource("AtlasTexture_cpgny")
+texture_hover = SubResource("AtlasTexture_2gi8m")
+texture_disabled = SubResource("AtlasTexture_bffdx")
+
+[node name="Label" type="Label" parent="upgrade4"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 88.0
+offset_bottom = -1.0
+text = "upgrade"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="upgrade4"]
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 80.0
+offset_bottom = 87.0
+text = "cost
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="upgrade4"]
+show_behind_parent = true
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme = SubResource("Theme_jdk10")
+
+[node name="Label3" type="Label" parent="upgrade4"]
+offset_left = -48.0
+offset_top = 88.0
+offset_right = 112.0
+offset_bottom = 163.0
+text = "Aura Breweries brew 2% faster per Gold Chain"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Line2D" type="Line2D" parent="upgrade4"]
+
 [connection signal="pressed" from="upgrade1" to="." method="_on_upgrade_1_pressed"]
 [connection signal="pressed" from="upgrade2" to="." method="_on_upgrade_2_pressed"]
 [connection signal="pressed" from="upgrade3" to="." method="_on_upgrade_3_pressed"]
+[connection signal="pressed" from="upgrade4" to="." method="_on_upgrade_4_pressed"]

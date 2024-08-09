@@ -89,6 +89,16 @@ offset_bottom = 527.0
 text = "Audio: true"
 script = ExtResource("2_b5dci")
 
+[node name="LinkButton" type="LinkButton" parent="."]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 442.0
+offset_right = 537.0
+offset_bottom = 527.0
+theme_override_font_sizes/font_size = 48
+text = "GitHub"
+uri = "https://github.com/BlueDinoKing/sigmaclicker/blob/notwrizz/"
+
 [connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="toggled" from="HSlider/CheckButton" to="HSlider/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="reset save" to="reset save" method="_on_pressed"]

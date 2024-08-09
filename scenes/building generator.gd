@@ -19,6 +19,9 @@ func _ready() -> void:
 		create_auraBrewery()
 	for i in range(GameInstance.data.moggers):
 		create_mogger()
+	$Timer.start(1.0)
+
+
 
 func create_goldChain(_input: int = 1):
 	screenSize = get_viewport().get_visible_rect().size
@@ -45,6 +48,19 @@ func create_mogger(_input: int = 1):
 	add_child(image)
 
 func kill_all_children():
-	for n in get_children():
-		remove_child(n)
-		n.queue_free() 
+	for child in get_children():
+		if not child.is_class("Timer"):
+			remove_child(child)
+			child.queue_free()
+
+
+func _on_timer_timeout() -> void:
+	if screenSize != get_viewport().get_visible_rect().size:
+		screenSize = get_viewport().get_visible_rect().size
+		kill_all_children()
+		for i in range(GameInstance.data.goldChains):
+			create_goldChain(1)
+		for i in range(GameInstance.data.auraBreweries):
+			create_auraBrewery()
+		for i in range(GameInstance.data.moggers):
+			create_mogger()

@@ -25,9 +25,7 @@ func _ready() -> void:
 func mog():
 	if not floor(GameInstance.data.moggers * GameInstance.data.aura) == 0:
 		Handler.ref.create_rizz(floor((GameInstance.data.upgrades[1]+1) * .1 * GameInstance.data.moggers * GameInstance.data.aura))
-		print(floor((GameInstance.data.upgrades[1]+1) * .1 * GameInstance.data.moggers * GameInstance.data.aura))
 		return
-	Handler.ref.create_rizz(1)
 	
 func _on_timer_timeout() -> void:
 	mog()
