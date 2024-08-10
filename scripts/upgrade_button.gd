@@ -98,6 +98,11 @@ func update_upgrade_label(index: int, name_label: Label, price_label: Label, but
 		button.visible = true
 		name_label.set_text('%s/%s' % [Game.format_number(level), max_level])
 		price_label.set_text('%s %s' % [Game.format_number(GameInstance.data.upgradeCost[index]), currency])
+		if max_level <= level:
+			button.disabled = true
+			button.visible = true
+			price_label.set_text('')
+			
 		# Debug print statement
 
 	# Set lines visibility based on the level and unlock status

@@ -19,4 +19,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" parent="ScrollContainer" instance=ExtResource("1_c072g")]
+custom_minimum_size = Vector2(1152, 648)
 layout_mode = 2

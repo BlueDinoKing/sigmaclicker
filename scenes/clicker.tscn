@@ -50,132 +50,6 @@ volume_db = 5.0
 pitch_scale = 1.95
 max_polyphony = 6
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
-
-[node name="aura breweries" type="Button" parent="Label" node_paths=PackedStringArray("auraLabel", "auraTimer", "breweries")]
-custom_minimum_size = Vector2(110, 90)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = 113.5
-offset_right = -7.0
-offset_bottom = 203.5
-grow_horizontal = 0
-grow_vertical = 2
-theme = SubResource("Theme_4dnqd")
-theme_override_font_sizes/font_size = 24
-script = ExtResource("2_vevm5")
-auraLabel = NodePath("Panel2/Label")
-auraTimer = NodePath("aura")
-breweries = NodePath("breweries")
-
-[node name="aura" type="Timer" parent="Label/aura breweries"]
-autostart = true
-
-[node name="breweries" type="Timer" parent="Label/aura breweries"]
-wait_time = 5.0
-
-[node name="Panel2" type="Panel" parent="Label/aura breweries"]
-layout_mode = 0
-offset_left = -283.0
-offset_top = -3.0
-offset_right = -6.0
-offset_bottom = 93.0
-
-[node name="Label" type="Label" parent="Label/aura breweries/Panel2"]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 17
-text = "aura brewieres"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="gold chains" type="Button" parent="Label" node_paths=PackedStringArray("goldChainsLabel")]
-custom_minimum_size = Vector2(110, 90)
-layout_mode = 0
-offset_left = -76.0
-offset_top = 17.0
-offset_right = 34.0
-offset_bottom = 107.0
-theme = SubResource("Theme_4dnqd")
-theme_override_font_sizes/font_size = 24
-text = "16"
-script = ExtResource("3_a0tl6")
-goldChainsLabel = NodePath("Panel/Label")
-
-[node name="Panel" type="Panel" parent="Label/gold chains"]
-layout_mode = 0
-offset_left = -283.0
-offset_top = -2.0
-offset_right = -6.0
-offset_bottom = 94.0
-
-[node name="Label" type="Label" parent="Label/gold chains/Panel"]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 17
-text = "gold chains money face"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="moggers" type="Button" parent="Label" node_paths=PackedStringArray("moggersTimer", "moggersLabel")]
-custom_minimum_size = Vector2(110, 90)
-layout_mode = 0
-offset_left = -77.0
-offset_top = 231.0
-offset_right = 33.0
-offset_bottom = 321.0
-theme = SubResource("Theme_4dnqd")
-theme_override_font_sizes/font_size = 24
-text = "256"
-script = ExtResource("4_7tdh8")
-moggersTimer = NodePath("Timer")
-moggersLabel = NodePath("Panel3/Label")
-
-[node name="Timer" type="Timer" parent="Label/moggers"]
-autostart = true
-
-[node name="Panel3" type="Panel" parent="Label/moggers"]
-layout_mode = 0
-offset_left = -284.0
-offset_top = -2.0
-offset_right = -7.0
-offset_bottom = 94.0
-
-[node name="Label" type="Label" parent="Label/moggers/Panel3"]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 17
-text = "mogg"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
@@ -210,16 +84,149 @@ script = ExtResource("10_3y8og")
 button = NodePath("../Sprite/TextureButton")
 animationImage = NodePath("../Sprite")
 
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -415.0
+offset_bottom = 648.0
+grow_horizontal = 0
+
+[node name="buildings" type="Control" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="aura breweries" type="Button" parent="ScrollContainer/buildings" node_paths=PackedStringArray("auraLabel", "auraTimer", "breweries")]
+custom_minimum_size = Vector2(110, 90)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 98.0
+offset_bottom = 188.0
+grow_horizontal = 0
+theme = SubResource("Theme_4dnqd")
+theme_override_font_sizes/font_size = 24
+script = ExtResource("2_vevm5")
+auraLabel = NodePath("Panel2/Label")
+auraTimer = NodePath("aura")
+breweries = NodePath("breweries")
+
+[node name="aura" type="Timer" parent="ScrollContainer/buildings/aura breweries"]
+autostart = true
+
+[node name="breweries" type="Timer" parent="ScrollContainer/buildings/aura breweries"]
+wait_time = 5.0
+
+[node name="Panel2" type="Panel" parent="ScrollContainer/buildings/aura breweries"]
+layout_mode = 0
+offset_left = -283.0
+offset_top = -3.0
+offset_right = -6.0
+offset_bottom = 93.0
+
+[node name="Label" type="Label" parent="ScrollContainer/buildings/aura breweries/Panel2"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "aura brewieres"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gold chains" type="Button" parent="ScrollContainer/buildings" node_paths=PackedStringArray("goldChainsLabel")]
+custom_minimum_size = Vector2(110, 90)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_bottom = 90.0
+grow_horizontal = 0
+theme = SubResource("Theme_4dnqd")
+theme_override_font_sizes/font_size = 24
+text = "16"
+script = ExtResource("3_a0tl6")
+goldChainsLabel = NodePath("Panel/Label")
+
+[node name="Panel" type="Panel" parent="ScrollContainer/buildings/gold chains"]
+layout_mode = 0
+offset_left = -283.0
+offset_top = -2.0
+offset_right = -6.0
+offset_bottom = 94.0
+
+[node name="Label" type="Label" parent="ScrollContainer/buildings/gold chains/Panel"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "gold chains money face"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="moggers" type="Button" parent="ScrollContainer/buildings" node_paths=PackedStringArray("moggersTimer", "moggersLabel")]
+custom_minimum_size = Vector2(110, 90)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 194.0
+offset_bottom = 284.0
+grow_horizontal = 0
+theme = SubResource("Theme_4dnqd")
+theme_override_font_sizes/font_size = 24
+text = "256"
+script = ExtResource("4_7tdh8")
+moggersTimer = NodePath("Timer")
+moggersLabel = NodePath("Panel3/Label")
+
+[node name="Timer" type="Timer" parent="ScrollContainer/buildings/moggers"]
+autostart = true
+
+[node name="Panel3" type="Panel" parent="ScrollContainer/buildings/moggers"]
+layout_mode = 0
+offset_left = -283.0
+offset_top = -2.0
+offset_right = -6.0
+offset_bottom = 94.0
+
+[node name="Label" type="Label" parent="ScrollContainer/buildings/moggers/Panel3"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = "mogg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="rizz up baddies" to="rizz up baddies" method="_on_button_down"]
 [connection signal="button_up" from="rizz up baddies" to="rizz up baddies" method="_on_button_up"]
 [connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Label/aura breweries" to="Label/aura breweries" method="_on_pressed"]
-[connection signal="timeout" from="Label/aura breweries/aura" to="Label/aura breweries" method="_on_aura_timeout"]
-[connection signal="timeout" from="Label/aura breweries/breweries" to="Label/aura breweries" method="_on_breweries_timeout"]
-[connection signal="pressed" from="Label/gold chains" to="." method="_on_gold_chains_pressed"]
-[connection signal="pressed" from="Label/gold chains" to="Label/gold chains" method="_on_pressed"]
-[connection signal="pressed" from="Label/moggers" to="Label/moggers" method="_on_pressed"]
-[connection signal="timeout" from="Label/moggers/Timer" to="Label/moggers" method="_on_timer_timeout"]
+[connection signal="pressed" from="rizz up baddies" to="rizz up baddies" method="_on_pressed"]
 [connection signal="timeout" from="Timer" to="TextureButton/shake tween" method="_on_timer_timeout"]
 [connection signal="timeout" from="Node2D/Timer" to="Node2D" method="_on_timer_timeout"]
+[connection signal="pressed" from="ScrollContainer/buildings/aura breweries" to="ScrollContainer/buildings/aura breweries" method="_on_pressed"]
+[connection signal="timeout" from="ScrollContainer/buildings/aura breweries/aura" to="ScrollContainer/buildings/aura breweries" method="_on_aura_timeout"]
+[connection signal="timeout" from="ScrollContainer/buildings/aura breweries/breweries" to="ScrollContainer/buildings/aura breweries" method="_on_breweries_timeout"]
+[connection signal="pressed" from="ScrollContainer/buildings/gold chains" to="." method="_on_gold_chains_pressed"]
+[connection signal="pressed" from="ScrollContainer/buildings/gold chains" to="ScrollContainer/buildings/gold chains" method="_on_pressed"]
+[connection signal="pressed" from="ScrollContainer/buildings/moggers" to="ScrollContainer/buildings/moggers" method="_on_pressed"]
+[connection signal="timeout" from="ScrollContainer/buildings/moggers/Timer" to="ScrollContainer/buildings/moggers" method="_on_timer_timeout"]

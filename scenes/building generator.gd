@@ -7,7 +7,10 @@ var screenSize
 var goldChains = 0
 var auraBreweries = 0
 var moggers = 0
+
 func _ready() -> void:
+	if not $"../ScrollContainer".is_node_ready():
+		await $"../ScrollContainer".ready
 	GoldChains.ref.goldChains.connect(create_goldChain)
 	Moggers.ref.moggers.connect(create_mogger)
 	AuraBrewery.ref.auraBrewery.connect(create_auraBrewery)
