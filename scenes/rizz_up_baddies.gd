@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func random_sign() -> int:
 	return 1 if randi() % 2 == 0 else -1
-#test
+#test2
 func _on_pressed() -> void:
 	var rizzLabel: Label = Label.new()
 	# Calculate the center position of the TextureButton
