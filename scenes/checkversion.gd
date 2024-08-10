@@ -17,7 +17,22 @@ signal version_fetched
 # Reference to the PopupDialog node
 @onready var update_popup = $UpdatePopup
 
+# Reference to the UpdateButton node
+@onready var update_button = $UpdatePopup/UpdateButton
+
+# Example link and message template
+const UPDATE_LINK = "https://github.com/BlueDinoKing/sigmaclicker"
+const MESSAGE_TEXT = "Client is out of date: Update here\nCurrent version: %s\nLatest version: %s"
+
 func _ready():
+	# Ensure update_popup and UpdateButton are properly referenced
+	if not update_popup or not update_button:
+		print("UpdatePopup or UpdateButton node not found.")
+		return
+
+	# Connect the UpdateButton's signal for clicks
+	update_button.connect("pressed", Callable(self, "_on_update_button_pressed"))
+
 	# Start the version comparison process
 	compare_versions()
 
@@ -28,7 +43,7 @@ func compare_versions() -> void:
 	# Fetch the remote version file
 	fetch_remote_version()
 	
-	# Use call_deferred to ensure the method is called after the request completes
+	# Connect the signal for version comparison
 	connect("version_fetched", Callable(self, "_on_version_fetched"))
 
 func read_local_version() -> String:
@@ -46,7 +61,7 @@ func fetch_remote_version() -> void:
 	add_child(http_request)
 	
 	# Connect the request_completed signal to a handler function
-	http_request.request_completed.connect(_on_request_completed)
+	http_request.request_completed.connect(Callable(self, "_on_request_completed"))
 	
 	# Initiate the HTTP request
 	var err = http_request.request(REMOTE_VERSION_URL)
@@ -79,16 +94,12 @@ func _on_version_fetched() -> void:
 		print("Failed to fetch the remote version.")
 
 func show_update_popup() -> void:
-	# Update the label text and show the popup
-	var label = update_popup.get_node("Label")
-	var button = update_popup.get_node("Button")
-	label.text = "Client is out of date:\nUpdate here: https://github.com/BlueDinoKing/sigmaclicker\nCurrent version: %s\nLatest version: %s" % [local_version, remote_version]
-	
-	button.text = "Update"
-	button.connect("pressed", Callable(self, "_on_update_button_pressed"))
-	
+	# Construct the message with the current and remote versions
+	var message = MESSAGE_TEXT % [local_version, remote_version]
+	update_button.text = message
+
+	# Show the popup
 	update_popup.popup_centered()
 
 func _on_update_button_pressed() -> void:
-	# Open the update link in the default browser
-	OS.shell_open("https://github.com/BlueDinoKing/sigmaclicker")
+	OS.shell_open(UPDATE_LINK)  # Open the URL in the default web browser

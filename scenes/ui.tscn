@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ca8y3nvhw5cxk" path="res://scenes/upgrade_tree.tscn" id="5_65pow"]
 [ext_resource type="Script" path="res://scenes/save_timer.gd" id="5_yq10k"]
 [ext_resource type="Script" path="res://scenes/upgrade_tree.gd" id="6_vlgiv"]
-[ext_resource type="Script" path="res://scenes/checkversion.gd" id="8_inaby"]
+[ext_resource type="PackedScene" uid="uid://c2mfgmxnk721x" path="res://scenes/popup update.tscn" id="8_8dv65"]
 
 [node name="ui" type="Control"]
 layout_mode = 3
@@ -111,8 +111,7 @@ wait_time = 5.0
 autostart = true
 script = ExtResource("5_yq10k")
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("8_inaby")
+[node name="Node" parent="." instance=ExtResource("8_8dv65")]
 
 [connection signal="item_clicked" from="HBoxContainer/leftPanel/VBoxContainer/nav/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="timeout" from="save_timer" to="save_timer" method="_on_timeout"]
