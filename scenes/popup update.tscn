@@ -15,6 +15,7 @@ script = ExtResource("1_wvnd5")
 auto_translate_mode = 1
 initial_position = 2
 size = Vector2i(300, 100)
+visible = false
 
 [node name="UpdateButton" type="Button" parent="UpdatePopup"]
 custom_minimum_size = Vector2(300, 100)

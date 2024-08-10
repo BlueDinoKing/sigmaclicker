@@ -26,6 +26,7 @@ const MESSAGE_TEXT = "Client is out of date: Update here\nCurrent version: %s\nL
 
 func _ready():
 	# Ensure update_popup and UpdateButton are properly referenced
+	update_popup.visible = false
 	if not update_popup or not update_button:
 		print("UpdatePopup or UpdateButton node not found.")
 		return
@@ -102,10 +103,12 @@ func show_update_popup() -> void:
 
 	# Show the popup
 	update_popup.popup_centered()
+	update_popup.visible = true
 
 func hide_update_popup() -> void:
 	# Hide the popup if it's currently visible
 	update_popup.hide()
+	update_popup.visible = false
 
 func _on_update_button_pressed() -> void:
 	OS.shell_open(UPDATE_LINK)  # Open the URL in the default web browser
