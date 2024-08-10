@@ -15,21 +15,31 @@ script = ExtResource("1_wvnd5")
 [node name="UpdatePopup" type="Window" parent="."]
 auto_translate_mode = 1
 initial_position = 2
-size = Vector2i(300, 100)
-visible = false
+size = Vector2i(500, 200)
 
 [node name="UpdateButton" type="Button" parent="UpdatePopup"]
-custom_minimum_size = Vector2(300, 100)
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
-grow_horizontal = 0
-grow_vertical = 2
+custom_minimum_size = Vector2(500, 100)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
 alignment = 0
+
+[node name="CloseButton" type="Button" parent="UpdatePopup"]
+custom_minimum_size = Vector2(500, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Click to ignore this message if on the webpage"
 
 [connection signal="pressed" from="UpdatePopup/UpdateButton" to="." method="_on_update_button_pressed"]

@@ -8,6 +8,8 @@ static var ref: Game
 var data: Data
 @export var save_timer : Timer
 
+
+
 static func format_number(input) -> String:
 	var _exp = str(input).split(".")[0].length() - 1
 	var units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc", "Ud", "Dd", "Td", "Qad", "Qid", "Sxd", "Spd", "Ocd", "Nod"]
