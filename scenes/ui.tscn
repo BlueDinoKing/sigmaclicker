@@ -112,6 +112,7 @@ autostart = true
 script = ExtResource("5_yq10k")
 
 [node name="Node" parent="." instance=ExtResource("8_8dv65")]
+layout_mode = 1
 
 [connection signal="item_clicked" from="HBoxContainer/leftPanel/VBoxContainer/nav/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="timeout" from="save_timer" to="save_timer" method="_on_timeout"]

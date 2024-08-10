@@ -17,7 +17,7 @@ initial_position = 2
 size = Vector2i(300, 100)
 
 [node name="UpdateButton" type="Button" parent="UpdatePopup"]
-custom_minimum_size = Vector2(300, 64)
+custom_minimum_size = Vector2(300, 100)
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5

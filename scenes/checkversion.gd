@@ -87,11 +87,13 @@ func _on_version_fetched() -> void:
 	if remote_version != "":
 		if local_version == remote_version:
 			print("The versions are the same. (%s)" % local_version)
+			hide_update_popup()  # Hide the popup if versions are the same
 		else:
 			print("The versions are different. local: %s remote: %s" % [local_version, remote_version])
-			show_update_popup()
+			show_update_popup()  # Show the popup if versions are different
 	else:
 		print("Failed to fetch the remote version.")
+		hide_update_popup()  # Hide the popup if fetching failed
 
 func show_update_popup() -> void:
 	# Construct the message with the current and remote versions
@@ -100,6 +102,10 @@ func show_update_popup() -> void:
 
 	# Show the popup
 	update_popup.popup_centered()
+
+func hide_update_popup() -> void:
+	# Hide the popup if it's currently visible
+	update_popup.hide()
 
 func _on_update_button_pressed() -> void:
 	OS.shell_open(UPDATE_LINK)  # Open the URL in the default web browser
