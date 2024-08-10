@@ -117,6 +117,7 @@ texture_hover = SubResource("AtlasTexture_oymnj")
 texture_disabled = SubResource("AtlasTexture_iiuil")
 
 [node name="Label" type="Label" parent="upgrade1"]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
@@ -125,6 +126,7 @@ text = "upgrade"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="upgrade1"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
 offset_right = 80.0
@@ -135,6 +137,7 @@ horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="upgrade1"]
 show_behind_parent = true
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_filter = 2
@@ -177,6 +180,7 @@ texture_hover = SubResource("AtlasTexture_hpcj0")
 texture_disabled = SubResource("AtlasTexture_beyef")
 
 [node name="Label" type="Label" parent="upgrade2"]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
@@ -185,6 +189,7 @@ text = "upgrade"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="upgrade2"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
 offset_right = 80.0
@@ -195,6 +200,7 @@ horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="upgrade2"]
 show_behind_parent = true
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_filter = 2
@@ -209,6 +215,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Label3" type="Label" parent="upgrade2"]
+layout_mode = 0
 offset_left = -48.0
 offset_top = 72.0
 offset_right = 112.0
@@ -219,6 +226,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="upgrade3" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 320.0
 offset_right = 288.0
@@ -229,6 +237,7 @@ texture_hover = SubResource("AtlasTexture_u02bm")
 texture_disabled = SubResource("AtlasTexture_7jrya")
 
 [node name="Label" type="Label" parent="upgrade3"]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
@@ -237,6 +246,7 @@ text = "upgrade"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="upgrade3"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
 offset_right = 80.0
@@ -247,12 +257,14 @@ horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="upgrade3"]
 show_behind_parent = true
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
 [node name="Label3" type="Label" parent="upgrade3"]
+layout_mode = 0
 offset_left = -48.0
 offset_top = 88.0
 offset_right = 112.0
@@ -263,6 +275,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="upgrade4" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 640.0
 offset_top = 320.0
 offset_right = 704.0
@@ -273,6 +286,7 @@ texture_hover = SubResource("AtlasTexture_2gi8m")
 texture_disabled = SubResource("AtlasTexture_bffdx")
 
 [node name="Label" type="Label" parent="upgrade4"]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
@@ -281,6 +295,7 @@ text = "upgrade"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="upgrade4"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
 offset_right = 80.0
@@ -291,12 +306,14 @@ horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="upgrade4"]
 show_behind_parent = true
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
 [node name="Label3" type="Label" parent="upgrade4"]
+layout_mode = 0
 offset_left = -48.0
 offset_top = 88.0
 offset_right = 112.0
