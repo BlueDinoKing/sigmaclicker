@@ -4,4 +4,4 @@ Latest Android Release: https://github.com/BlueDinoKing/sigmaclicker/blob/notwri
 
 Web Release: https://sigmaclicker.netlify.app/
 
-Version: 0
+Version: 2
