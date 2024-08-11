@@ -100,8 +100,8 @@ user_interface_path = NodePath("../../..")
 [node name="settings" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_jqmk5")]
 visible = false
 layout_mode = 1
-user_interface = NodePath("../../..")
 user_interface_path = NodePath("../../..")
+user_interface = NodePath("../../..")
 
 [node name="upgrade tree" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("5_65pow")]
 visible = false
@@ -124,7 +124,7 @@ wait_time = 5.0
 autostart = true
 script = ExtResource("5_yq10k")
 
-[node name="Node" parent="." instance=ExtResource("8_8dv65")]
+[node name="update notification" parent="." instance=ExtResource("8_8dv65")]
 layout_mode = 1
 
 [connection signal="item_clicked" from="HBoxContainer/leftPanel/VBoxContainer/nav/ItemList" to="." method="_on_item_list_item_clicked"]

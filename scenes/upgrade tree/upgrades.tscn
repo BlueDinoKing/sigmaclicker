@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bx6wvhoyrsd0b"]
+[gd_scene load_steps=27 format=3 uid="uid://bx6wvhoyrsd0b"]
 
 [ext_resource type="Script" path="res://scenes/upgrade tree/upgrade_button.gd" id="1_c26n5"]
 [ext_resource type="Texture2D" uid="uid://dr55i8dth0dqq" path="res://images/upgradesatlas.png" id="2_ijeqb"]
@@ -52,10 +52,8 @@ region = Rect2(192, 0, 64, 64)
 atlas = ExtResource("3_xplik")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3nf4w"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_u02bm"]
-atlas = SubResource("AtlasTexture_3nf4w")
+atlas = ExtResource("3_xplik")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jrya"]
@@ -78,45 +76,50 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("4_bv5te")
 region = Rect2(128, 0, 64, 64)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("upgrade1Name", "upgrade1Price", "upgrade1Button", "upgrade1Line1", "upgrade1Line2", "upgrade2Name", "upgrade2Price", "upgrade2Button", "upgrade2Line", "upgrade3Name", "upgrade3Price", "upgrade3Button", "upgrade4Name", "upgrade4Price", "upgrade4Button", "upgrade4Line")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbwtk"]
+atlas = ExtResource("2_ijeqb")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm442"]
+atlas = ExtResource("3_xplik")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l02nh"]
+atlas = ExtResource("3_xplik")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2bgr"]
+atlas = ExtResource("4_bv5te")
+region = Rect2(192, 192, 64, 64)
+
+[node name="upgrades" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.099
+offset_bottom = -0.152039
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_c26n5")
-upgrade1Name = NodePath("upgrade1/Label")
-upgrade1Price = NodePath("upgrade1/Label2")
-upgrade1Button = NodePath("upgrade1")
-upgrade1Line1 = NodePath("upgrade1/Line2D")
-upgrade1Line2 = NodePath("upgrade1/Line2D2")
-upgrade2Name = NodePath("upgrade2/Label")
-upgrade2Price = NodePath("upgrade2/Label2")
-upgrade2Button = NodePath("upgrade2")
-upgrade2Line = NodePath("upgrade2/Line2D")
-upgrade3Name = NodePath("upgrade3/Label")
-upgrade3Price = NodePath("upgrade3/Label2")
-upgrade3Button = NodePath("upgrade3")
-upgrade4Name = NodePath("upgrade4/Label")
-upgrade4Price = NodePath("upgrade4/Label2")
-upgrade4Button = NodePath("upgrade4")
-upgrade4Line = NodePath("upgrade4/Line2D")
 
-[node name="upgrade1" type="TextureButton" parent="."]
-layout_mode = 0
+[node name="pre rebirth" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 256.0
+
+[node name="Upgrade1" type="TextureButton" parent="pre rebirth"]
+layout_mode = 2
 offset_left = 512.0
-offset_top = 256.0
+offset_top = 64.0
 offset_right = 576.0
-offset_bottom = 320.0
+offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_53f2w")
 texture_pressed = SubResource("AtlasTexture_apr5m")
 texture_hover = SubResource("AtlasTexture_oymnj")
 texture_disabled = SubResource("AtlasTexture_iiuil")
 
-[node name="Label" type="Label" parent="upgrade1"]
+[node name="Name" type="Label" parent="pre rebirth/Upgrade1"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -125,7 +128,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="upgrade1"]
+[node name="Price" type="Label" parent="pre rebirth/Upgrade1"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -135,7 +138,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="upgrade1"]
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade1"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -143,15 +146,7 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Line2D" type="Line2D" parent="upgrade1"]
-show_behind_parent = true
-z_index = -1
-position = Vector2(-16, 32)
-points = PackedVector2Array(-64, 64, 32, 0)
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="Label3" type="Label" parent="upgrade1"]
+[node name="Label3" type="Label" parent="pre rebirth/Upgrade1"]
 layout_mode = 0
 offset_left = -64.0
 offset_top = 88.0
@@ -162,24 +157,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Line2D2" type="Line2D" parent="upgrade1"]
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade1/Label3"]
 show_behind_parent = true
-z_index = -1
-position = Vector2(32, 32)
-points = PackedVector2Array(0, -8, 128, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="upgrade2" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 320.0
-offset_right = 448.0
-offset_bottom = 384.0
+[node name="Upgrade2" type="TextureButton" parent="pre rebirth"]
+layout_mode = 2
+offset_left = 352.0
+offset_top = 64.0
+offset_right = 416.0
+offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_dk6m6")
 texture_pressed = SubResource("AtlasTexture_hfcpj")
 texture_hover = SubResource("AtlasTexture_hpcj0")
 texture_disabled = SubResource("AtlasTexture_beyef")
 
-[node name="Label" type="Label" parent="upgrade2"]
+[node name="Name" type="Label" parent="pre rebirth/Upgrade2"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -188,7 +188,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="upgrade2"]
+[node name="Price" type="Label" parent="pre rebirth/Upgrade2"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -198,7 +198,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="upgrade2"]
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade2"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -206,37 +206,46 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Line2D" type="Line2D" parent="upgrade2"]
-show_behind_parent = true
-z_index = -1
-position = Vector2(-8, 24)
-points = PackedVector2Array(-120, 8, 40, 8)
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="Label3" type="Label" parent="upgrade2"]
+[node name="Label3" type="Label" parent="pre rebirth/Upgrade2"]
 layout_mode = 0
-offset_left = -48.0
-offset_top = 72.0
-offset_right = 112.0
-offset_bottom = 147.0
+offset_left = -24.0
+offset_top = 88.0
+offset_right = 88.0
+offset_bottom = 165.0
 text = "Moggers mog 10% more efficiently"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="upgrade3" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 224.0
-offset_top = 320.0
-offset_right = 288.0
-offset_bottom = 384.0
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade2/Label3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line" type="Line2D" parent="pre rebirth/Upgrade2"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(144, 32)
+points = PackedVector2Array(-112, 0, 40, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Upgrade3" type="TextureButton" parent="pre rebirth"]
+layout_mode = 2
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_anmb2")
 texture_pressed = SubResource("AtlasTexture_iggji")
 texture_hover = SubResource("AtlasTexture_u02bm")
 texture_disabled = SubResource("AtlasTexture_7jrya")
 
-[node name="Label" type="Label" parent="upgrade3"]
+[node name="Name" type="Label" parent="pre rebirth/Upgrade3"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -245,7 +254,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="upgrade3"]
+[node name="Price" type="Label" parent="pre rebirth/Upgrade3"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -255,7 +264,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="upgrade3"]
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade3"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -263,29 +272,46 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="upgrade3"]
+[node name="Label3" type="Label" parent="pre rebirth/Upgrade3"]
 layout_mode = 0
-offset_left = -48.0
+offset_left = -24.0
 offset_top = 88.0
-offset_right = 112.0
+offset_right = 88.0
 offset_bottom = 163.0
 text = "1.05x global multiplier on aura and rizz "
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="upgrade4" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 320.0
-offset_right = 704.0
-offset_bottom = 384.0
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade3/Label3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line" type="Line2D" parent="pre rebirth/Upgrade3"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(152, 24)
+points = PackedVector2Array(-120, 8, 40, 8)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Upgrade4" type="TextureButton" parent="pre rebirth"]
+layout_mode = 2
+offset_left = 672.0
+offset_top = 64.0
+offset_right = 736.0
+offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_v8ymy")
 texture_pressed = SubResource("AtlasTexture_cpgny")
 texture_hover = SubResource("AtlasTexture_2gi8m")
 texture_disabled = SubResource("AtlasTexture_bffdx")
 
-[node name="Label" type="Label" parent="upgrade4"]
+[node name="Name" type="Label" parent="pre rebirth/Upgrade4"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -294,7 +320,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="upgrade4"]
+[node name="Price" type="Label" parent="pre rebirth/Upgrade4"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -304,7 +330,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="upgrade4"]
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade4"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -312,20 +338,97 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="upgrade4"]
+[node name="Label3" type="Label" parent="pre rebirth/Upgrade4"]
 layout_mode = 0
-offset_left = -48.0
+offset_left = -40.0
 offset_top = 88.0
-offset_right = 112.0
-offset_bottom = 163.0
+offset_right = 104.0
+offset_bottom = 168.0
 text = "Aura Breweries brew 2% faster per Gold Chain"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Line2D" type="Line2D" parent="upgrade4"]
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade4/Label3"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 8.0
+offset_right = 136.0
+offset_bottom = 80.0
 
-[connection signal="pressed" from="upgrade1" to="." method="_on_upgrade_1_pressed"]
-[connection signal="pressed" from="upgrade2" to="." method="_on_upgrade_2_pressed"]
-[connection signal="pressed" from="upgrade3" to="." method="_on_upgrade_3_pressed"]
-[connection signal="pressed" from="upgrade4" to="." method="_on_upgrade_4_pressed"]
+[node name="Line" type="Line2D" parent="pre rebirth/Upgrade4"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(-128, 32)
+points = PackedVector2Array(0, 0, 160, 0)
+
+[node name="Upgrade5" type="TextureButton" parent="pre rebirth"]
+layout_mode = 2
+offset_left = 832.0
+offset_top = 64.0
+offset_right = 896.0
+offset_bottom = 128.0
+texture_normal = SubResource("AtlasTexture_qbwtk")
+texture_pressed = SubResource("AtlasTexture_dm442")
+texture_hover = SubResource("AtlasTexture_l02nh")
+texture_disabled = SubResource("AtlasTexture_h2bgr")
+
+[node name="Name" type="Label" parent="pre rebirth/Upgrade5"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 88.0
+offset_bottom = -1.0
+text = "upgrade"
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="pre rebirth/Upgrade5"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 80.0
+offset_bottom = 87.0
+text = "cost
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade5"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme = SubResource("Theme_jdk10")
+
+[node name="Label3" type="Label" parent="pre rebirth/Upgrade5"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 88.0
+offset_right = 120.0
+offset_bottom = 163.0
+text = "Gold Chains also 2.5% of your aura per click per gold chain"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="pre rebirth/Upgrade5/Label3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line" type="Line2D" parent="pre rebirth/Upgrade5"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(-159.756, 0)
+scale = Vector2(0.988889, 1)
+points = PackedVector2Array(32, 32, 192, 32)
+
+[connection signal="pressed" from="pre rebirth/Upgrade1" to="." method="_on_upgrade_1_pressed"]
+[connection signal="pressed" from="pre rebirth/Upgrade2" to="." method="_on_upgrade_2_pressed"]
+[connection signal="pressed" from="pre rebirth/Upgrade3" to="." method="_on_upgrade_3_pressed"]
+[connection signal="pressed" from="pre rebirth/Upgrade4" to="." method="_on_upgrade_4_pressed"]
+[connection signal="pressed" from="pre rebirth/Upgrade5" to="." method="_on_upgrade_5_pressed"]

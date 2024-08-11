@@ -50,9 +50,6 @@ volume_db = 5.0
 pitch_scale = 1.95
 max_polyphony = 6
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -3
 y_sort_enabled = true
@@ -221,7 +218,6 @@ vertical_alignment = 1
 [connection signal="button_up" from="rizz up baddies" to="rizz up baddies" method="_on_button_up"]
 [connection signal="pressed" from="rizz up baddies" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="rizz up baddies" to="rizz up baddies" method="_on_pressed"]
-[connection signal="timeout" from="Timer" to="TextureButton/shake tween" method="_on_timer_timeout"]
 [connection signal="timeout" from="Node2D/Timer" to="Node2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="ScrollContainer/buildings/aura breweries" to="ScrollContainer/buildings/aura breweries" method="_on_pressed"]
 [connection signal="timeout" from="ScrollContainer/buildings/aura breweries/aura" to="ScrollContainer/buildings/aura breweries" method="_on_aura_timeout"]
