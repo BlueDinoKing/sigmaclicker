@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sigmaclicker"
-run/main_scene="res://scenes/ui.tscn"
+run/main_scene="res://scenes/ui/ui.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://images/wrizzparticle.png"
 boot_splash/fullsize=false

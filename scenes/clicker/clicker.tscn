@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://0ugh23teop1k"]
 
-[ext_resource type="Script" path="res://scripts/clicker.gd" id="1_gdsq0"]
-[ext_resource type="Texture2D" uid="uid://cn7tgfran4276" path="res://images/rizz up bro.png" id="2_oc87f"]
-[ext_resource type="Script" path="res://scenes/auraBreweries.gd" id="2_vevm5"]
-[ext_resource type="Texture2D" uid="uid://cbxhsoeipvsh5" path="res://images/rizz up bro selected.png" id="3_5upx7"]
-[ext_resource type="Script" path="res://scenes/goldChains.gd" id="3_a0tl6"]
-[ext_resource type="AudioStream" uid="uid://dsvj1h68514oq" path="res://audios/rizz-sounds.mp3" id="3_i1gol"]
-[ext_resource type="Script" path="res://scenes/moggers.gd" id="4_7tdh8"]
-[ext_resource type="Texture2D" uid="uid://cgw7gbymdgwcm" path="res://images/rizz up bro pressed.png" id="4_cknop"]
-[ext_resource type="Script" path="res://scenes/rizz_up_baddies.gd" id="5_qlrdv"]
-[ext_resource type="Script" path="res://scenes/ticker.gd" id="10_3y8og"]
-[ext_resource type="Texture2D" uid="uid://domef3b1rl5le" path="res://images/money_32.png" id="11_7kj43"]
-[ext_resource type="Script" path="res://scenes/building generator.gd" id="11_kbomh"]
+[ext_resource type="Script" path="res://scenes/clicker/clicker.gd" id="1_x4tww"]
+[ext_resource type="Texture2D" uid="uid://cn7tgfran4276" path="res://images/rizz up bro.png" id="2_ofkri"]
+[ext_resource type="Texture2D" uid="uid://cbxhsoeipvsh5" path="res://images/rizz up bro selected.png" id="3_hwjwf"]
+[ext_resource type="Texture2D" uid="uid://cgw7gbymdgwcm" path="res://images/rizz up bro pressed.png" id="4_b2aow"]
+[ext_resource type="Script" path="res://scenes/clicker/rizz_up_baddies.gd" id="5_bmg3l"]
+[ext_resource type="AudioStream" uid="uid://dsvj1h68514oq" path="res://audios/rizz-sounds.mp3" id="6_wa5sw"]
+[ext_resource type="Script" path="res://scenes/clicker/building generator.gd" id="7_aw2l3"]
+[ext_resource type="Texture2D" uid="uid://domef3b1rl5le" path="res://images/money_32.png" id="8_uinqy"]
+[ext_resource type="Script" path="res://scenes/clicker/ticker.gd" id="9_gou5p"]
+[ext_resource type="Script" path="res://scenes/clicker/auraBreweries.gd" id="10_tjwmh"]
+[ext_resource type="Script" path="res://scenes/clicker/goldChains.gd" id="11_60mek"]
+[ext_resource type="Script" path="res://scenes/clicker/moggers.gd" id="12_4cyys"]
 
 [sub_resource type="BitMap" id="BitMap_wokhq"]
 
@@ -25,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gdsq0")
+script = ExtResource("1_x4tww")
 
 [node name="rizz up baddies" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(320, 80)
@@ -38,14 +38,14 @@ offset_top = -198.0
 offset_right = 464.0
 offset_bottom = 202.0
 grow_vertical = 2
-texture_normal = ExtResource("2_oc87f")
-texture_pressed = ExtResource("3_5upx7")
-texture_hover = ExtResource("4_cknop")
+texture_normal = ExtResource("2_ofkri")
+texture_pressed = ExtResource("3_hwjwf")
+texture_hover = ExtResource("4_b2aow")
 texture_click_mask = SubResource("BitMap_wokhq")
-script = ExtResource("5_qlrdv")
+script = ExtResource("5_bmg3l")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="rizz up baddies"]
-stream = ExtResource("3_i1gol")
+stream = ExtResource("6_wa5sw")
 volume_db = 5.0
 pitch_scale = 1.95
 max_polyphony = 6
@@ -57,7 +57,7 @@ autostart = true
 z_index = -3
 y_sort_enabled = true
 position = Vector2(0, 2)
-script = ExtResource("11_kbomh")
+script = ExtResource("7_aw2l3")
 
 [node name="Timer" type="Timer" parent="Node2D"]
 autostart = true
@@ -66,7 +66,7 @@ autostart = true
 
 [node name="Sprite" type="Sprite2D" parent="TextureButton"]
 position = Vector2(554, 170)
-texture = ExtResource("11_7kj43")
+texture = ExtResource("8_uinqy")
 
 [node name="TextureButton" type="TextureButton" parent="TextureButton/Sprite"]
 anchors_preset = 15
@@ -80,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shake tween" type="Node" parent="TextureButton" node_paths=PackedStringArray("button", "animationImage")]
-script = ExtResource("10_3y8og")
+script = ExtResource("9_gou5p")
 button = NodePath("../Sprite/TextureButton")
 animationImage = NodePath("../Sprite")
 
@@ -110,7 +110,7 @@ offset_bottom = 188.0
 grow_horizontal = 0
 theme = SubResource("Theme_4dnqd")
 theme_override_font_sizes/font_size = 24
-script = ExtResource("2_vevm5")
+script = ExtResource("10_tjwmh")
 auraLabel = NodePath("Panel2/Label")
 auraTimer = NodePath("aura")
 breweries = NodePath("breweries")
@@ -153,7 +153,7 @@ grow_horizontal = 0
 theme = SubResource("Theme_4dnqd")
 theme_override_font_sizes/font_size = 24
 text = "16"
-script = ExtResource("3_a0tl6")
+script = ExtResource("11_60mek")
 goldChainsLabel = NodePath("Panel/Label")
 
 [node name="Panel" type="Panel" parent="ScrollContainer/buildings/gold chains"]
@@ -189,7 +189,7 @@ grow_horizontal = 0
 theme = SubResource("Theme_4dnqd")
 theme_override_font_sizes/font_size = 24
 text = "256"
-script = ExtResource("4_7tdh8")
+script = ExtResource("12_4cyys")
 moggersTimer = NodePath("Timer")
 moggersLabel = NodePath("Panel3/Label")
 

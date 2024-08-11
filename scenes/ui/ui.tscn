@@ -1,19 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://c77v1uh4rdr30"]
+[gd_scene load_steps=11 format=3 uid="uid://c77v1uh4rdr30"]
 
-[ext_resource type="PackedScene" uid="uid://0ugh23teop1k" path="res://scenes/clicker.tscn" id="1_0qt3f"]
-[ext_resource type="Script" path="res://scripts/ui.gd" id="1_rl8b6"]
-[ext_resource type="Script" path="res://scenes/resourceList.gd" id="2_gr0qn"]
-[ext_resource type="PackedScene" uid="uid://cmdspqtegj13" path="res://scenes/settings.tscn" id="3_jqmk5"]
-[ext_resource type="PackedScene" uid="uid://ca8y3nvhw5cxk" path="res://scenes/upgrade_tree.tscn" id="5_65pow"]
-[ext_resource type="Script" path="res://scenes/save_timer.gd" id="5_yq10k"]
-[ext_resource type="Script" path="res://scenes/upgrade_tree.gd" id="6_vlgiv"]
-[ext_resource type="PackedScene" uid="uid://c2mfgmxnk721x" path="res://scenes/popup update.tscn" id="8_8dv65"]
+[ext_resource type="PackedScene" uid="uid://0ugh23teop1k" path="res://scenes/clicker/clicker.tscn" id="1_0qt3f"]
+[ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_rl8b6"]
+[ext_resource type="Script" path="res://scenes/ui/resourceList.gd" id="2_gr0qn"]
+[ext_resource type="PackedScene" uid="uid://cmdspqtegj13" path="res://scenes/settings/settings.tscn" id="3_jqmk5"]
+[ext_resource type="PackedScene" uid="uid://ca8y3nvhw5cxk" path="res://scenes/upgrade tree/upgrade_tree.tscn" id="5_65pow"]
+[ext_resource type="Script" path="res://scenes/ui/save_timer.gd" id="5_yq10k"]
+[ext_resource type="Script" path="res://scenes/upgrade tree/upgrade_tree.gd" id="6_vlgiv"]
+[ext_resource type="PackedScene" uid="uid://cktms0am6bv2o" path="res://scenes/rebirths/rebirths.tscn" id="7_c00i2"]
+[ext_resource type="PackedScene" uid="uid://c2mfgmxnk721x" path="res://scenes/ui/popup update.tscn" id="8_8dv65"]
+[ext_resource type="Script" path="res://scenes/rebirths/rebirths.gd" id="8_ufis6"]
 
 [node name="ui" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rl8b6")
@@ -53,10 +57,11 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-item_count = 3
+item_count = 4
 item_0/text = "Main"
 item_1/text = "Settings"
 item_2/text = "Upgrades"
+item_3/text = "Rebirth"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/leftPanel/VBoxContainer"]
 layout_mode = 2
@@ -105,6 +110,14 @@ script = ExtResource("6_vlgiv")
 user_interface_path = NodePath("../../..")
 user_interface = NodePath("../../..")
 view = 2
+
+[node name="Rebirths" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("7_c00i2")]
+visible = false
+layout_mode = 1
+script = ExtResource("8_ufis6")
+user_interface_path = NodePath("../../..")
+user_interface = NodePath("../../..")
+view = 3
 
 [node name="save_timer" type="Timer" parent="."]
 wait_time = 5.0

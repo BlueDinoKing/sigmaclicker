@@ -35,6 +35,10 @@ extends Resource
 @export var auraBreweryCost : float = 64
 @export var moggersCost : float = 256
 
+# rebirths
+@export var rebirth : int = 0
+@export var rebirthPoints : int = 0
+
 func reset():
 	upgrades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	upgradeCost = [10000, 10000, 0, 10000]
@@ -51,3 +55,5 @@ func reset():
 	auraBreweryCost = 64
 	moggersCost = 256
 	tick = 0
+	rebirth = 0
+	rebirthPoints = 0

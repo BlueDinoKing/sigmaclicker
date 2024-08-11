@@ -1,43 +1,43 @@
 [gd_scene load_steps=24 format=3 uid="uid://bx6wvhoyrsd0b"]
 
-[ext_resource type="Texture2D" uid="uid://dr55i8dth0dqq" path="res://images/upgradesatlas.png" id="1_4oesa"]
-[ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="2_4cabu"]
-[ext_resource type="Texture2D" uid="uid://c1iueclgu12cs" path="res://images/upgradesdarkeratlas.png" id="2_gc2id"]
-[ext_resource type="Texture2D" uid="uid://cg6po62bnjyoe" path="res://images/upgradeslockedatlas.png" id="3_4hvc7"]
+[ext_resource type="Script" path="res://scenes/upgrade tree/upgrade_button.gd" id="1_c26n5"]
+[ext_resource type="Texture2D" uid="uid://dr55i8dth0dqq" path="res://images/upgradesatlas.png" id="2_ijeqb"]
+[ext_resource type="Texture2D" uid="uid://c1iueclgu12cs" path="res://images/upgradesdarkeratlas.png" id="3_xplik"]
+[ext_resource type="Texture2D" uid="uid://cg6po62bnjyoe" path="res://images/upgradeslockedatlas.png" id="4_bv5te"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53f2w"]
-atlas = ExtResource("1_4oesa")
+atlas = ExtResource("2_ijeqb")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apr5m"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oymnj"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iiuil"]
-atlas = ExtResource("3_4hvc7")
+atlas = ExtResource("4_bv5te")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="Theme" id="Theme_jdk10"]
 Panel/colors/color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dk6m6"]
-atlas = ExtResource("1_4oesa")
+atlas = ExtResource("2_ijeqb")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfcpj"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpcj0"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sek6h"]
-atlas = ExtResource("3_4hvc7")
+atlas = ExtResource("4_bv5te")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_beyef"]
@@ -45,11 +45,11 @@ atlas = SubResource("AtlasTexture_sek6h")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anmb2"]
-atlas = ExtResource("1_4oesa")
+atlas = ExtResource("2_ijeqb")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iggji"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nf4w"]
@@ -59,23 +59,23 @@ atlas = SubResource("AtlasTexture_3nf4w")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jrya"]
-atlas = ExtResource("3_4hvc7")
+atlas = ExtResource("4_bv5te")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8ymy"]
-atlas = ExtResource("1_4oesa")
+atlas = ExtResource("2_ijeqb")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cpgny"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2gi8m"]
-atlas = ExtResource("2_gc2id")
+atlas = ExtResource("3_xplik")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bffdx"]
-atlas = ExtResource("3_4hvc7")
+atlas = ExtResource("4_bv5te")
 region = Rect2(128, 0, 64, 64)
 
 [node name="Control" type="Control" node_paths=PackedStringArray("upgrade1Name", "upgrade1Price", "upgrade1Button", "upgrade1Line1", "upgrade1Line2", "upgrade2Name", "upgrade2Price", "upgrade2Button", "upgrade2Line", "upgrade3Name", "upgrade3Price", "upgrade3Button", "upgrade4Name", "upgrade4Price", "upgrade4Button", "upgrade4Line")]
@@ -87,7 +87,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("2_4cabu")
+script = ExtResource("1_c26n5")
 upgrade1Name = NodePath("upgrade1/Label")
 upgrade1Price = NodePath("upgrade1/Label2")
 upgrade1Button = NodePath("upgrade1")

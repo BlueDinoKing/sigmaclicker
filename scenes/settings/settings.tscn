@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmdspqtegj13"]
+[gd_scene load_steps=7 format=3 uid="uid://cmdspqtegj13"]
 
-[ext_resource type="Script" path="res://scripts/settings.gd" id="1_saf06"]
-[ext_resource type="Script" path="res://scenes/resetsave.gd" id="2_26fuw"]
-[ext_resource type="Script" path="res://scenes/button.gd" id="2_b5dci"]
-[ext_resource type="Script" path="res://scenes/check_button.gd" id="2_oxyxx"]
+[ext_resource type="Script" path="res://scenes/settings/settings.gd" id="1_saf06"]
+[ext_resource type="Script" path="res://scenes/settings/resetsave.gd" id="2_26fuw"]
+[ext_resource type="Script" path="res://scenes/settings/button.gd" id="2_b5dci"]
+[ext_resource type="Script" path="res://scenes/settings/check_button.gd" id="2_oxyxx"]
+[ext_resource type="Script" path="res://scenes/settings/export_save.gd" id="5_6ynjm"]
+[ext_resource type="Script" path="res://scenes/settings/importsave.gd" id="6_icmam"]
 
 [node name="settings" type="Control" node_paths=PackedStringArray("exponents", "exponentsLabel")]
 layout_mode = 3
@@ -16,6 +18,7 @@ script = ExtResource("1_saf06")
 view = 1
 exponents = NodePath("HSlider")
 exponentsLabel = NodePath("HSlider/Label")
+user_interface_path = null
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 1
@@ -68,9 +71,9 @@ text = "Scientific
 [node name="reset save" type="Button" parent="." node_paths=PackedStringArray("delayTimer", "revertTimer")]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 535.0
-offset_right = 334.0
-offset_bottom = 625.0
+offset_top = 536.0
+offset_right = 336.0
+offset_bottom = 624.0
 text = "RESET SAVE"
 script = ExtResource("2_26fuw")
 delayTimer = NodePath("Timer")
@@ -82,10 +85,10 @@ revertTimer = NodePath("Timer2")
 
 [node name="audio" type="Button" parent="."]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 437.0
+offset_left = 16.0
+offset_top = 440.0
 offset_right = 335.0
-offset_bottom = 527.0
+offset_bottom = 528.0
 text = "Audio: true"
 script = ExtResource("2_b5dci")
 
@@ -99,9 +102,51 @@ theme_override_font_sizes/font_size = 48
 text = "GitHub"
 uri = "https://github.com/BlueDinoKing/sigmaclicker/blob/notwrizz/"
 
+[node name="export save" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 344.0
+offset_right = 335.0
+offset_bottom = 432.0
+text = "Copy Save to Clipboard"
+script = ExtResource("5_6ynjm")
+
+[node name="export save2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 248.0
+offset_right = 335.0
+offset_bottom = 336.0
+
+[node name="TextEdit" type="TextEdit" parent="export save2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 304.0
+offset_bottom = 40.0
+placeholder_text = "Paste Save File here"
+script = ExtResource("6_icmam")
+
+[node name="Button" type="Button" parent="export save2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 152.0
+offset_bottom = 72.0
+text = "Import"
+
+[node name="Button2" type="Button" parent="export save2"]
+offset_left = 160.0
+offset_top = 48.0
+offset_right = 304.0
+offset_bottom = 72.0
+text = "Import Clipboard"
+
 [connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="toggled" from="HSlider/CheckButton" to="HSlider/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="reset save" to="reset save" method="_on_pressed"]
 [connection signal="timeout" from="reset save/Timer" to="reset save" method="_on_timer_timeout"]
 [connection signal="timeout" from="reset save/Timer2" to="reset save" method="_on_revert_timer_timeout"]
 [connection signal="pressed" from="audio" to="audio" method="_on_pressed"]
+[connection signal="pressed" from="export save" to="export save" method="_on_pressed"]
+[connection signal="pressed" from="export save2/Button" to="export save2/TextEdit" method="_on_button_pressed"]
+[connection signal="pressed" from="export save2/Button2" to="export save2/TextEdit" method="_on_button_2_pressed"]

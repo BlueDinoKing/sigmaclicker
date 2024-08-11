@@ -6,6 +6,8 @@ func update_text(_quantity: int = -1) -> void:
 	itemResourceLabel(1, "Rizz : %s", Game.format_number(GameInstance.data.rizz))
 	itemResourceLabel(2, "Aura : %s", Game.format_number(GameInstance.data.aura))
 	itemResourceLabel(3, "Multiplier : x%s", Game.format_number(GameInstance.data.multiplier * GameInstance.data.tempMulti))
+	if GameInstance.data.rebirth > 0:
+		itemResourceLabel(4, "Brainrot : %s", Game.format_number(GameInstance.data.rebirth))
 
 func itemResourceLabel(index: int, format: String, value) -> void:
 	var text = format % value
