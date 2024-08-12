@@ -14,11 +14,11 @@ var rebirthLevel: int = 0
 	$"pre rebirth/Upgrade3",
 	$"pre rebirth/Upgrade4",
 	$"pre rebirth/Upgrade5",
-	$"rebirth level 1/Upgrade1",
-	$"rebirth level 1/Upgrade2",
-	$"rebirth level 1/Upgrade3",
-	$"rebirth level 1/Upgrade4",
-	$"rebirth level 1/Upgrade5"
+	$"rebirth1/Upgrade6",
+	$"rebirth1/Upgrade7",
+	$"rebirth1/Upgrade8",
+	$"rebirth1/Upgrade9",
+	$"rebirth1/Upgrade10"
 ]
 
 # Define currency types for each upgrade
@@ -47,7 +47,7 @@ func _enter_tree() -> void:
 		[1],   # Upgrade 3 depends on Upgrade 2
 		[0],   # Upgrade 4 depends on Upgrade 1
 		[3],   # Upgrade 5 depends on Upgrade 4
-		[4],   # Upgrade 6 depends on Upgrade 5 (for rebirth level 1 upgrades)
+		[],   # Upgrade 6 depends on nothing (for rebirth level 1 upgrades)
 		[5],   # Upgrade 7 depends on Upgrade 6
 		[6],   # Upgrade 8 depends on Upgrade 7
 		[7],   # Upgrade 9 depends on Upgrade 8
@@ -59,9 +59,9 @@ func _enter_tree() -> void:
 		[],	 # Upgrade 3 unlocks nothing
 		[4],	# Upgrade 4 unlocks Upgrade 5
 		[5],	# Upgrade 5 unlocks Upgrade 6
-		[6],	# Upgrade 6 unlocks Upgrade 7
+		[6, 8],	# Upgrade 6 unlocks Upgrade 7
 		[7],	# Upgrade 7 unlocks Upgrade 8
-		[8],	# Upgrade 8 unlocks Upgrade 9
+		[],	# Upgrade 8 unlocks Upgrade 9
 		[9]	 # Upgrade 9 unlocks Upgrade 10
 	]
 
@@ -92,18 +92,23 @@ func _enter_tree() -> void:
 	Handler.ref.rizz_consumed.connect(update_labels)
 	Handler.ref.aura_created.connect(update_labels)
 	Handler.ref.aura_consumed.connect(update_labels)
-
+	Handler.ref.rebirth_points_consumed.connect(update_labels)
+	Handler.ref.rebirth_points_created.connect(update_labels)
 func update_labels() -> void:
+	if GameInstance.data.rebirth >= 1:
+		$rebirth1.visible = true
+	else:
+		$rebirth1.visible = false
 	for i in range(upgrade_nodes.size()):
 		var upgrade_node = upgrade_nodes[i]
 		# For upgrades 6-10, ensure they are only updated if rebirth level is sufficient
 		if i >= 5 and GameInstance.data.rebirth < 1:
-			continue
+			update_upgrade_label(i, upgrade_node)
 		update_upgrade_label(i, upgrade_node)
 
 func update_upgrade_label(index: int, upgrade_node: Node) -> void:
 	if upgrade_node == null:
-		return # Prevent null pointer issues
+		return  # Prevent null pointer issues
 
 	var name_label = upgrade_node.get_node("Name") as Label
 	var price_label = upgrade_node.get_node("Price") as Label
@@ -115,6 +120,13 @@ func update_upgrade_label(index: int, upgrade_node: Node) -> void:
 
 	var level = GameInstance.data.upgrades[index]
 	var currency_type = currencyTypes[index]
+
+	# Ensure the index is within bounds
+	if index >= GameInstance.data.upgradeCost.size():
+		print("Index out of bounds: ", index)
+		return  # Exit the function to avoid out-of-bounds access
+
+	price_label.set_text('%s %s' % [Game.format_number(GameInstance.data.upgradeCost[index]), currency_type])
 
 	# Check if the upgrade can be unlocked by checking dependencies
 	var unlocked = true
@@ -170,6 +182,9 @@ func handle_upgrade(index: int) -> void:
 		Handler.ref.use_aura(GameInstance.data.upgradeCost[index])
 		if index == 2:
 			GameInstance.data.multiplier += .05
+	elif currency_type == "rebirth_points" and GameInstance.data.rebirthPoints >= GameInstance.data.upgradeCost[index]:
+		GameInstance.data.upgrades[index] += 1
+		Handler.ref.use_rebirth_points(GameInstance.data.upgradeCost[index])
 	else:
 		return
 

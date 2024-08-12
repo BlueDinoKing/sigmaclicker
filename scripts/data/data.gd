@@ -18,7 +18,7 @@ extends Resource
 
 # upgrades
 @export var upgrades : Array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-@export var upgradeCost : Array = [10000, 10000, 0, 10000]
+@export var upgradeCost : Array = [1000, 10000, 100000, 10000, 100000, 200000, 400000, 800000, 1600000, 3200000]
 # stats
 @export var clicks : int = 0 # rizzes
 @export var addedRizz : float = 1 # increased by gold chains

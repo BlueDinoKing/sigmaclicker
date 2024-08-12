@@ -18,6 +18,9 @@ func _enter_tree() -> void:
 signal rizz_created(quantity: float)
 signal rizz_consumed(quantity: float)
 
+signal rebirth_points_created(quantity: float)
+signal rebirth_points_consumed(quantity: float)
+
 signal aura_created(quantity: float)
 signal aura_consumed(quantity: float)
 
@@ -50,6 +53,18 @@ func use_aura(quantity: float) -> Error:
 	if quantity <= GameInstance.data.aura:
 		GameInstance.data.aura -= quantity
 		aura_consumed.emit(quantity)
+		return Error.OK
+	else:
+		return Error.FAILED
+
+func create_rebirth_points(quantity : float) -> void:
+	GameInstance.data.rebirthPoints += quantity
+	rebirth_points_created.emit()
+
+func use_rebirth_points(quantity: float) -> Error:
+	if quantity <= GameInstance.data.rebirthPoints:
+		GameInstance.data.rebirthPoints -= quantity
+		rebirth_points_consumed.emit()
 		return Error.OK
 	else:
 		return Error.FAILED

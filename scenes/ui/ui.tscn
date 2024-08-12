@@ -100,8 +100,8 @@ user_interface_path = NodePath("../../..")
 [node name="settings" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_jqmk5")]
 visible = false
 layout_mode = 1
-user_interface_path = NodePath("../../..")
 user_interface = NodePath("../../..")
+user_interface_path = NodePath("../../..")
 
 [node name="upgrade tree" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("5_65pow")]
 visible = false
