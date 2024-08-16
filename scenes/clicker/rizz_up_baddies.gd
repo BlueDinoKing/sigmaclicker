@@ -29,9 +29,9 @@ func _on_pressed() -> void:
 	tween.connect("finished", Callable(self, "_on_tween_completed").bind(rizz_label))
 
 func calculate_rizz_text() -> String:
-	var rizz_value = floor(GameInstance.data.multiplier * GameInstance.data.tempMulti * (1 + GameInstance.data.goldChains))
+	var rizz_value = round(floor((GameInstance.data.goldChains+1)* GameInstance.data.multiplier * GameInstance.data.tempMulti))
 	if GameInstance.data.upgrades[0] > 0:
-		rizz_value += floor(GameInstance.data.aura * GameInstance.data.goldChains * 0.025 * GameInstance.data.upgrades[0])
+		rizz_value = round(1 + 1 * GameInstance.data.goldChains + (GameInstance.data.aura * (GameInstance.data.goldChains * .025 * GameInstance.data.upgrades[0])))
 
 	return Game.format_number(rizz_value)
 
