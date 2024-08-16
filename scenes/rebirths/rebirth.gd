@@ -65,7 +65,7 @@ func estimate_max_rebirths(aura: int) -> int:
 
 	return rebirths
 
-var baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 1, 2, 16, 32, 32]
+var baseUpgradeCost = [1000, 1000, 10000, 10000, 100000, 1, 2, 16, 32, 32]
 
 # Reset game state after rebirth
 func rebirth_reset(input):

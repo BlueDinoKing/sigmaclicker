@@ -23,13 +23,13 @@ var rebirthLevel: int = 0
 
 var maxLevel: Array = [
 	3,
-	3,
-	3,
-	3,
 	1,
+	4,
+	5,
+	3,
 	10,
 	3,
-	5,
+	1,
 	3,
 	3
 ]
@@ -50,7 +50,7 @@ var currencyTypes: Array = [
 
 func _enter_tree() -> void:
 	# Set base costs for each upgrade
-	baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 1, 2, 16, 32, 32]
+	baseUpgradeCost = [1000, 1000, 10000, 10000, 100000, 1, 2, 16, 32, 32]
 	upgradeMultiplier = [1000, 100, 10, 100, 1000, 4, 3, 2, 4, 4]  # Example multipliers for each upgrade
 
 	# Example dependencies and unlocks

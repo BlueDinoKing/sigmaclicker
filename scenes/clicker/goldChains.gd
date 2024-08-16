@@ -13,7 +13,7 @@ func _ready() -> void:
 	var num = GameInstance.data.goldChains
 	var cost = initial_cost
 	for i in range(num):
-		cost = round(pow(cost, 1.05))
+		cost = round(pow(cost, 1.05 - 0.005 * GameInstance.data.upgrades[9]))
 		GameInstance.data.goldChainsCost = cost
 	GoldChains.ref = self
 
@@ -23,7 +23,7 @@ func update_available_gold_chains():
 	var count = 0
 	while temp_rizz >= temp_cost:
 		temp_rizz -= temp_cost
-		temp_cost = round(pow(temp_cost, 1.05))
+		temp_cost = round(pow(temp_cost, 1.05 - 0.005 * GameInstance.data.upgrades[9]))
 		count += 1
 	set_text(Game.format_number(GameInstance.data.goldChainsCost))
 	if GameInstance.data.upgrades[0] == 0:

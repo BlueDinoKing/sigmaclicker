@@ -412,8 +412,8 @@ offset_left = -56.0
 offset_top = 88.0
 offset_right = 120.0
 offset_bottom = 163.0
-text = "Clicks increase the output of your aura breweries. 
-*2^(log_200(clicks))"
+text = "Digits in clicks increase the output of your aura breweries. 
+*2^x(log_200(clicks))"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -628,8 +628,8 @@ offset_left = -64.0
 offset_top = 88.0
 offset_right = 112.0
 offset_bottom = 189.0
-text = "Moggers boosted by digits aura 
-.1 * aura * moggers * 2^log_100(aura)"
+text = "Moggers boosted by digits of aura 
+.1 * aura * moggers * 2^log(aura)/(5log10)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
