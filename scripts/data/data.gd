@@ -3,10 +3,7 @@ extends Resource
 
 
 # settings
-@export var version : String = '81'
 @export var username : String = "Sigma"
-@export var clickedUpdateButton : bool = false
-
 @export var maxDigitsUntilScientific : int = 3
 @export var audio : bool = true
 @export var scientific : bool = false

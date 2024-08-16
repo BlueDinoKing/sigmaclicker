@@ -26,6 +26,7 @@ offset_left = -250.0
 offset_right = 250.0
 offset_bottom = 100.0
 grow_horizontal = 2
+text = "Fetching HTTPS request..."
 alignment = 0
 
 [node name="CloseButton" type="Button" parent="UpdatePopup"]
@@ -40,6 +41,7 @@ offset_top = -8.0
 offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Click to ignore this message if on the webpage"
+text = "Click this button to close. You must be on the latest version to submit leaderboard data"
+autowrap_mode = 3
 
 [connection signal="pressed" from="UpdatePopup/UpdateButton" to="." method="_on_update_button_pressed"]

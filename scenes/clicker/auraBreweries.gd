@@ -9,6 +9,7 @@ static var ref: AuraBrewery
 signal auraBrewery(quantity: int)
 
 func _ready() -> void:
+	Handler.ref.rizz_created.connect(update_available_aura_breweries)
 	var initial_cost = 64
 	var num_breweries = GameInstance.data.auraBreweries
 	var cost = initial_cost
@@ -16,9 +17,6 @@ func _ready() -> void:
 		cost = round(pow(cost, 1.05))
 	GameInstance.data.auraBreweryCost = cost
 	AuraBrewery.ref = self
-
-func _process(_delta: float) -> void:
-	update_available_aura_breweries()
 
 func update_available_aura_breweries():
 	var temp_rizz = GameInstance.data.rizz
@@ -30,8 +28,8 @@ func update_available_aura_breweries():
 		temp_cost = round(pow(temp_cost, 1.05))
 		count += 1
 	set_text(Game.format_number(GameInstance.data.auraBreweryCost))
-	auraLabel.text = "Aura Brewery : % (%)\nCreates % aura every % seconds\nAura is rizz per second".format([Game.format_number(GameInstance.data.auraBreweries), Game.format_number(count), Game.format_number(GameInstance.data.auraBreweries* GameInstance.data.multiplier * GameInstance.data.tempMulti), str(5*.98**(GameInstance.data.upgrades[3]*GameInstance.data.goldChains)).left(3)], "%")
-	
+	auraLabel.text = "Aura Brewery : % (%)\nCreates % aura every % seconds\nAura is rizz per second".format([Game.format_number(GameInstance.data.auraBreweries), Game.format_number(count), Game.format_number(floor((2**(GameInstance.data.upgrades[4]*log(GameInstance.data.clicks)/log(200))*GameInstance.data.auraBreweries* GameInstance.data.multiplier * GameInstance.data.tempMulti))), str(5*.98**(GameInstance.data.upgrades[3]*GameInstance.data.goldChains)).left(3)], "%")
+
 func _on_pressed():
 	if GameInstance.data.rizz >= GameInstance.data.auraBreweryCost:
 		GameInstance.data.auraBreweries += 1
@@ -44,9 +42,9 @@ func _on_pressed():
 
 
 func _on_aura_timeout():
-	Handler.ref.create_rizz(floor(GameInstance.data.aura))
-
+	if floor(GameInstance.data.aura) != 0:
+		Handler.ref.create_rizz(floor(GameInstance.data.aura))
 
 func _on_breweries_timeout() -> void:
 	breweries.start(5*.98**(GameInstance.data.upgrades[3]*GameInstance.data.goldChains))
-	Handler.ref.create_aura(floor(GameInstance.data.auraBreweries))
+	Handler.ref.create_aura(floor((2**(GameInstance.data.upgrades[4]*log(GameInstance.data.clicks)/log(200)))*GameInstance.data.auraBreweries))

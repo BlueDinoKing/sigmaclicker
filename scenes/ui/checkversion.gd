@@ -8,13 +8,13 @@ const REMOTE_VERSION_URL = "https://raw.githubusercontent.com/BlueDinoKing/sigma
 var remote_version = ""
 
 # Store the local version for comparison
-var local_version = ""
+var local_version = "80"
 
-static var ref : CheckVersion
+static var ref: CheckVersion
 
 # Signal to indicate completion of version fetching
 signal version_fetched
-
+	
 # Reference to the PopupDialog node
 @onready var update_popup = $UpdatePopup
 
@@ -26,44 +26,36 @@ signal version_fetched
 
 # Example link and message template
 const UPDATE_LINK = "https://github.com/BlueDinoKing/sigmaclicker"
-const MESSAGE_TEXT = "New Updates: Click to view change logs and update\nCurrent version: %s\nLatest version: %s"
+const MESSAGE_TEXT = "New Updates: Click to update\nCurrent version: %s\nLatest version: %s"
 
 func _ready():
-	local_version = GameInstance.data.version
-	print(GameInstance.data.clickedUpdateButton)
-	if GameInstance.data.clickedUpdateButton:
-		fetch_remote_version()
-	else:
-		# Ensure update_popup and UpdateButton are properly referenced
-		update_popup.visible = false
-		if not update_popup or not update_button:
-			print("UpdatePopup or UpdateButton node not found.")
-			return
+	hide_update_popup()
+	ref = self
+	# Ensure update_popup and UpdateButton are properly referenced
+	if not update_popup or not update_button:
+		print("UpdatePopup or UpdateButton node not found.")
+		return
 
-		# Connect the UpdateButton's signal for clicks
-		update_button.connect("pressed", Callable(self, "_on_update_button_pressed"))
+	# Connect the UpdateButton's signal for clicks
+	update_button.pressed.connect(_on_update_button_pressed)
 
-		# Connect the CloseButton's signal for clicks
-		close_button.connect("pressed", Callable(self, "_on_close_button_pressed"))
+	# Connect the CloseButton's signal for clicks
+	close_button.pressed.connect(_on_close_button_pressed)
 
-		# Start the version comparison process
-		compare_versions()
+	# Start the version comparison process
+	compare_versions()
 
 func compare_versions() -> void:
-	# Use GameInstance.data.version as the local version
-	
-	# Fetch the remote version file
-	fetch_remote_version()
-	
 	# Connect the signal for version comparison
-	connect("version_fetched", Callable(self, "_on_version_fetched"))
+	version_fetched.connect(_on_version_fetched)
+	fetch_remote_version()
 
 func fetch_remote_version() -> void:
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
 	# Connect the request_completed signal to a handler function
-	http_request.request_completed.connect(Callable(self, "_on_request_completed"))
+	http_request.request_completed.connect(_on_request_completed)
 	
 	# Initiate the HTTP request
 	var err = http_request.request(REMOTE_VERSION_URL)
@@ -74,12 +66,8 @@ func fetch_remote_version() -> void:
 
 func _on_request_completed(result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	if response_code == 200:
-		# Parse the response body
-		print('Request success')
 		remote_version = body.get_string_from_utf8().strip_edges()
-		if GameInstance.data.clickedUpdateButton:
-			GameInstance.data.version = remote_version
-			GameInstance.data.clickedUpdateButton = false
+		print("Request successful, fetched version: ", remote_version)
 	else:
 		print("Failed to fetch remote version. HTTP Status Code: ", response_code)
 		remote_version = ""  # Set to empty if the status code is not 200
@@ -105,11 +93,8 @@ func show_update_popup() -> void:
 	var message = MESSAGE_TEXT % [local_version, remote_version]
 	update_button.text = message
 	# Show the popup
-	if not GameInstance.data.clickedUpdateButton:
-		update_popup.visible = true
-		update_popup.popup_centered()
-	else:
-		update_popup.visible = false
+	update_popup.visible = true
+	update_popup.popup_centered()
 
 func hide_update_popup() -> void:
 	# Hide the popup if it's currently visible
@@ -118,8 +103,6 @@ func hide_update_popup() -> void:
 
 func _on_update_button_pressed() -> void:
 	OS.shell_open(UPDATE_LINK)  # Open the URL in the default web browser
-	GameInstance.data.clickedUpdateButton = true
 
 func _on_close_button_pressed() -> void:
 	hide_update_popup()  # Hide the popup when the close button is pressed
-	GameInstance.data.version = remote_version

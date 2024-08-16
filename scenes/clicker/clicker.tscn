@@ -65,7 +65,7 @@ autostart = true
 position = Vector2(554, 170)
 texture = ExtResource("8_uinqy")
 
-[node name="TextureButton" type="TextureButton" parent="TextureButton/Sprite"]
+[node name="TextureButton" type="TextureButton" parent="TextureButton/Sprite" node_paths=PackedStringArray("button", "animationImage")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -75,11 +75,11 @@ offset_right = -32.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="shake tween" type="Node" parent="TextureButton" node_paths=PackedStringArray("button", "animationImage")]
 script = ExtResource("9_gou5p")
-button = NodePath("../Sprite/TextureButton")
-animationImage = NodePath("../Sprite")
+button = NodePath(".")
+animationImage = NodePath("..")
+
+[node name="shake tween" type="Node" parent="TextureButton"]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -117,6 +117,7 @@ autostart = true
 
 [node name="breweries" type="Timer" parent="ScrollContainer/buildings/aura breweries"]
 wait_time = 5.0
+autostart = true
 
 [node name="Panel2" type="Panel" parent="ScrollContainer/buildings/aura breweries"]
 layout_mode = 0

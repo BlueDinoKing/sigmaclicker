@@ -3,8 +3,8 @@ class_name Moggers
 @export var moggersTimer : Timer
 @export var moggersLabel : Label
 static var ref : Moggers
-func _process(_delta : float) -> void:
-	update_available_mogger()
+
+
 signal moggers(amount: int)
 func _on_pressed() -> void:
 	if GameInstance.data.rizz >= GameInstance.data.moggersCost:
@@ -14,6 +14,7 @@ func _on_pressed() -> void:
 		GameInstance.data.moggersCost = round(pow(GameInstance.data.moggersCost, 1.05))
 
 func _ready() -> void:
+	Handler.ref.rizz_created.connect(update_available_mogger)
 	var initial_cost = 256
 	var num = GameInstance.data.moggers
 	var cost = initial_cost

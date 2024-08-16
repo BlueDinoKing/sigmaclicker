@@ -94,32 +94,40 @@ region = Rect2(192, 192, 64, 64)
 
 [node name="upgrades" type="Control"]
 layout_mode = 3
-anchor_right = 1.0
+anchor_right = 0.889
 anchor_bottom = 1.099
-offset_bottom = -0.152039
+offset_right = -0.128052
+offset_bottom = -0.151978
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_c26n5")
 
-[node name="pre rebirth" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 256.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Upgrade1" type="TextureButton" parent="pre rebirth"]
+[node name="pre rebirth" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-offset_left = 512.0
+
+[node name="Upgrade1" type="TextureButton" parent="VBoxContainer/pre rebirth"]
+layout_mode = 2
+offset_left = 448.0
 offset_top = 64.0
-offset_right = 576.0
+offset_right = 512.0
 offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_53f2w")
 texture_pressed = SubResource("AtlasTexture_apr5m")
 texture_hover = SubResource("AtlasTexture_oymnj")
 texture_disabled = SubResource("AtlasTexture_iiuil")
 
-[node name="Name" type="Label" parent="pre rebirth/Upgrade1"]
+[node name="Name" type="Label" parent="VBoxContainer/pre rebirth/Upgrade1"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -128,7 +136,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="pre rebirth/Upgrade1"]
+[node name="Price" type="Label" parent="VBoxContainer/pre rebirth/Upgrade1"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -138,7 +146,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade1"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade1"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -146,7 +154,7 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="pre rebirth/Upgrade1"]
+[node name="Label3" type="Label" parent="VBoxContainer/pre rebirth/Upgrade1"]
 layout_mode = 0
 offset_left = -56.0
 offset_top = 88.0
@@ -157,7 +165,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade1/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade1/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -166,18 +174,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Upgrade2" type="TextureButton" parent="pre rebirth"]
+[node name="Upgrade2" type="TextureButton" parent="VBoxContainer/pre rebirth"]
 layout_mode = 2
-offset_left = 352.0
+offset_left = 288.0
 offset_top = 64.0
-offset_right = 416.0
+offset_right = 352.0
 offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_dk6m6")
 texture_pressed = SubResource("AtlasTexture_hfcpj")
 texture_hover = SubResource("AtlasTexture_hpcj0")
 texture_disabled = SubResource("AtlasTexture_beyef")
 
-[node name="Name" type="Label" parent="pre rebirth/Upgrade2"]
+[node name="Name" type="Label" parent="VBoxContainer/pre rebirth/Upgrade2"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -186,7 +194,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="pre rebirth/Upgrade2"]
+[node name="Price" type="Label" parent="VBoxContainer/pre rebirth/Upgrade2"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -196,7 +204,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade2"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade2"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -204,7 +212,7 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="pre rebirth/Upgrade2"]
+[node name="Label3" type="Label" parent="VBoxContainer/pre rebirth/Upgrade2"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = 88.0
@@ -215,7 +223,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade2/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade2/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -224,7 +232,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line" type="Line2D" parent="pre rebirth/Upgrade2"]
+[node name="Line" type="Line2D" parent="VBoxContainer/pre rebirth/Upgrade2"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(144, 32)
@@ -232,18 +240,18 @@ points = PackedVector2Array(-112, 0, 5.69867, 0, 40, 0)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Upgrade3" type="TextureButton" parent="pre rebirth"]
+[node name="Upgrade3" type="TextureButton" parent="VBoxContainer/pre rebirth"]
 layout_mode = 2
-offset_left = 192.0
+offset_left = 128.0
 offset_top = 64.0
-offset_right = 256.0
+offset_right = 192.0
 offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_anmb2")
 texture_pressed = SubResource("AtlasTexture_iggji")
 texture_hover = SubResource("AtlasTexture_u02bm")
 texture_disabled = SubResource("AtlasTexture_7jrya")
 
-[node name="Name" type="Label" parent="pre rebirth/Upgrade3"]
+[node name="Name" type="Label" parent="VBoxContainer/pre rebirth/Upgrade3"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -252,7 +260,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="pre rebirth/Upgrade3"]
+[node name="Price" type="Label" parent="VBoxContainer/pre rebirth/Upgrade3"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -262,7 +270,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade3"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -270,7 +278,7 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="pre rebirth/Upgrade3"]
+[node name="Label3" type="Label" parent="VBoxContainer/pre rebirth/Upgrade3"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = 88.0
@@ -281,7 +289,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade3/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade3/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -290,7 +298,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line" type="Line2D" parent="pre rebirth/Upgrade3"]
+[node name="Line" type="Line2D" parent="VBoxContainer/pre rebirth/Upgrade3"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(152, 24)
@@ -298,18 +306,18 @@ points = PackedVector2Array(-120, 8, 40, 8)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Upgrade4" type="TextureButton" parent="pre rebirth"]
+[node name="Upgrade4" type="TextureButton" parent="VBoxContainer/pre rebirth"]
 layout_mode = 2
-offset_left = 672.0
+offset_left = 608.0
 offset_top = 64.0
-offset_right = 736.0
+offset_right = 672.0
 offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_v8ymy")
 texture_pressed = SubResource("AtlasTexture_cpgny")
 texture_hover = SubResource("AtlasTexture_2gi8m")
 texture_disabled = SubResource("AtlasTexture_bffdx")
 
-[node name="Name" type="Label" parent="pre rebirth/Upgrade4"]
+[node name="Name" type="Label" parent="VBoxContainer/pre rebirth/Upgrade4"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -318,7 +326,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="pre rebirth/Upgrade4"]
+[node name="Price" type="Label" parent="VBoxContainer/pre rebirth/Upgrade4"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -328,7 +336,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade4"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade4"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -336,7 +344,7 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="pre rebirth/Upgrade4"]
+[node name="Label3" type="Label" parent="VBoxContainer/pre rebirth/Upgrade4"]
 layout_mode = 0
 offset_left = -40.0
 offset_top = 88.0
@@ -347,31 +355,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade4/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade4/Label3"]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 8.0
 offset_right = 136.0
 offset_bottom = 80.0
 
-[node name="Line" type="Line2D" parent="pre rebirth/Upgrade4"]
+[node name="Line" type="Line2D" parent="VBoxContainer/pre rebirth/Upgrade4"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(-128, 32)
 points = PackedVector2Array(0, 0, 160, 0)
 
-[node name="Upgrade5" type="TextureButton" parent="pre rebirth"]
+[node name="Upgrade5" type="TextureButton" parent="VBoxContainer/pre rebirth"]
 layout_mode = 2
-offset_left = 832.0
+offset_left = 768.0
 offset_top = 64.0
-offset_right = 896.0
+offset_right = 832.0
 offset_bottom = 128.0
 texture_normal = SubResource("AtlasTexture_qbwtk")
 texture_pressed = SubResource("AtlasTexture_dm442")
 texture_hover = SubResource("AtlasTexture_l02nh")
 texture_disabled = SubResource("AtlasTexture_h2bgr")
 
-[node name="Name" type="Label" parent="pre rebirth/Upgrade5"]
+[node name="Name" type="Label" parent="VBoxContainer/pre rebirth/Upgrade5"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -380,7 +388,7 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="pre rebirth/Upgrade5"]
+[node name="Price" type="Label" parent="VBoxContainer/pre rebirth/Upgrade5"]
 layout_mode = 0
 offset_left = -16.0
 offset_top = 64.0
@@ -390,7 +398,7 @@ text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade5"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade5"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -398,18 +406,19 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="pre rebirth/Upgrade5"]
+[node name="Label3" type="Label" parent="VBoxContainer/pre rebirth/Upgrade5"]
 layout_mode = 0
 offset_left = -56.0
 offset_top = 88.0
 offset_right = 120.0
 offset_bottom = 163.0
-text = "Every 5th Click grants 25% aura instead of rizz"
+text = "Clicks increase the output of your aura breweries. 
+*2^(log_20(clicks))"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="pre rebirth/Upgrade5/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/pre rebirth/Upgrade5/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -418,43 +427,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line" type="Line2D" parent="pre rebirth/Upgrade5"]
+[node name="Line" type="Line2D" parent="VBoxContainer/pre rebirth/Upgrade5"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(-159.756, 0)
 scale = Vector2(0.988889, 1)
 points = PackedVector2Array(32, 32, 192, 32)
 
-[node name="HSeparator" type="HSeparator" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -100.0
-offset_bottom = -96.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="rebirth1" type="Control" parent="."]
-anchors_preset = 0
-offset_top = 256.0
-offset_right = 1152.0
-offset_bottom = 512.0
-
-[node name="Upgrade6" type="TextureButton" parent="rebirth1"]
+[node name="rebirth1" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-offset_left = 512.0
-offset_top = 64.0
-offset_right = 576.0
-offset_bottom = 128.0
+
+[node name="Upgrade6" type="TextureButton" parent="VBoxContainer/rebirth1"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 72.0
+offset_right = 512.0
+offset_bottom = 136.0
 texture_normal = SubResource("AtlasTexture_53f2w")
 texture_pressed = SubResource("AtlasTexture_apr5m")
 texture_hover = SubResource("AtlasTexture_oymnj")
 texture_disabled = SubResource("AtlasTexture_iiuil")
 
-[node name="Name" type="Label" parent="rebirth1/Upgrade6"]
+[node name="Name" type="Label" parent="VBoxContainer/rebirth1/Upgrade6"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -463,17 +462,23 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="rebirth1/Upgrade6"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 64.0
-offset_right = 80.0
-offset_bottom = 87.0
+[node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.75
+anchor_top = 1.125
+anchor_right = -0.75
+anchor_bottom = 1.125
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 184.0
+offset_bottom = 15.0
 text = "cost
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade6"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade6"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -481,40 +486,40 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="rebirth1/Upgrade6"]
+[node name="Label3" type="Label" parent="VBoxContainer/rebirth1/Upgrade6"]
 layout_mode = 0
 offset_left = -56.0
 offset_top = 88.0
 offset_right = 112.0
-offset_bottom = 189.0
-text = "Gold Chains also 2.5% of your aura per click per gold chain"
+offset_bottom = 144.0
+text = "Doubles brainrot point gain on rebirth"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade6/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade6/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-offset_right = -1.0
+offset_right = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Upgrade7" type="TextureButton" parent="rebirth1"]
+[node name="Upgrade7" type="TextureButton" parent="VBoxContainer/rebirth1"]
 layout_mode = 2
-offset_left = 352.0
-offset_top = 64.0
-offset_right = 416.0
-offset_bottom = 128.0
+offset_left = 288.0
+offset_top = 72.0
+offset_right = 352.0
+offset_bottom = 136.0
 texture_normal = SubResource("AtlasTexture_dk6m6")
 texture_pressed = SubResource("AtlasTexture_hfcpj")
 texture_hover = SubResource("AtlasTexture_hpcj0")
 texture_disabled = SubResource("AtlasTexture_beyef")
 
-[node name="Name" type="Label" parent="rebirth1/Upgrade7"]
+[node name="Name" type="Label" parent="VBoxContainer/rebirth1/Upgrade7"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -523,17 +528,22 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="rebirth1/Upgrade7"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 64.0
-offset_right = 80.0
-offset_bottom = 87.0
+[node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.625
+anchor_top = 1.18
+anchor_right = -0.625
+anchor_bottom = 1.18
+offset_left = -24.0
+offset_top = -11.52
+offset_right = 168.0
+offset_bottom = 11.48
 text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade7"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade7"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -541,27 +551,28 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="rebirth1/Upgrade7"]
+[node name="Label3" type="Label" parent="VBoxContainer/rebirth1/Upgrade7"]
 layout_mode = 0
-offset_left = -24.0
+offset_left = -40.0
 offset_top = 88.0
-offset_right = 88.0
+offset_right = 96.0
 offset_bottom = 165.0
-text = "Moggers mog 10% more efficiently"
+text = "Clicking gives a 5% multiplier for a second"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade7/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade7/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line" type="Line2D" parent="rebirth1/Upgrade7"]
+[node name="Line" type="Line2D" parent="VBoxContainer/rebirth1/Upgrade7"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(152, 32)
@@ -569,18 +580,18 @@ points = PackedVector2Array(-112, 0, 40, 0)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Upgrade8" type="TextureButton" parent="rebirth1"]
+[node name="Upgrade8" type="TextureButton" parent="VBoxContainer/rebirth1"]
 layout_mode = 2
-offset_left = 192.0
-offset_top = 64.0
-offset_right = 256.0
-offset_bottom = 128.0
+offset_left = 128.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 136.0
 texture_normal = SubResource("AtlasTexture_anmb2")
 texture_pressed = SubResource("AtlasTexture_iggji")
 texture_hover = SubResource("AtlasTexture_u02bm")
 texture_disabled = SubResource("AtlasTexture_7jrya")
 
-[node name="Name" type="Label" parent="rebirth1/Upgrade8"]
+[node name="Name" type="Label" parent="VBoxContainer/rebirth1/Upgrade8"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -589,17 +600,21 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="rebirth1/Upgrade8"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 64.0
-offset_right = 80.0
-offset_bottom = 87.0
-text = "cost
-"
+[node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.625
+anchor_top = 1.125
+anchor_right = -0.625
+anchor_bottom = 1.125
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 148.0
+offset_bottom = 15.0
+text = "brainrot points : 15"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade8"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade8"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -607,27 +622,30 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="rebirth1/Upgrade8"]
+[node name="Label3" type="Label" parent="VBoxContainer/rebirth1/Upgrade8"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = 88.0
 offset_right = 88.0
 offset_bottom = 163.0
-text = "1.05x global multiplier on aura and rizz "
+text = "Moggers boosted by digits aura 
+*log_100(aura)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade8/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade8/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -16.0
+offset_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line" type="Line2D" parent="rebirth1/Upgrade8"]
+[node name="Line" type="Line2D" parent="VBoxContainer/rebirth1/Upgrade8"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(152, 24)
@@ -635,18 +653,18 @@ points = PackedVector2Array(-120, 8, 40, 8)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Upgrade9" type="TextureButton" parent="rebirth1"]
+[node name="Upgrade9" type="TextureButton" parent="VBoxContainer/rebirth1"]
 layout_mode = 2
-offset_left = 672.0
-offset_top = 64.0
-offset_right = 736.0
-offset_bottom = 128.0
+offset_left = 608.0
+offset_top = 72.0
+offset_right = 672.0
+offset_bottom = 136.0
 texture_normal = SubResource("AtlasTexture_v8ymy")
 texture_pressed = SubResource("AtlasTexture_cpgny")
 texture_hover = SubResource("AtlasTexture_2gi8m")
 texture_disabled = SubResource("AtlasTexture_bffdx")
 
-[node name="Name" type="Label" parent="rebirth1/Upgrade9"]
+[node name="Name" type="Label" parent="VBoxContainer/rebirth1/Upgrade9"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -655,17 +673,22 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="rebirth1/Upgrade9"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 64.0
-offset_right = 80.0
-offset_bottom = 87.0
+[node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.375
+anchor_top = 1.18
+anchor_right = -0.375
+anchor_bottom = 1.18
+offset_left = -48.0
+offset_top = -11.52
+offset_right = 160.0
+offset_bottom = 11.48
 text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade9"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade9"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -673,42 +696,42 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="rebirth1/Upgrade9"]
+[node name="Label3" type="Label" parent="VBoxContainer/rebirth1/Upgrade9"]
 layout_mode = 0
-offset_left = -40.0
+offset_left = -32.0
 offset_top = 88.0
-offset_right = 104.0
+offset_right = 88.0
 offset_bottom = 168.0
-text = "Aura Breweries brew 2% faster per Gold Chain"
+text = "10% more aura to rizz generation"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade9/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade9/Label3"]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 8.0
-offset_right = 136.0
+offset_right = 120.0
 offset_bottom = 80.0
 
-[node name="Line" type="Line2D" parent="rebirth1/Upgrade9"]
+[node name="Line" type="Line2D" parent="VBoxContainer/rebirth1/Upgrade9"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(-128, 32)
 points = PackedVector2Array(0, 0, 160, 0)
 
-[node name="Upgrade10" type="TextureButton" parent="rebirth1"]
+[node name="Upgrade10" type="TextureButton" parent="VBoxContainer/rebirth1"]
 layout_mode = 2
-offset_left = 832.0
-offset_top = 64.0
-offset_right = 896.0
-offset_bottom = 128.0
+offset_left = 768.0
+offset_top = 72.0
+offset_right = 832.0
+offset_bottom = 136.0
 texture_normal = SubResource("AtlasTexture_qbwtk")
 texture_pressed = SubResource("AtlasTexture_dm442")
 texture_hover = SubResource("AtlasTexture_l02nh")
 texture_disabled = SubResource("AtlasTexture_h2bgr")
 
-[node name="Name" type="Label" parent="rebirth1/Upgrade10"]
+[node name="Name" type="Label" parent="VBoxContainer/rebirth1/Upgrade10"]
 layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
@@ -717,17 +740,22 @@ offset_bottom = -1.0
 text = "upgrade"
 horizontal_alignment = 1
 
-[node name="Price" type="Label" parent="rebirth1/Upgrade10"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 64.0
-offset_right = 80.0
-offset_bottom = 87.0
+[node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.75
+anchor_top = 1.18
+anchor_right = -0.75
+anchor_bottom = 1.18
+offset_left = -32.0
+offset_top = -11.52
+offset_right = 184.0
+offset_bottom = 11.48
 text = "cost
 "
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade10"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade10"]
 show_behind_parent = true
 layout_mode = 0
 offset_right = 64.0
@@ -735,18 +763,19 @@ offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_jdk10")
 
-[node name="Label3" type="Label" parent="rebirth1/Upgrade10"]
+[node name="Label3" type="Label" parent="VBoxContainer/rebirth1/Upgrade10"]
 layout_mode = 0
 offset_left = -56.0
 offset_top = 88.0
 offset_right = 120.0
 offset_bottom = 163.0
-text = "Gold Chains also 2.5% of your aura per click per gold chain"
+text = "Upgrade costs reduced
+ cost^(1.05-0.005x)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="rebirth1/Upgrade10/Label3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/rebirth1/Upgrade10/Label3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -755,15 +784,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line" type="Line2D" parent="rebirth1/Upgrade10"]
+[node name="Line" type="Line2D" parent="VBoxContainer/rebirth1/Upgrade10"]
 show_behind_parent = true
 z_index = -1
 position = Vector2(-159.756, 0)
 scale = Vector2(0.988889, 1)
 points = PackedVector2Array(32, 32, 192, 32)
 
-[connection signal="pressed" from="pre rebirth/Upgrade1" to="." method="_on_upgrade_1_pressed"]
-[connection signal="pressed" from="pre rebirth/Upgrade2" to="." method="_on_upgrade_2_pressed"]
-[connection signal="pressed" from="pre rebirth/Upgrade3" to="." method="_on_upgrade_3_pressed"]
-[connection signal="pressed" from="pre rebirth/Upgrade4" to="." method="_on_upgrade_4_pressed"]
-[connection signal="pressed" from="pre rebirth/Upgrade5" to="." method="_on_upgrade_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/pre rebirth/Upgrade1" to="." method="_on_upgrade_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/pre rebirth/Upgrade2" to="." method="_on_upgrade_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/pre rebirth/Upgrade3" to="." method="_on_upgrade_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/pre rebirth/Upgrade4" to="." method="_on_upgrade_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/pre rebirth/Upgrade5" to="." method="_on_upgrade_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/rebirth1/Upgrade6" to="." method="_on_upgrade_6_pressed"]
+[connection signal="pressed" from="VBoxContainer/rebirth1/Upgrade7" to="." method="_on_upgrade_7_pressed"]
+[connection signal="pressed" from="VBoxContainer/rebirth1/Upgrade8" to="." method="_on_upgrade_8_pressed"]
+[connection signal="pressed" from="VBoxContainer/rebirth1/Upgrade9" to="." method="_on_upgrade_9_pressed"]
+[connection signal="pressed" from="VBoxContainer/rebirth1/Upgrade10" to="." method="_on_upgrade_10_pressed"]

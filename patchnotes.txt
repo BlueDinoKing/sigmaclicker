@@ -1,0 +1,8 @@
+Version 82
+[list]
+[*]Added Rebirths: Rebirths unlock new upgrades and add to total multiplier
+[*]Added 6 new upgrades
+[*]Fixed some backend stuff
+[*][url]https://sigmaclicker.kinhome.org[/url] new website maybe
+[/list]
+there is currently no save exporting cause i cant figure it out for the life of me

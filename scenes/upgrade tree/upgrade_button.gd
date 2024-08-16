@@ -8,17 +8,30 @@ var upgradeUnlocks: Array = []
 var rebirthLevel: int = 0
 
 # Define the paths to upgrade nodes directly, including rebirth level upgrades
-@onready var upgrade_nodes : Array = [
-	$"pre rebirth/Upgrade1",
-	$"pre rebirth/Upgrade2",
-	$"pre rebirth/Upgrade3",
-	$"pre rebirth/Upgrade4",
-	$"pre rebirth/Upgrade5",
-	$"rebirth1/Upgrade6",
-	$"rebirth1/Upgrade7",
-	$"rebirth1/Upgrade8",
-	$"rebirth1/Upgrade9",
-	$"rebirth1/Upgrade10"
+@onready var upgrade_nodes: Array = [
+	$"VBoxContainer/pre rebirth/Upgrade1",
+	$"VBoxContainer/pre rebirth/Upgrade2",
+	$"VBoxContainer/pre rebirth/Upgrade3",
+	$"VBoxContainer/pre rebirth/Upgrade4",
+	$"VBoxContainer/pre rebirth/Upgrade5",
+	$"VBoxContainer/rebirth1/Upgrade6",
+	$"VBoxContainer/rebirth1/Upgrade7",
+	$"VBoxContainer/rebirth1/Upgrade8",
+	$"VBoxContainer/rebirth1/Upgrade9",
+	$"VBoxContainer/rebirth1/Upgrade10"
+]
+
+var maxLevel: Array = [
+	3,
+	3,
+	3,
+	3,
+	1,
+	10,
+	3,
+	3,
+	3,
+	3
 ]
 
 # Define currency types for each upgrade
@@ -28,47 +41,48 @@ var currencyTypes: Array = [
 	"aura",  # Upgrade 3
 	"rizz",  # Upgrade 4
 	"rizz",  # Upgrade 5
-	"rizz",  # Upgrade 6
-	"rizz",  # Upgrade 7
-	"rizz",  # Upgrade 8
-	"rizz",  # Upgrade 9
-	"rizz"   # Upgrade 10
+	"brainrot points",  # Upgrade 6
+	"brainrot points",  # Upgrade 7
+	"brainrot points",  # Upgrade 8
+	"brainrot points",  # Upgrade 9
+	"brainrot points"   # Upgrade 10
 ]
 
 func _enter_tree() -> void:
 	# Set base costs for each upgrade
-	baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 200000, 400000, 800000, 1600000, 3200000]
-	upgradeMultiplier = [1000, 100, 10, 100, 1000, 1000, 500, 250, 125, 100]  # Example multipliers for each upgrade
+	baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 1, 2, 2, 3, 3]
+	upgradeMultiplier = [1000, 100, 10, 100, 1000, 4, 3, 2, 3, 4]  # Example multipliers for each upgrade
 
 	# Example dependencies and unlocks
 	upgradeDependencies = [
-		[],	# Upgrade 1 has no dependencies
+		[],    # Upgrade 1 has no dependencies
 		[0],   # Upgrade 2 depends on Upgrade 1
 		[1],   # Upgrade 3 depends on Upgrade 2
 		[0],   # Upgrade 4 depends on Upgrade 1
 		[3],   # Upgrade 5 depends on Upgrade 4
-		[],   # Upgrade 6 depends on nothing (for rebirth level 1 upgrades)
+		[],    # Upgrade 6 depends on nothing (for rebirth level 1 upgrades)
 		[5],   # Upgrade 7 depends on Upgrade 6
 		[6],   # Upgrade 8 depends on Upgrade 7
 		[7],   # Upgrade 9 depends on Upgrade 8
-		[8]	# Upgrade 10 depends on Upgrade 9
+		[8]    # Upgrade 10 depends on Upgrade 9
 	]
 	upgradeUnlocks = [
-		[1, 3], # Upgrade 1 unlocks Upgrade 2 and 4
-		[2],	# Upgrade 2 unlocks Upgrade 3
-		[],	 # Upgrade 3 unlocks nothing
-		[4],	# Upgrade 4 unlocks Upgrade 5
-		[5],	# Upgrade 5 unlocks Upgrade 6
-		[6, 8],	# Upgrade 6 unlocks Upgrade 7
-		[7],	# Upgrade 7 unlocks Upgrade 8
-		[],	# Upgrade 8 unlocks Upgrade 9
-		[9]	 # Upgrade 9 unlocks Upgrade 10
+		[1, 3],  # Upgrade 1 unlocks Upgrade 2 and 4
+		[2],     # Upgrade 2 unlocks Upgrade 3
+		[],      # Upgrade 3 unlocks nothing
+		[4],     # Upgrade 4 unlocks Upgrade 5
+		[],     # 5
+		[6],     # Upgrade 6 unlocks Upgrade 7
+		[7],     # Upgrade 7 unlocks Upgrade 8
+		[8],     # Upgrade 8 unlocks Upgrade 9
+		[9],     # Upgrade 9 unlocks Upgrade 10
+		[]       # Upgrade 10 unlocks nothing
 	]
 
 	# Initialize GameInstance data if necessary
 	if GameInstance.data.upgrades == null:
 		GameInstance.data.upgrades = []
-	
+
 	# Ensure upgrades array is the same size as baseUpgradeCost
 	while GameInstance.data.upgrades.size() < baseUpgradeCost.size():
 		GameInstance.data.upgrades.append(0)
@@ -94,17 +108,12 @@ func _enter_tree() -> void:
 	Handler.ref.aura_consumed.connect(update_labels)
 	Handler.ref.rebirth_points_consumed.connect(update_labels)
 	Handler.ref.rebirth_points_created.connect(update_labels)
+
 func update_labels() -> void:
-	if GameInstance.data.rebirth >= 1:
-		$rebirth1.visible = true
-	else:
-		$rebirth1.visible = false
+	$VBoxContainer/rebirth1.visible = GameInstance.data.rebirth >= 1
+
 	for i in range(upgrade_nodes.size()):
-		var upgrade_node = upgrade_nodes[i]
-		# For upgrades 6-10, ensure they are only updated if rebirth level is sufficient
-		if i >= 5 and GameInstance.data.rebirth < 1:
-			update_upgrade_label(i, upgrade_node)
-		update_upgrade_label(i, upgrade_node)
+		update_upgrade_label(i, upgrade_nodes[i])
 
 func update_upgrade_label(index: int, upgrade_node: Node) -> void:
 	if upgrade_node == null:
@@ -123,12 +132,9 @@ func update_upgrade_label(index: int, upgrade_node: Node) -> void:
 
 	# Ensure the index is within bounds
 	if index >= GameInstance.data.upgradeCost.size():
-		print("Index out of bounds: ", index)
 		return  # Exit the function to avoid out-of-bounds access
 
-	price_label.set_text('%s %s' % [Game.format_number(GameInstance.data.upgradeCost[index]), currency_type])
-
-	# Check if the upgrade can be unlocked by checking dependencies
+	# Calculate if the upgrade can be unlocked by checking its dependencies
 	var unlocked = true
 	if upgradeDependencies[index].size() > 0:
 		for dep in upgradeDependencies[index]:
@@ -136,30 +142,30 @@ func update_upgrade_label(index: int, upgrade_node: Node) -> void:
 				unlocked = false
 				break
 
+	# Set the text and visibility based on whether the upgrade is unlocked
 	if not unlocked:
 		button.disabled = true
 		button.visible = false
 		name_label.set_text('Locked')
 		price_label.set_text('')
 	else:
-		button.disabled = false
+		button.disabled = level >= maxLevel[index]
 		button.visible = true
-		name_label.set_text('%s/%s' % [Game.format_number(level), 3])
+		name_label.set_text('%s/%s' % [Game.format_number(level), maxLevel[index]])
 		price_label.set_text('%s %s' % [Game.format_number(GameInstance.data.upgradeCost[index]), currency_type])
-		if level >= 3:
-			button.disabled = true
+
+		# Disable button and clear price label if upgrade is maxed out
+		if level >= maxLevel[index]:
 			price_label.set_text('')
 
 	# Set lines visibility based on the unlock status of the upgrades they are pointing to
 	for line in lines:
-		# Determine the index of the upgrade that this line points to
 		var target_index = -1
 		if line.name == "Line1" and index + 1 < upgrade_nodes.size():
 			target_index = index + 1
 		elif line.name == "Line2" and index + 2 < upgrade_nodes.size():
 			target_index = index + 2
 
-		# Only show the line if the target upgrade is unlocked
 		if target_index != -1 and target_index < upgrade_nodes.size():
 			var target_unlocked = true
 			if upgradeDependencies[target_index].size() > 0:
@@ -171,6 +177,7 @@ func update_upgrade_label(index: int, upgrade_node: Node) -> void:
 		else:
 			line.visible = false
 
+
 func handle_upgrade(index: int) -> void:
 	var currency_type = currencyTypes[index]
 
@@ -181,8 +188,8 @@ func handle_upgrade(index: int) -> void:
 		GameInstance.data.upgrades[index] += 1
 		Handler.ref.use_aura(GameInstance.data.upgradeCost[index])
 		if index == 2:
-			GameInstance.data.multiplier += .05
-	elif currency_type == "rebirth_points" and GameInstance.data.rebirthPoints >= GameInstance.data.upgradeCost[index]:
+			GameInstance.data.multiplier *= 1.05
+	elif currency_type == "brainrot points" and GameInstance.data.rebirthPoints >= GameInstance.data.upgradeCost[index]:
 		GameInstance.data.upgrades[index] += 1
 		Handler.ref.use_rebirth_points(GameInstance.data.upgradeCost[index])
 	else:
@@ -211,3 +218,18 @@ func _on_upgrade_4_pressed() -> void:
 
 func _on_upgrade_5_pressed() -> void:
 	handle_upgrade(4)
+
+func _on_upgrade_6_pressed() -> void:
+	handle_upgrade(5)
+
+func _on_upgrade_7_pressed() -> void:
+	handle_upgrade(6)
+
+func _on_upgrade_8_pressed() -> void:
+	handle_upgrade(7)
+
+func _on_upgrade_9_pressed() -> void:
+	handle_upgrade(8)
+
+func _on_upgrade_10_pressed() -> void:
+	handle_upgrade(9)

@@ -3,10 +3,10 @@ class_name GoldChains
 @export var goldChainsLabel : Label
 static var ref : GoldChains
 signal goldChains(amount: int)
-func _process(_delta: float) -> void:
-	update_available_gold_chains()
+
 
 func _ready() -> void:
+	Handler.ref.rizz_created.connect(update_available_gold_chains)
 	var initial_cost = 16
 	var num = GameInstance.data.goldChains
 	var cost = initial_cost
