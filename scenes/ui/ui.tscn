@@ -128,5 +128,10 @@ script = ExtResource("5_yq10k")
 [node name="update notification" parent="." instance=ExtResource("8_8dv65")]
 layout_mode = 1
 
+[node name="Timer" type="Timer" parent="update notification"]
+wait_time = 60.0
+autostart = true
+
 [connection signal="item_clicked" from="HBoxContainer/leftPanel/VBoxContainer/nav/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="timeout" from="save_timer" to="save_timer" method="_on_timeout"]
+[connection signal="timeout" from="update notification/Timer" to="update notification" method="_on_timer_timeout"]

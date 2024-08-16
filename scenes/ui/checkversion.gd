@@ -8,7 +8,7 @@ const REMOTE_VERSION_URL = "https://raw.githubusercontent.com/BlueDinoKing/sigma
 var remote_version = ""
 
 # Store the local version for comparison
-var local_version = "82"
+var local_version = "83"
 
 static var ref: CheckVersion
 
@@ -110,3 +110,6 @@ func _on_close_button_pressed() -> void:
 
 func _on_update_popup_close_requested() -> void:
 	hide_update_popup()
+
+func _on_timer_timeout() -> void:
+	compare_versions()
