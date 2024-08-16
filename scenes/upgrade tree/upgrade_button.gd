@@ -29,7 +29,7 @@ var maxLevel: Array = [
 	1,
 	10,
 	3,
-	3,
+	5,
 	3,
 	3
 ]
@@ -50,8 +50,8 @@ var currencyTypes: Array = [
 
 func _enter_tree() -> void:
 	# Set base costs for each upgrade
-	baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 1, 2, 2, 3, 3]
-	upgradeMultiplier = [1000, 100, 10, 100, 1000, 4, 3, 2, 3, 4]  # Example multipliers for each upgrade
+	baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 1, 2, 16, 32, 32]
+	upgradeMultiplier = [1000, 100, 10, 100, 1000, 4, 3, 2, 4, 4]  # Example multipliers for each upgrade
 
 	# Example dependencies and unlocks
 	upgradeDependencies = [

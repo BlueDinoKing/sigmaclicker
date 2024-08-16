@@ -10,7 +10,8 @@ var data: Data
 
 
 
-static func format_number(input) -> String:
+static func format_number(input1) -> String:
+	var input = round(input1*10)/10
 	var _exp = str(input).split(".")[0].length() - 1
 	var units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc", "Ud", "Dd", "Td", "Qad", "Qid", "Sxd", "Spd", "Ocd", "Nod"]
 

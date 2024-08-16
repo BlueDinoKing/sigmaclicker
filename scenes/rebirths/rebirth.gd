@@ -49,6 +49,7 @@ func _on_pressed() -> void:
 			update_rebirth_cost()  # Update the rebirth cost for the next rebirth
 			rebirth_reset(rebirths_possible)
 			update_label()
+var baseUpgradeCost = [1000, 10000, 100000, 10000, 100000, 1, 2, 16, 32, 32]
 
 # Reset game state after rebirth
 func rebirth_reset(input):
@@ -58,10 +59,9 @@ func rebirth_reset(input):
 			GameInstance.data.upgrades[i] = 0
 
 	# Reset the costs for the first four upgrades
-	GameInstance.data.upgradeCost = []
-	# Ensure that the rest of the upgrade costs are intact
-	while GameInstance.data.upgradeCost.size() < GameInstance.data.upgrades.size():
-		GameInstance.data.upgradeCost.append(0)
+	for i in range(5):
+		if i < GameInstance.data.upgrades.size():
+			GameInstance.data.upgradeCost[i] = baseUpgradeCost[i]
 
 	GameInstance.data.goldChains = 0
 	GameInstance.data.auraBreweries = 0
@@ -73,9 +73,8 @@ func rebirth_reset(input):
 	GameInstance.data.goldChainsCost = 16
 	GameInstance.data.auraBreweryCost = 64
 	GameInstance.data.moggersCost = 256
-	GameInstance.data.tick = 0
 	GameInstance.data.rebirth += input
-	Handler.ref.create_rebirth_points(input)
+	Handler.ref.create_rebirth_points(input * 2**GameInstance.data.upgrades[6])
 	GameInstance.data.multiplier = 0.1 * GameInstance.data.rebirth + 1
 # Estimate the maximum number of rebirths possible with the given aura
 func estimate_max_rebirths(aura: int) -> int:

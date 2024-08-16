@@ -14,6 +14,7 @@ func _ready() -> void:
 	GoldChains.ref.goldChains.connect(create_goldChain)
 	Moggers.ref.moggers.connect(create_mogger)
 	AuraBrewery.ref.auraBrewery.connect(create_auraBrewery)
+	Handler.ref.rebirth_points_created.connect(kill_all_children)
 
 	screenSize = get_viewport().get_visible_rect().size
 	for i in range(GameInstance.data.goldChains):

@@ -214,6 +214,9 @@ text = "mogg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="button_down" from="rizz up baddies" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="rizz up baddies" to="rizz up baddies" method="_on_button_down"]
 [connection signal="button_up" from="rizz up baddies" to="rizz up baddies" method="_on_button_up"]
@@ -227,3 +230,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="ScrollContainer/buildings/gold chains" to="ScrollContainer/buildings/gold chains" method="_on_pressed"]
 [connection signal="pressed" from="ScrollContainer/buildings/moggers" to="ScrollContainer/buildings/moggers" method="_on_pressed"]
 [connection signal="timeout" from="ScrollContainer/buildings/moggers/Timer" to="ScrollContainer/buildings/moggers" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -385,7 +385,7 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
 offset_bottom = -1.0
-text = "upgrade"
+text = "upgrade5"
 horizontal_alignment = 1
 
 [node name="Price" type="Label" parent="VBoxContainer/pre rebirth/Upgrade5"]
@@ -413,7 +413,7 @@ offset_top = 88.0
 offset_right = 120.0
 offset_bottom = 163.0
 text = "Clicks increase the output of your aura breweries. 
-*2^(log_20(clicks))"
+*2^(log_200(clicks))"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -459,7 +459,7 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
 offset_bottom = -1.0
-text = "upgrade"
+text = "upgrade6"
 horizontal_alignment = 1
 
 [node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade6"]
@@ -525,7 +525,7 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
 offset_bottom = -1.0
-text = "upgrade"
+text = "upgrade7"
 horizontal_alignment = 1
 
 [node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade7"]
@@ -597,7 +597,7 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
 offset_bottom = -1.0
-text = "upgrade"
+text = "upgrade8"
 horizontal_alignment = 1
 
 [node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade8"]
@@ -624,12 +624,12 @@ theme = SubResource("Theme_jdk10")
 
 [node name="Label3" type="Label" parent="VBoxContainer/rebirth1/Upgrade8"]
 layout_mode = 0
-offset_left = -24.0
+offset_left = -64.0
 offset_top = 88.0
-offset_right = 88.0
-offset_bottom = 163.0
+offset_right = 112.0
+offset_bottom = 189.0
 text = "Moggers boosted by digits aura 
-*log_100(aura)"
+.1 * aura * moggers * 2^log_100(aura)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -640,8 +640,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -670,7 +668,7 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
 offset_bottom = -1.0
-text = "upgrade"
+text = "upgrade9"
 horizontal_alignment = 1
 
 [node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade9"]
@@ -737,7 +735,8 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 88.0
 offset_bottom = -1.0
-text = "upgrade"
+text = "upgrade10
+"
 horizontal_alignment = 1
 
 [node name="Price" type="Label" parent="VBoxContainer/rebirth1/Upgrade10"]

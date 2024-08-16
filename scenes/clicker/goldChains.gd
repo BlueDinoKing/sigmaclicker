@@ -7,6 +7,8 @@ signal goldChains(amount: int)
 
 func _ready() -> void:
 	Handler.ref.rizz_created.connect(update_available_gold_chains)
+	Handler.ref.rizz_consumed.connect(update_available_gold_chains)
+	update_available_gold_chains()
 	var initial_cost = 16
 	var num = GameInstance.data.goldChains
 	var cost = initial_cost

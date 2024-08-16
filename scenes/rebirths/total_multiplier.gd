@@ -7,9 +7,5 @@ func _ready() -> void:
 	update()
 
 func update() -> void:
-	text = "%sx multiplier from rebirths" % (GameInstance.data.rebirth * .1 + 1) 
-	$"../status".text = levels[str(GameInstance.data.rebirth+9).length()]
+	$"../status".text = levels[str(GameInstance.data.rebirth+9).length()-1]
 	$"../total brainrot".text = "Total Brainrot : %s" % GameInstance.data.rebirth
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

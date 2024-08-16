@@ -33,7 +33,7 @@ func calculate_rizz_text() -> String:
 	if GameInstance.data.upgrades[0] > 0:
 		rizz_value += floor(GameInstance.data.aura * GameInstance.data.goldChains * 0.025 * GameInstance.data.upgrades[0])
 
-	return "Rizz: %s" % Game.format_number(rizz_value)
+	return Game.format_number(rizz_value)
 
 func setup_tween(tween: Tween, label: Label) -> void:
 	tween.set_parallel(true)
