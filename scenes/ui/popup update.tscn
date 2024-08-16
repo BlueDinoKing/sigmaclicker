@@ -44,4 +44,5 @@ grow_vertical = 0
 text = "Click this button to close. You must be on the latest version to submit leaderboard data"
 autowrap_mode = 3
 
+[connection signal="close_requested" from="UpdatePopup" to="." method="_on_update_popup_close_requested"]
 [connection signal="pressed" from="UpdatePopup/UpdateButton" to="." method="_on_update_button_pressed"]

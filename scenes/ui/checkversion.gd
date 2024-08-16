@@ -106,3 +106,7 @@ func _on_update_button_pressed() -> void:
 
 func _on_close_button_pressed() -> void:
 	hide_update_popup()  # Hide the popup when the close button is pressed
+
+
+func _on_update_popup_close_requested() -> void:
+	hide_update_popup()

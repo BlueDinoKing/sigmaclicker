@@ -31,7 +31,7 @@ func _on_pressed() -> void:
 func calculate_rizz_text() -> String:
 	var rizz_value = round(floor((GameInstance.data.goldChains+1)* GameInstance.data.multiplier * GameInstance.data.tempMulti))
 	if GameInstance.data.upgrades[0] > 0:
-		rizz_value = round(1 + 1 * GameInstance.data.goldChains + (GameInstance.data.aura * (GameInstance.data.goldChains * .025 * GameInstance.data.upgrades[0])))
+		rizz_value = round((1 + 1 * GameInstance.data.goldChains + (GameInstance.data.aura * (GameInstance.data.goldChains * .025 * GameInstance.data.upgrades[0])))* GameInstance.data.multiplier * GameInstance.data.tempMulti)
 
 	return Game.format_number(rizz_value)
 

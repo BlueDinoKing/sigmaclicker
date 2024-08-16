@@ -26,24 +26,6 @@ grow_horizontal = 2
 text = "Rebirth for x brainrot"
 script = ExtResource("1_dxu82")
 
-[node name="total multiplier" type="Label" parent="Button"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = 80.0
-offset_right = 104.0
-offset_bottom = 103.0
-grow_horizontal = 2
-grow_vertical = 2
-text = ".1x multiplier per Brainrot"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_jwlyb")
-
 [node name="Label2" type="Label" parent="Button"]
 layout_mode = 1
 anchors_preset = 8
@@ -58,6 +40,7 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Current brainrot status:"
+script = ExtResource("2_jwlyb")
 
 [node name="status" type="Label" parent="Button"]
 layout_mode = 1

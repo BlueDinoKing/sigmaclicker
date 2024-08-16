@@ -37,14 +37,14 @@ func _on_button_pressed() -> void:
 		add_child(boostTimer)
 		boostTimers.append(boostTimer)
 		boostTimer.start()
-		GameInstance.data.tempMulti *= 1.05
+		GameInstance.data.tempMulti *= 1.05**GameInstance.data.upgrades[6]
 	if GameInstance.data.clicks % 10 == 1:
 		if GameInstance.data.audio == true:
 			$"rizz up baddies/AudioStreamPlayer2D".pitch_scale = randf_range(0.5, 2)
 			$"rizz up baddies/AudioStreamPlayer2D".play()
 
 func _on_boost_timeout() -> void:
-	GameInstance.data.tempMulti /= 1.05
+	GameInstance.data.tempMulti /= 1.05**GameInstance.data.upgrades[6]
 	var to_remove = []
 	for timer in boostTimers:
 		if timer.is_stopped():
@@ -52,6 +52,9 @@ func _on_boost_timeout() -> void:
 	for timer in to_remove:
 		timer.queue_free()
 		boostTimers.erase(timer)
+		if GameInstance.data.tempMulti < 1:
+			GameInstance.data.tempMulti = 1
 
 func _on_timer_timeout() -> void:
 	GameInstance.data.tick += 1
+	
