@@ -1,15 +1,6 @@
-Version 82 8/15/24 8:30pm
+Version 84 8/24/24 4:40pm
 [ul]
-Added Rebirths: Rebirths unlock new upgrades and add to total multiplier
-Added 6 new upgrades
-Fixed some backend stuff
-Your game wont say its updated if you dont update?
-this thing right here 
-[url]https://sigmaclicker.kinhome.org[/url] new website maybe
+online leaderboards!
+usernames
 [/ul]
-there is currently no save exporting cause i cant figure it out for the life of me
-Version 83 8/15/24 10:05pm
-[ul]
-i forgot to do some balancing
-thats it
-[/ul]
+thats it. it took a while but it works i think

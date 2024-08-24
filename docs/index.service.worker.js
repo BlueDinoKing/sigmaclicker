@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1723784747|2240453542';
+const CACHE_VERSION = '1724542731|220850812';
 /** @type {string} */
 const CACHE_PREFIX = 'sigmaclicker-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
