@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c77v1uh4rdr30"]
+[gd_scene load_steps=13 format=3 uid="uid://c77v1uh4rdr30"]
 
 [ext_resource type="PackedScene" uid="uid://0ugh23teop1k" path="res://scenes/clicker/clicker.tscn" id="1_0qt3f"]
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_rl8b6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cktms0am6bv2o" path="res://scenes/rebirths/rebirths.tscn" id="7_c00i2"]
 [ext_resource type="PackedScene" uid="uid://c2mfgmxnk721x" path="res://scenes/ui/popup update.tscn" id="8_8dv65"]
 [ext_resource type="Script" path="res://scenes/rebirths/rebirths.gd" id="8_ufis6"]
+[ext_resource type="PackedScene" uid="uid://c76t7pfrs0t4y" path="res://scenes/leaderboards/leaderboards.tscn" id="10_1o1vd"]
 
 [node name="ui" type="Control"]
 layout_mode = 3
@@ -58,10 +59,11 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-item_count = 3
+item_count = 4
 item_0/text = "Main"
 item_1/text = "Settings"
 item_2/text = "Upgrades"
+item_3/text = "Leaderboards"
 script = ExtResource("2_jtgkl")
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/leftPanel/VBoxContainer"]
@@ -112,13 +114,20 @@ user_interface_path = NodePath("../../..")
 user_interface = NodePath("../../..")
 view = 2
 
+[node name="leaderboards" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("10_1o1vd")]
+visible = false
+layout_mode = 1
+user_interface_path = NodePath("../../..")
+user_interface = NodePath("../../..")
+view = 3
+
 [node name="Rebirths" parent="HBoxContainer/mainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("7_c00i2")]
 visible = false
 layout_mode = 1
 script = ExtResource("8_ufis6")
 user_interface_path = NodePath("../../..")
 user_interface = NodePath("../../..")
-view = 3
+view = 4
 
 [node name="save_timer" type="Timer" parent="."]
 wait_time = 5.0

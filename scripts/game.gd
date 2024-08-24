@@ -78,6 +78,8 @@ func _singleton_check() -> void:
 		print("Game singleton already exists, freeing this instance")
 		queue_free()
 
+signal dataLoaded
+
 # data init & singleton check
 func _enter_tree() -> void:
 	_singleton_check()
@@ -86,6 +88,46 @@ func _enter_tree() -> void:
 			data = Data.new()
 		SaveSystem.load_data()
 		print("Data initialized")
+		dataLoaded.emit()
+		send_post_request()
+
+const url = "http://localhost:8000"
+
+signal requestCompleted
+
+func send_post_request() -> void:
+	if GameInstance.data.id:
+		return
+	print('Sending POST request')
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	GameInstance.data.username = "Sigma%s" % randi_range(1000, 9999)
+	http_request.request_completed.connect(_on_request_completed)
+	var error = http_request.request(
+		"https://sigmaclicker.kinhome.org/users/?name=%s" % GameInstance.data.username, 
+		[], 
+		HTTPClient.METHOD_POST
+	)
+	if error != OK:
+		print("Request error: ", error)
+	else:
+		print("POST request sent successfully")
+
+# This function is triggered when the HTTP request completes
+func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if response_code == 200:
+		var response = body.get_string_from_utf8()  # Get the response body as a string
+		var json_parse_result = JSON.parse_string(response)  # Parse the JSON response
+		
+		var json_response = json_parse_result.id  # This is the actual parsed JSON (a Dictionary)
+		print("Server response: ", json_response)
+		if not GameInstance.data.id or GameInstance.data.id == 0:
+			GameInstance.data.id = json_response
+		print(GameInstance.data.id)
+	else:
+		print("HTTP error: ", response_code)
+
+
 
 func _ready() -> void:
 	if ref == self:

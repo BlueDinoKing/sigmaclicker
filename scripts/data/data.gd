@@ -3,7 +3,9 @@ extends Resource
 
 
 # settings
-@export var username : String = "Sigma"
+@export var uptodate : bool = true
+@export var username : String = 'sigma'
+@export var id : int
 @export var maxDigitsUntilScientific : int = 3
 @export var audio : bool = true
 @export var scientific : bool = false

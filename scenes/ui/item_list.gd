@@ -8,12 +8,12 @@ func _ready() -> void:
 		unlock_rebirth()
 func unlock_rebirth() -> void:
 	if GameInstance.data.rebirth > 0:
-		if get_item_text(3) == '':
+		if get_item_text(4) == '':
 			add_item('Rebirth')
 		else:
 			return
 	if GameInstance.data.aura >= 100000 and get_item_text(3) != "Rebirth":	
-		if get_item_text(3) == '':
+		if get_item_text(4) == '':
 			add_item('Rebirth')
 		else:
 			return

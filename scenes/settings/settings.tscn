@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmdspqtegj13"]
+[gd_scene load_steps=8 format=3 uid="uid://cmdspqtegj13"]
 
 [ext_resource type="Script" path="res://scenes/settings/settings.gd" id="1_saf06"]
 [ext_resource type="Script" path="res://scenes/settings/resetsave.gd" id="2_26fuw"]
 [ext_resource type="Script" path="res://scenes/settings/button.gd" id="2_b5dci"]
 [ext_resource type="Script" path="res://scenes/settings/check_button.gd" id="2_oxyxx"]
+[ext_resource type="Script" path="res://scenes/settings/changename.gd" id="6_m7am6"]
 [ext_resource type="Script" path="res://scenes/settings/patch_notes.gd" id="6_p226u"]
 
 [sub_resource type="GDScript" id="GDScript_vbxe0"]
@@ -156,6 +157,32 @@ grow_horizontal = 0
 bbcode_enabled = true
 script = ExtResource("6_p226u")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 344.0
+offset_right = 336.0
+offset_bottom = 432.0
+
+[node name="TextEdit" type="TextEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 72.0
+placeholder_text = "<username>"
+
+[node name="Button" type="Button" parent="Panel" node_paths=PackedStringArray("textedit")]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 72.0
+text = "Change Username"
+autowrap_mode = 3
+script = ExtResource("6_m7am6")
+textedit = NodePath("../TextEdit")
+
 [connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="toggled" from="HSlider/CheckButton" to="HSlider/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="reset save" to="reset save" method="_on_pressed"]
@@ -164,3 +191,6 @@ script = ExtResource("6_p226u")
 [connection signal="pressed" from="audio" to="audio" method="_on_pressed"]
 [connection signal="pressed" from="export save2/Button2" to="export save2/Node" method="_on_pressed"]
 [connection signal="pressed" from="export save2/export save" to="export save2/Node" method="_on_button_2_pressed"]
+[connection signal="text_changed" from="Panel/TextEdit" to="Panel/Button" method="_on_text_edit_text_changed"]
+[connection signal="text_set" from="Panel/TextEdit" to="Panel/Button" method="_on_text_edit_text_set"]
+[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_pressed"]

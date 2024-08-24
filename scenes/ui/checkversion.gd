@@ -8,7 +8,7 @@ const REMOTE_VERSION_URL = "https://raw.githubusercontent.com/BlueDinoKing/sigma
 var remote_version = ""
 
 # Store the local version for comparison
-var local_version = "83"
+var local_version = "84"
 
 static var ref: CheckVersion
 
@@ -81,9 +81,11 @@ func _on_version_fetched() -> void:
 		if local_version == remote_version:
 			print("The versions are the same. (%s)" % local_version)
 			hide_update_popup()  # Hide the popup if versions are the same
+			GameInstance.data.uptodate = true
 		else:
 			print("The versions are different. local: %s remote: %s" % [local_version, remote_version])
 			show_update_popup()  # Show the popup if versions are different
+			GameInstance.data.uptodate = false
 	else:
 		print("Failed to fetch the remote version.")
 		hide_update_popup()  # Hide the popup if fetching failed
