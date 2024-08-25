@@ -67,7 +67,7 @@ func update_leaderboard(top_scores: Dictionary) -> void:
 	top_rebirths_label.text = format_leaderboard("Brainrot", top_scores.get("rebirths", []))
 
 func format_leaderboard(title: String, scores: Array, time: bool = false) -> String:
-	var leaderboard_text = title + "\n"
+	var leaderboard_text = title.replace("\n", "\\n") + "\n"
 	for entry in scores:
 		var formatted_score
 		if not time:
@@ -75,9 +75,11 @@ func format_leaderboard(title: String, scores: Array, time: bool = false) -> Str
 		else:
 			formatted_score = seconds_to_hms(entry["score"])
 		# Limit username to 12 characters
-		var username_display = entry["username"].left(12)
-		leaderboard_text += "%s: %s\n" % [username_display, formatted_score]
+		var username_display = entry["username"].left(10)
+		var escaped_username = username_display.replace("\n", "\\n").replace("\t", "\\t").replace("\r", "\\r")
+		leaderboard_text += "%s: %s\n" % [escaped_username, formatted_score]
 	return leaderboard_text
+
 
 
 @onready var timer = $"../Timer"
@@ -85,7 +87,6 @@ func format_leaderboard(title: String, scores: Array, time: bool = false) -> Str
 @export var thresholds_url: String = "https://sigmaclicker.kinhome.org/get_threshold/"
 @export var update_score_url: String = "https://sigmaclicker.kinhome.org/scores/"
 
-@export var user_id: int = 13  # Replace with the actual user ID
 @export var user_scores: Dictionary = {}
 
 func _on_timeout() -> void:
